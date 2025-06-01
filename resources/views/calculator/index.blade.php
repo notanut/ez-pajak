@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
+<section class="d-block d-md-flex">
         <div class="left">
-            <h2>Isi Data Anda Disini</h2>
+            <h3>Isi Data <span class="fw-normal">Anda Disini</span></h3>
+            <p class="fst-italic fs-5">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
             <div class="card">
-                <div class="blue">Informasi Pegawai</div>
+                <h4 class="blue">Informasi Pegawai</h4>
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input type="number" class="form-control" id="floatingInput" placeholder="2">
@@ -77,7 +78,7 @@
             </div>
 
             <div class="card">
-                <div class="blue">Penghasilan</div>
+                <h4 class="blue">Penghasilan</h4>
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingGaji" placeholder="0">
@@ -122,7 +123,7 @@
             </div>
             
             <div class="card">
-                <div class="blue">Pengurangan</div>
+                <h4 class="blue">Pengurangan</h4>
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingBiaya" placeholder="0">
@@ -148,7 +149,7 @@
         </div>
         <div class="right">
             <div class="card">
-                <div class="orange">Penghitungan</div>
+                <h4 class="orange">Penghitungan</h4>
                 <div class="res-field">
                     <p class="label">Penghasilan Neto</p>
                     <p class="res">Rp    234.400.000,00</p>
@@ -176,7 +177,7 @@
             </div>
 
             <div class="card">
-                <div class="orange">Pembayaran</div>
+                <h4 class="orange">Pembayaran</h4>
                 <div class="content-wrap">
                     <p class="djp-par">
                         Menurut DJP, batas waktu penyampaian SPT adalah paling lama 3 bulan setelah akhir Tahun Pajak
