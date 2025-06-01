@@ -1,0 +1,18 @@
+// 1. Import functions & variables dulu
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// 2. Override colors sebelum import bootstrap
+$custom-colors: (
+  "primary": #151F6D,
+  "secondary": #FFAF00,
+  "element-dark": #142143,
+  "element-orange": #FE8F1D,
+  "element-yellow": #FFD35B,
+  "white": #FFFFFF
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// 3. Import rest of bootstrap
+@import "bootstrap/scss/bootstrap";
