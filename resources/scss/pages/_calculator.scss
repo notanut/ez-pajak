@@ -1,0 +1,273 @@
+p {
+  color: map-get($custom-colors, "element-dark");
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+    font-family: "Raleway", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+.left, .right {
+    width: 50%;
+}
+
+.card {
+    border: 1px solid map-get($custom-colors, "primary");
+    padding: 2em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    border-radius: 0;
+    margin: 3em 0;
+}
+
+.card-title {
+    position: absolute;
+    padding: .45em .75em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    color: white;
+    width: auto;
+    top: 0;
+    left: 2em;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.form-wrap {
+    margin-top: .15rem;
+}
+
+
+.blue {
+    background-color: map-get($custom-colors, "primary");
+}
+
+.orange {
+    background-color: map-get($custom-colors, "element-orange");
+}
+
+.input-field, .res-field {
+    border-width: 0;
+    border-bottom: 1px solid map-get($custom-colors, "primary");
+    margin: 2em 0;
+}
+
+.form-control, .form-select {
+    border-width: 0;
+    padding: 0;
+}
+
+.form-control {
+    padding-top: 3em !important;
+    padding-bottom: 1em !important;
+}
+
+.form-select {
+    padding-bottom: 0 !important;
+}
+
+label {
+    color: map-get($custom-colors, "element-dark") !important;
+    font-weight: 600;
+    font-size: 1em;
+    padding-left: 0 !important;
+    padding-bottom: 1em !important;
+}
+
+input, select {
+    padding-left: .15rem !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+.form-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+
+    .input-field {
+        width: 45%;
+        margin: 0;
+    }
+}
+
+.title-date {
+    font-weight: 600;
+    margin: 0;
+}
+
+.form-check {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 0;
+
+    p {
+        font-weight: 600;
+        margin: 0;
+        font-size: 1em;
+    }
+
+    .radio-wrap {
+        margin: .5rem 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .opt {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        
+        input[type="radio"] {
+          background-color: map-get($custom-colors, "element-orange");
+          border-color: map-get($custom-colors, "element-orange");
+          width: 1rem;
+          height: 1rem;
+          cursor: pointer;
+        }
+        
+        input[type="radio"]:checked {
+            background-color: map-get($custom-colors, "element-orange");
+            border-color: map-get($custom-colors, "element-orange");
+        }
+    }
+
+}
+
+.total {
+    background-color: map-get($custom-colors, "element-orange");
+    padding: 1rem;
+    p {
+        color: white;
+        margin: 0;
+    }
+
+    .title-total {
+        font-weight: 600;
+        font-size: 1em;
+    }
+
+    .rp-total {
+        font-weight: 700;
+        font-size: 1.5em;
+    }
+}
+
+.res-field {
+    .label {
+        font-weight: 600;
+        color: map-get($custom-colors, "element-dark");
+        font-size: 1rem;
+        margin-bottom: 7px;
+    }
+    
+    .res {
+        color: map-get($custom-colors, "primary");
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+}
+
+.grand {
+    background-color: map-get($custom-colors, "primary");
+}
+
+.djp-par {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 2em 0;
+}
+
+.date-due {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    margin-bottom: 2em;
+    .start {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        p {
+            margin-bottom: 0;
+        }
+    }
+    
+    .end {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 2px;
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    .date-title {
+        font-family: "Raleway", sans-serif;
+        font-weight: 500;
+        font-size: 1.5em;
+    }
+
+    .date-ex {
+        font-weight: 600;
+        font-size: 2em;
+    }
+
+    .batas-sub {
+        font-size: 1em;
+    }
+
+    .batas-date {
+        font-size: 1.5em;
+        font-style: italic;
+    }
+}
+
+.pay-now {
+  padding: 0.5rem 0.75rem; 
+  background-color: map-get($custom-colors, "primary"); 
+  color: white;
+  border: none;
+  margin-right: 1rem; 
+  border: 1px solid map-get($custom-colors, "primary");
+  cursor: pointer;
+  transition: .3s all ease-in-out;
+}
+
+.later {
+    padding: 0.5rem 0.75rem; 
+    background-color: white;
+    color: map-get($custom-colors, "primary"); 
+    border: 1px solid map-get($custom-colors, "primary");
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+}
+
+.pay-now:hover {
+    color: map-get($custom-colors, "primary"); 
+    background-color: white;
+    box-shadow: $box-shadow-sm;
+}
+
+.later:hover {
+    background-color: map-get($custom-colors, "primary"); 
+    color: white;
+    box-shadow: $box-shadow-sm;
+}

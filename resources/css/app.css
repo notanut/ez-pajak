@@ -12215,10 +12215,260 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+p {
+  color: #142143;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button {
+  font-family: "Raleway", sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-weight: 700;
+}
+
+.left, .right {
+  width: 50%;
+}
+
+.card {
+  border: 1px solid #151F6D;
+  padding: 2em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  margin: 3em 0;
+}
+
+.card-title {
+  position: absolute;
+  padding: 0.45em 0.75em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  width: auto;
+  top: 0;
+  left: 2em;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.form-wrap {
+  margin-top: 0.15rem;
+}
+
+.blue {
+  background-color: #151F6D;
+}
+
+.orange {
+  background-color: #FE8F1D;
+}
+
+.input-field, .res-field {
+  border-width: 0;
+  border-bottom: 1px solid #151F6D;
+  margin: 2em 0;
+}
+
+.form-control, .form-select {
+  border-width: 0;
+  padding: 0;
+}
+
+.form-control {
+  padding-top: 3em !important;
+  padding-bottom: 1em !important;
+}
+
+.form-select {
+  padding-bottom: 0 !important;
+}
+
+label {
+  color: #142143 !important;
+  font-weight: 600;
+  font-size: 1em;
+  padding-left: 0 !important;
+  padding-bottom: 1em !important;
+}
+
+input, select {
+  padding-left: 0.15rem !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+.form-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+}
+.form-date .input-field {
+  width: 45%;
+  margin: 0;
+}
+
+.title-date {
+  font-weight: 600;
+  margin: 0;
+}
+
+.form-check {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-radius: 0;
+}
+.form-check p {
+  font-weight: 600;
+  margin: 0;
+  font-size: 1em;
+}
+.form-check .radio-wrap {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+.form-check .opt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.form-check .opt input[type=radio] {
+  background-color: #FE8F1D;
+  border-color: #FE8F1D;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+.form-check .opt input[type=radio]:checked {
+  background-color: #FE8F1D;
+  border-color: #FE8F1D;
+}
+
+.total {
+  background-color: #FE8F1D;
+  padding: 1rem;
+}
+.total p {
+  color: white;
+  margin: 0;
+}
+.total .title-total {
+  font-weight: 600;
+  font-size: 1em;
+}
+.total .rp-total {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.res-field .label {
+  font-weight: 600;
+  color: #142143;
+  font-size: 1rem;
+  margin-bottom: 7px;
+}
+.res-field .res {
+  color: #151F6D;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.grand {
+  background-color: #151F6D;
+}
+
+.djp-par {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin: 2em 0;
+}
+
+.date-due {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  margin-bottom: 2em;
+}
+.date-due .start {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.date-due .start p {
+  margin-bottom: 0;
+}
+.date-due .end {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 2px;
+}
+.date-due .end p {
+  margin-bottom: 0;
+}
+.date-due .date-title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+.date-due .date-ex {
+  font-weight: 600;
+  font-size: 2em;
+}
+.date-due .batas-sub {
+  font-size: 1em;
+}
+.date-due .batas-date {
+  font-size: 1.5em;
+  font-style: italic;
+}
+
+.pay-now {
+  padding: 0.5rem 0.75rem;
+  background-color: #151F6D;
+  color: white;
+  border: none;
+  margin-right: 1rem;
+  border: 1px solid #151F6D;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+
+.later {
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  color: #151F6D;
+  border: 1px solid #151F6D;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+
+.pay-now:hover {
+  color: #151F6D;
+  background-color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.later:hover {
+  background-color: #151F6D;
+  color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
 
 /*# sourceMappingURL=app.css.map */
-
-
-h6 {
-    font-size: 20px;
-}

@@ -16,3 +16,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // 3. Import rest of bootstrap
 @import "bootstrap/scss/bootstrap";
+
+// pages
+@import "pages/calculator"; 
+

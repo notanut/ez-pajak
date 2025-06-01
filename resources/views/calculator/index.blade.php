@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="d-block d-md-flex">
+<section class="d-block d-md-flex gap-5 justify-content-evenly">
         <div class="left">
-            <h3>Isi Data <span class="fw-normal">Anda Disini</span></h3>
-            <p class="fst-italic fs-5">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
+            <h2 class="text-primary">Isi Data <span class="fw-normal">Anda Disini</span></h2>
+            <p class="fst-italic">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
             <div class="card">
-                <h4 class="blue">Informasi Pegawai</h4>
+                <h5 class="blue card-title">Informasi Pegawai</h5>
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input type="number" class="form-control" id="floatingInput" placeholder="2">
@@ -22,52 +22,61 @@
                         <label for="floatingSelect">Apa status perkawinan Anda?</label>
                     </div>
 
-                    <div class="form-date">
-                        <div class="form-floating input-field">
-                            <select id="startMonth" class="form-select" required>
-                                <option value="" disabled selected>Pilih bulan</option>
-                                <option value="1">Januari</option>
-                                <option value="2">Februari</option>
-                                <option value="3">Maret</option>
-                                <option value="4">April</option>
-                                <option value="5">Mei</option>
-                                <option value="6">Juni</option>
-                                <option value="7">Juli</option>
-                                <option value="8">Agustus</option>
-                                <option value="9">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
-                            <label for="startMonth" class="form-label">Bulan Awal</label>
-                        </div>
-
-                        <div class="form-floating input-field">
-                            <select id="endMonth" class="form-select" required>
-                                <option value="" disabled selected>Pilih bulan</option>
-                                <option value="1">Januari</option>
-                                <option value="2">Februari</option>
-                                <option value="3">Maret</option>
-                                <option value="4">April</option>
-                                <option value="5">Mei</option>
-                                <option value="6">Juni</option>
-                                <option value="7">Juli</option>
-                                <option value="8">Agustus</option>
-                                <option value="9">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
-                            <label for="endMonth" class="form-label">Bulan Akhir</label>
+                    <div class="form-date-wrap">
+                        <p class="title-date">Masa Penghasilan</p>
+                        <div class="form-date">
+                            <div class="form-floating input-field">
+                                <select id="startMonth" class="form-select" required>
+                                    <option value="" disabled selected>Pilih bulan</option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                                <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
+                            </div>
+    
+                            <div class="form-floating input-field">
+                                <select id="endMonth" class="form-select" required>
+                                    <option value="" disabled selected>Pilih bulan</option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                                <label for="endMonth" class="form-label fst-italic">Bulan Akhir</label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-floating form-check input-field btn-group" role="group">
                         <p>Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
-                        <input type="radio" name="bin" value="0"> Ya
-                        <label></label>
-                            <input type="radio" name="bin" value="1"> Tidak
-                        <label></label>
+                        <div class="radio-wrap">
+                            <div class="opt">
+                                <input type="radio" name="bin" value="0"> Ya
+                                <label></label>
+                            </div>
+                            <div class="opt">
+                                <input type="radio" name="bin" value="1"> Tidak
+                                <label></label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-floating input-field">
@@ -78,7 +87,7 @@
             </div>
 
             <div class="card">
-                <h4 class="blue">Penghasilan</h4>
+                <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingGaji" placeholder="0">
@@ -123,7 +132,7 @@
             </div>
             
             <div class="card">
-                <h4 class="blue">Pengurangan</h4>
+                <h5 class="blue card-title">Pengurangan</h5>
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingBiaya" placeholder="0">
@@ -149,36 +158,38 @@
         </div>
         <div class="right">
             <div class="card">
-                <h4 class="orange">Penghitungan</h4>
-                <div class="res-field">
-                    <p class="label">Penghasilan Neto</p>
-                    <p class="res">Rp    234.400.000,00</p>
-                </div>
-                <div class="res-field">
-                    <p class="label">Penghasilan Neto Masa sebelumnya</p>
-                    <p class="res">Rp    234.400.000,00</p>
-                </div>
-                <div class="res-field">
-                    <p class="label">Penghasilan Neto untuk PPh 21 (Setahun/Disetahunkan)</p>
-                    <p class="res">Rp    234.400.000,00</p>
-                </div>
-                <div class="res-field">
-                    <p class="label">Penghasilan Tidak Kena Pajak (PTKP)</p>
-                    <p class="res">Rp    234.400.000,00</p>
-                </div>
-                <div class="res-field">
-                    <p class="label">Penghasilan Kena Pajak Setahun/Disetahunkan</p>
-                    <p class="res">Rp    234.400.000,00</p>
-                </div>
-                <div class="total grand">
-                    <p class="title-total">PPh 21 Terutang</p>
-                    <p class="rp-total">Rp  14.595.000,00</p>
+                <h5 class="orange card-title">Penghitungan</h5>
+                <div class="form-wrap">
+                    <div class="res-field">
+                        <p class="label">Penghasilan Neto</p>
+                        <p class="res">Rp    234.400.000,00</p>
+                    </div>
+                    <div class="res-field">
+                        <p class="label">Penghasilan Neto Masa sebelumnya</p>
+                        <p class="res">Rp    234.400.000,00</p>
+                    </div>
+                    <div class="res-field">
+                        <p class="label">Penghasilan Neto untuk PPh 21 (Setahun/Disetahunkan)</p>
+                        <p class="res">Rp    234.400.000,00</p>
+                    </div>
+                    <div class="res-field">
+                        <p class="label">Penghasilan Tidak Kena Pajak (PTKP)</p>
+                        <p class="res">Rp    234.400.000,00</p>
+                    </div>
+                    <div class="res-field">
+                        <p class="label">Penghasilan Kena Pajak Setahun/Disetahunkan</p>
+                        <p class="res">Rp    234.400.000,00</p>
+                    </div>
+                    <div class="total grand">
+                        <p class="title-total">PPh 21 Terutang</p>
+                        <p class="rp-total">Rp  14.595.000,00</p>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <h4 class="orange">Pembayaran</h4>
-                <div class="content-wrap">
+                <h5 class="orange card-title">Pembayaran</h5>
+                <div class="form-wrap">
                     <p class="djp-par">
                         Menurut DJP, batas waktu penyampaian SPT adalah paling lama 3 bulan setelah akhir Tahun Pajak
                     </p>
