@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Kalkulator Pajak')
 @section('content')
 <section class="d-block d-md-flex gap-5 justify-content-evenly">
         <div class="left">

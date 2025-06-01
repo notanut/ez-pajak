@@ -8,3 +8,6 @@ Route::get('/', function () {
 Route::get('/calculator', function () {
     return view('calculator.index');
 });
+Route::get('/payment/success', function () {
+    return view('payment.sucess');
+});
