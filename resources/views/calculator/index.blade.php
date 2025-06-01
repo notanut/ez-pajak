@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Pajak</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
-    <section>
+@extends('layouts.app')
+
+@section('content')
+<section>
         <div class="left">
             <h2>Isi Data Anda Disini</h2>
             <div class="card">
@@ -204,10 +198,9 @@
                 </div>
                 <div class="btn-bayar-wrap">
                     <button class="pay-now">Bayar Sekarang</button>
-                    <button class="later">Ingatkan Nantiz</button>
+                    <button class="later">Ingatkan Nanti</button>
                 </div>
             </div>
         </div>
     </section>
-</body>
-</html>
+@endsection
