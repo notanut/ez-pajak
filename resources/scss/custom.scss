@@ -19,4 +19,4 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // pages
 @import "pages/calculator"; 
-
+@import "pages/success";

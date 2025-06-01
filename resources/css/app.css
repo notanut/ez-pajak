@@ -12471,4 +12471,19 @@ select:focus {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
+button {
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  color: #151F6D;
+  border: 1px solid #151F6D;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+
+button:hover {
+  background-color: #151F6D;
+  color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
 /*# sourceMappingURL=app.css.map */
