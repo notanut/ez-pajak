@@ -12238,6 +12238,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .card {
   border: 1px solid #151F6D;
   padding: 2em;
+  padding-top: 1em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0;
   margin: 3em 0;
