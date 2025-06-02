@@ -9,7 +9,9 @@ $custom-colors: (
   "element-dark": #142143,
   "element-orange": #FE8F1D,
   "element-yellow": #FFD35B,
-  "white": #FFFFFF
+  "white": #FFFFFF,
+  "broken-white": #FBFBFB,
+  "baby-blue": #EEF2F8,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
