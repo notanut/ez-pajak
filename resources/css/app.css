@@ -12565,6 +12565,9 @@ select:focus {
   font-size: 1.5em;
 }
 
+.res-field {
+  position: relative;
+}
 .res-field .label {
   font-weight: 600;
   color: #142143;
@@ -12659,6 +12662,61 @@ select:focus {
   background-color: #151F6D;
   color: white;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.tooltip-container {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  display: inline-block;
+}
+
+.tooltip-circle {
+  display: inline-block;
+  background-color: transparent;
+  color: #151F6D;
+  border-radius: 50%;
+  border: 2px solid #151F6D;
+  text-align: center;
+  font-weight: 700;
+  line-height: 10px;
+  font-size: 11px;
+  padding: 2.5px 4.5px;
+  cursor: pointer;
+}
+
+.tooltip-content {
+  visibility: hidden;
+  opacity: 0;
+  width: calc(100vw - 300px); /* ⬅️ Fleksibel: viewport width dikurangi margin */
+  max-width: 300px;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  position: absolute;
+  z-index: 1000;
+  top: 125%;
+  transition: opacity 0.3s;
+  font-size: 11px;
+  right: 100%;
+}
+
+.tooltip-container:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hasil {
+  top: 0;
+}
+.hasil .tooltip-content {
+  max-width: 250px;
+  right: 100%;
+}
+
+.spdn {
+  top: 25px;
 }
 
 button {
