@@ -24,7 +24,6 @@ document.querySelectorAll('.rp').forEach(function (input) {
 // let gajiBersih = document.getElementById('gaji').value.replace(/\D/g, '');
 
 
-// belum bisa
 document.addEventListener("DOMContentLoaded", function () {
   const start = document.getElementById("startMonth");
   const end = document.getElementById("endMonth");
@@ -44,4 +43,23 @@ document.addEventListener("DOMContentLoaded", function () {
     end.min = start.value;
   }
 });
+
+const startMonthInput = document.getElementById('startMonth');
+    const endMonthInput = document.getElementById('endMonth');
+    const spdnForm = document.getElementById('spdnForm');
+
+    function checkSPDNVisibility() {
+        const start = startMonthInput.value;
+        const end = endMonthInput.value;
+
+        // Tampilkan form SPDN hanya jika periode bukan dari Januari sampai Desember
+        if (start === '2025-01' && end === '2025-12') {
+            spdnForm.style.display = 'none';
+        } else if (start && end) {
+            spdnForm.style.display = 'block';
+        }
+    }
+
+    startMonthInput.addEventListener('change', checkSPDNVisibility);
+    endMonthInput.addEventListener('change', checkSPDNVisibility);
 

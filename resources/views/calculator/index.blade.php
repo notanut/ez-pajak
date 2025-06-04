@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <div class="form-floating form-check input-field btn-group" role="group">
+                    <div id="spdnForm" style="display: none;" class="form-floating form-check input-field btn-group" role="group">
                         <p class="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
                         <div class="radio-wrap">
                             <div class="opt">
