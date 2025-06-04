@@ -12573,6 +12573,7 @@ select:focus {
   color: #142143;
   font-size: 1rem;
   margin-bottom: 7px;
+  padding-right: 1.5rem;
 }
 .res-field .res {
   color: #151F6D;
@@ -12666,7 +12667,7 @@ select:focus {
 
 .tooltip-container {
   position: absolute;
-  top: 20px;
+  top: 15px;
   right: 0;
   display: inline-block;
 }
@@ -12674,9 +12675,9 @@ select:focus {
 .tooltip-circle {
   display: inline-block;
   background-color: transparent;
-  color: #151F6D;
+  color: #b1b1b1;
   border-radius: 50%;
-  border: 2px solid #151F6D;
+  border: 2px solid #b1b1b1;
   text-align: center;
   font-weight: 700;
   line-height: 10px;
@@ -12719,6 +12720,10 @@ select:focus {
   top: 25px;
 }
 
+.label {
+  padding-right: 1.5rem;
+}
+
 button {
   padding: 0.5rem 0.75rem;
   background-color: white;
@@ -12732,6 +12737,10 @@ button:hover {
   background-color: #151F6D;
   color: white;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+body {
+  background-color: #FBFBFB;
 }
 
 /*# sourceMappingURL=app.css.map */
