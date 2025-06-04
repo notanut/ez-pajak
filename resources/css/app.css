@@ -12701,6 +12701,7 @@ select:focus {
   transition: opacity 0.3s;
   font-size: 11px;
   right: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .tooltip-container:hover .tooltip-content {
