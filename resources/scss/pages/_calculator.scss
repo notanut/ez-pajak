@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-wrap {
-    margin-top: .15rem;
+    margin-top: 1rem;
 }
 
 
@@ -58,7 +58,8 @@ h1, h2, h3, h4, h5, h6 {
 .input-field, .res-field {
     border-width: 0;
     border-bottom: 1px solid map-get($custom-colors, "primary");
-    margin: 2em 0;
+    margin-bottom: 1.5em;
+    margin-top: 1rem;
 }
 
 .form-control, .form-select {
@@ -117,6 +118,9 @@ select:focus {
     flex-direction: column;
     padding: 0;
     border-radius: 0;
+    // border: 0;
+    margin-bottom: 0;
+    margin-top: 1.75rem;
 
     p {
         font-weight: 600;
@@ -174,6 +178,7 @@ select:focus {
 
 .res-field {
     position: relative;
+    margin-top: 1.75rem;
     .label {
         font-weight: 600;
         color: map-get($custom-colors, "element-dark");
@@ -341,4 +346,15 @@ select:focus {
 
 .label {
     padding-right: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.tiapBulan {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.mon {
+    margin-top: 0;
 }

@@ -12446,7 +12446,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .form-wrap {
-  margin-top: 0.15rem;
+  margin-top: 1rem;
 }
 
 .blue {
@@ -12460,7 +12460,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .input-field, .res-field {
   border-width: 0;
   border-bottom: 1px solid #151F6D;
-  margin: 2em 0;
+  margin-bottom: 1.5em;
+  margin-top: 1rem;
 }
 
 .form-control, .form-select {
@@ -12518,6 +12519,8 @@ select:focus {
   flex-direction: column;
   padding: 0;
   border-radius: 0;
+  margin-bottom: 0;
+  margin-top: 1.75rem;
 }
 .form-check p {
   font-weight: 600;
@@ -12567,6 +12570,7 @@ select:focus {
 
 .res-field {
   position: relative;
+  margin-top: 1.75rem;
 }
 .res-field .label {
   font-weight: 600;
@@ -12723,6 +12727,17 @@ select:focus {
 
 .label {
   padding-right: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+.tiapBulan {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.mon {
+  margin-top: 0;
 }
 
 button {

@@ -263,3 +263,7 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    @vite('resources/js/pages/calculator.js')
+@endpush
