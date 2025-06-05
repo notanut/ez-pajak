@@ -32,7 +32,7 @@ const bedaBulan = document.getElementById('tidakSama')
 const tiapSama = document.getElementById('tiapBulanSama')
 const tiapBeda = document.getElementById('tiapBulanBeda')
 
-    yaRadio.addEventListener('change', function () {
+yaRadio.addEventListener('change', function () {
         if (yaRadio.checked) {
             yaBulanan.style.display = 'block'
             tidakBulanan.style.display = 'none'

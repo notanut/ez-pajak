@@ -7,168 +7,30 @@
             <h2 class="text-primary">Isi Data <span class="fw-normal">Anda Disini</span></h2>
             <p class="fst-italic">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
             <div class="card">
-                <h5 class="blue card-title">Informasi Pegawai</h5>
+                <h5 class="blue card-title">Informasi Penghasilan</h5>
                 <div class="form-wrap">
-                    <div class="form-floating form-check input-field btn-group" role="group">
-                            <p class="label">Apa jenis kelamin Anda?</p>
-                            <div class="radio-wrap">
-                                <div class="opt">
-                                    <input type="radio" name="bin" value="0"> Pria
-                                    <label></label>
-                                </div>
-                                <div class="opt">
-                                    <input type="radio" name="bin" value="1"> Wanita
-                                    <label></label>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="form-floating input-field">
-                        <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0">
-                        <label for="floatingInput">Berapa total tanggungan Anda?</label>
-                        <div class="tooltip-container">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Yang bisa jadi tanggungan adalah keluarga sedarah (contoh: orang tua dan anak kandung), keluarga semenda (contoh: mertua dan anak tiri), dan anak angkat—dengan syarat mereka tidak punya penghasilan dan seluruh biaya hidupnya ditanggung oleh wajib pajak. Maksimal tanggungan yang diakui cuma 3 orang, dihitung dari kondisi awal tahun.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-floating input-field">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
-                            <option disabled selected>Pilih satu</option>
-                            <option value="0">Kawin</option>
-                            <option value="1">Tidak Kawin</option>
-                            <option value="2">Hidup Berpisah</option>
-                        </select>
-                        <label for="floatingSelect">Apa status perkawinan Anda?</label>
-                    </div>
-
-                    <div class="form-date-wrap">
-                        <p class="title-date">Masa Penghasilan</p>
-                        <div class="form-date">
-                            <div class="form-floating input-field">
-                                <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" required>
-                                <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
-                            </div>
-    
-                            <div class="form-floating input-field">
-                                <input type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required>
-                                <label for="endMonth" class="form-label fst-italic">Bulan Akhir</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="spdnForm" style="display: none;" class="form-floating form-check input-field btn-group" role="group">
-                        <p class="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
-                        <div class="radio-wrap">
-                            <div class="opt">
-                                <input type="radio" name="bin" value="0"> Ya
-                                <label></label>
-                            </div>
-                            <div class="opt">
-                                <input type="radio" name="bin" value="1"> Tidak
-                                <label></label>
-                            </div>
-                        </div>
-                        <div class="tooltip-container spdn">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                SPDN adalah orang pribadi yang bertempat tinggal di Indonesia, orang pribadi yang berada di Indonesia lebih dari 183 hari dalam jangka waktu 12 bulan, atau orang pribadi yang dalam suatu tahun pajak berada di Indonesia dan mempunyai niat untuk bertempat tinggal di Indonesia.
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingTerpotong" placeholder="0">
-                        <label for="floatingTerpotong">PPh 21 yang telah Dipotong Masa Sebelumnya</label>
-                        <div class="tooltip-container">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Jumlah PPh 21 yang sudah dipotong dan disetor oleh pemberi kerja untuk pegawai dalam bulan-bulan sebelum masa pajak saat ini.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h5 class="blue card-title">Penghasilan</h5>
-                <div class="form-wrap">
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingGaji" placeholder="0">
-                        <label for="floatingGaji">Total Gaji/Pensiun dalam Setahun</label>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingPPh" placeholder="0">
-                        <label for="floatingPPh">Tunjangan PPh</label>
-                        <div class="tooltip-container">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Tunjangan tambahan yang diberikan oleh pemberi kerja untuk menanggung atau mengganti beban PPh Pasal 21 yang seharusnya dibayar oleh karyawan.
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingLain" placeholder="0">
-                        <label for="floatingLain">Tunjangan Lainnya, Uang Lembur, dan sebagainya</label>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingHonor" placeholder="0">
-                        <label for="floatingHonor">Honorarium dan Imbalan Lainnya Sejenisnya</label>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingPremi" placeholder="0">
-                        <label for="floatingPremi">Premi Asuransi yang dibayar Pemberi Kerja</label>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingNatura" placeholder="0">
-                        <label for="floatingNatura">Natura dan Kenikmatan Lainnya</label>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTantiem" placeholder="0">
-                        <label for="floatingTantiem">Tantiem, Bonus, Gratifikasi, Jasa Produksi dan THR</label>
+                        <label for="floatingTerpotong">Berapa total penghasilan bruto Anda?</label>
                     </div>
 
-                    <div class="total">
-                        <p class="title-total">Total Penghasilan Bruto</p>
-                        <p class="rp-total">Rp450.960.000,00</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h5 class="blue card-title">Pengurangan</h5>
-                <div class="form-wrap">
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingBiaya" placeholder="0">
-                        <label for="floatingBiaya">Biaya Jabatan</label>
-                        <div class="tooltip-container">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Ditetapkan 5% dari penghasilan bruto, atau maksimal 500 ribu sebulan
+                    <div class="form-floating form-check input-field btn-group" role="group">
+                        <p class="label">Apakah sebagian penghasilan ini digunakan untuk membayar pihak ketiga (alat, material, dll)?</p>
+                        <div class="radio-wrap">
+                            <div class="opt">
+                                <input type="radio" name="pihak_ketiga" value="ya" id="ketiga-ya"> Ya
+                                <label for="ketiga-ya"></label>
+                            </div>
+                            <div class="opt">
+                                <input type="radio" name="pihak_ketiga" value="tidak" id="ketiga-tidak"> Tidak
+                                <label for="ketiga-tidak"></label>
                             </div>
                         </div>
                     </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTHT" placeholder="0">
-                        <label for="floatingTHT">Iuran Pensiun atau Iuran THT/JHT</label>
-                    </div>
-                
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingZakar" placeholder="0">
-                        <label for="floatingZakar">Zakat/Sumbangan Keagamaan yang Bersifat Wajib yang Dibayarkan Melalui Pemberi Kerja</label>
-                    </div>
-                
-                    <div class="total">
-                        <p class="title-total">Total Pengurangan</p>
-                        <p class="rp-total">Rp450.960.000,00</p>
+
+                    <div id="yaPihak" style="display :none;" class="form-floating input-field">
+                        <input class="form-control rp" id="floatingTerpotong" placeholder="0">
+                        <label for="floatingTerpotong">Berapa total biaya pihak ketiga?</label>
                     </div>
                 </div>
             </div>
@@ -178,52 +40,22 @@
                 <h5 class="orange card-title">Penghitungan</h5>
                 <div class="form-wrap">
                     <div class="res-field">
-                        <p class="label">Penghasilan Neto</p>
+                        <p class="label">Dasar Pengenaan dan Pemotongan Pajak (DPP) </p>
                         <p class="res">Rp    234.400.000,00</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
-                                <b>Penghasilan bruto</b> dikurangi <b>total pengurangan</b>
+                                DPP adalah 50% dari penghasilan bruto Anda. Ini yang dikenakan pajak.
                             </div>
                         </div>
                     </div>
                     <div class="res-field">
-                        <p class="label">Penghasilan Neto Masa sebelumnya</p>
-                        <p class="res">Rp    234.400.000,00</p>
+                        <p class="label">Tarif Pajak Progresif yang Dikenakan</p>
+                        <p class="res">5%</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
-                                <b>Total penghasilan neto</b>  sejak awal masa kerja tahun ini sampai bulan sebelum bulan ini
-                            </div>
-                        </div>
-                    </div>
-                    <div class="res-field">
-                        <p class="label">Penghasilan Neto untuk PPh 21 (Setahun/Disetahunkan)</p>
-                        <p class="res">Rp    234.400.000,00</p>
-                        <div class="tooltip-container hasil">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                <b>Disetahunkan: </b> Penghasilan dijadikan setara 1 tahun penuh meskipun Anda kerja belum genap setahun
-                            </div>
-                        </div>
-                    </div>
-                    <div class="res-field">
-                        <p class="label">Penghasilan Tidak Kena Pajak (PTKP)</p>
-                        <p class="res">Rp    234.400.000,00</p>
-                        <div class="tooltip-container hasil">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Batas penghasilan yang tidak dikenai pajak, tergantung status Anda (belum menikah, sudah menikah, punya tanggungan, dll)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="res-field">
-                        <p class="label">Penghasilan Kena Pajak Setahun/Disetahunkan</p>
-                        <p class="res">Rp    234.400.000,00</p>
-                        <div class="tooltip-container hasil">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                <b>Penghasilan Neto Setahun/Disetahunkan</b> dikurangi <b>PTKP</b>
+                                Tarif pajak <b>progresif</b> berarti semakin tinggi penghasilan kena pajak Anda, semakin tinggi persentase pajaknya. Tarif dimulai dari 5% dan naik bertahap sesuai jumlah penghasilan.
                             </div>
                         </div>
                     </div>
@@ -263,3 +95,7 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    @vite('resources/js/pages/calculatorBukanPegawai.js')
+@endpush

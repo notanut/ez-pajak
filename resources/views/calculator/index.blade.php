@@ -227,6 +227,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="res-field">
+                        <p class="label">Tarif Pajak Progresif yang Dikenakan</p>
+                        <p class="res">5%</p>
+                        <div class="tooltip-container hasil">
+                            <span class="tooltip-circle">?</span>
+                            <div class="tooltip-content">
+                                Tarif pajak <b>progresif</b> berarti semakin tinggi penghasilan kena pajak Anda, semakin tinggi persentase pajaknya. Tarif dimulai dari 5% dan naik bertahap sesuai jumlah penghasilan.
+                            </div>
+                        </div>
+                    </div>
                     <div class="total grand">
                         <p class="title-total">PPh 21 Terutang</p>
                         <p class="rp-total">Rp  14.595.000,00</p>
