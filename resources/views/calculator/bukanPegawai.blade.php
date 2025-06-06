@@ -75,15 +75,15 @@
                     <div class="date-due">
                         <div class="start">
                             <p class="date-title">Akhir Tahun Pajak</p>
-                            <p class="date-ex">31 Des 2025</p>
+                            <p class="date-ex" id="akhir-tahun">31 Des 2025</p>
                             <p class="batas-sub">batas waktu pembayaran: </p>
-                            <p class="batas-date">2 Bulan 1 Minggu 3 Hari</p>
+                            <p class="batas-date" id="batas-start">2 Bulan 1 Minggu 3 Hari</p>
                         </div>
                         <div class="end">
                             <p class="date-title">Jatuh Tempo Terakhir</p>
-                            <p class="date-ex">31 Mar 2026</p>
+                            <p class="date-ex" id="jatuh-tempo">31 Mar 2026</p>
                             <p class="batas-sub">batas waktu pembayaran: </p>
-                            <p class="batas-date">2 Bulan 1 Minggu 3 Hari</p>
+                            <p class="batas-date" id="batas-end">2 Bulan 1 Minggu 3 Hari</p>
                         </div>
                     </div>
                 </div>

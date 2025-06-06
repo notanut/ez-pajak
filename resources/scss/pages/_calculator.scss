@@ -194,6 +194,12 @@ select:focus {
     }
 }
 
+#biayaJabatan {
+    color: map-get($custom-colors, "primary");
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
 .grand {
     background-color: map-get($custom-colors, "primary");
 }

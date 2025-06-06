@@ -12585,6 +12585,12 @@ select:focus {
   margin-bottom: 5px;
 }
 
+#biayaJabatan {
+  color: #151F6D;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
 .grand {
   background-color: #151F6D;
 }
