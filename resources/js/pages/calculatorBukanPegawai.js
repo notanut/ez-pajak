@@ -21,6 +21,77 @@ document.querySelectorAll('.rp').forEach(function (input) {
   })
 });
 
+
+const yaRadio = document.getElementById('dibayar-ya');
+const tidakRadio = document.getElementById('dibayar-tidak');
+const yaBulanan = document.getElementById('bulanan')
+const tidakBulanan = document.getElementById('tidakBulanan')
+const samaBulan = document.getElementById('sama')
+const bedaBulan = document.getElementById('tidakSama')
+
+const tiapSama = document.getElementById('tiapBulanSama')
+const tiapBeda = document.getElementById('tiapBulanBeda')
+
+const wrapBSama = document.getElementById('bulanan-sama-wrap')
+const wrapBBeda = document.getElementById('bulanan-beda-wrap')
+const wrapTBulan = document.getElementById('tidak-bulanan-wrap')
+
+yaRadio.addEventListener('change', function () {
+  if (yaRadio.checked) {
+    yaBulanan.style.display = 'block'
+    tidakBulanan.style.display = 'none'
+
+    if (samaBulan.checked) {
+      tiapSama.style.display = 'block'
+      tiapBeda.style.display = 'none'
+
+      wrapBSama.style.display = 'block'
+      wrapBBeda.style.display = 'none'
+      wrapTBulan.style.display = 'none'
+    }
+    samaBulan.addEventListener('change', function () {
+      if (samaBulan.checked) {
+        tiapSama.style.display = 'block'
+        tiapBeda.style.display = 'none'
+  
+        wrapBSama.style.display = 'block'
+        wrapBBeda.style.display = 'none'
+        wrapTBulan.style.display = 'none'
+      }
+    })
+
+    if (bedaBulan.checked) {
+      tiapBeda.style.display = 'block'
+      tiapSama.style.display = 'none'
+
+      wrapBSama.style.display = 'none'
+      wrapBBeda.style.display = 'block'
+      wrapTBulan.style.display = 'none'
+    }
+    bedaBulan.addEventListener('change', function () {
+      if (bedaBulan.checked) {
+        tiapBeda.style.display = 'block'
+        tiapSama.style.display = 'none'
+  
+        wrapBSama.style.display = 'none'
+        wrapBBeda.style.display = 'block'
+        wrapTBulan.style.display = 'none'
+      }
+    })
+  }
+});
+
+tidakRadio.addEventListener('change', function () {
+    if (tidakRadio.checked) {
+      yaBulanan.style.display = 'none'
+      tidakBulanan.style.display = 'block'
+
+      wrapBSama.style.display = 'none'
+      wrapBBeda.style.display = 'none'
+      wrapTBulan.style.display = 'block'
+    }
+});
+
 const bayarYa = document.getElementById('ketiga-ya')
 const bayarTidak = document.getElementById('ketiga-tidak')
 const pihakYa = document.getElementById('yaPihak')
@@ -36,6 +107,120 @@ bayarTidak.addEventListener('change', function () {
         pihakYa.style.display = 'none'
     }
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+  const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+  const formatRupiah = (value) => 'Rp ' + new Intl.NumberFormat('id-ID').format(Math.floor(value || 0));
+
+  const monthNames = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+  ];
+
+  const tarifPasal17 = [
+    { batas: 60000000, tarif: 0.05 },
+    { batas: 250000000, tarif: 0.15 },
+    { batas: 500000000, tarif: 0.25 },
+    { batas: 5000000000, tarif: 0.3 },
+    { batas: Infinity, tarif: 0.35 },
+  ];
+
+  const hitungTarif = (nilai) => {
+    let sisa = nilai;
+    let pajak = 0;
+    let tarifUsed = new Set();
+    for (const { batas, tarif } of tarifPasal17) {
+      const ambil = Math.min(sisa, batas);
+      if (ambil > 0) {
+        pajak += ambil * tarif;
+        tarifUsed.add(tarif);
+        sisa -= ambil;
+        if (sisa <= 0) break;
+      }
+    }
+    return { pajak, tarifUsed };
+  };
+
+  function hitung() {
+    const isBulanan = document.getElementById('dibayar-ya').checked;
+    const isSama = document.getElementById('sama').checked;
+    const isBeda = document.getElementById('tidakSama').checked;
+
+    const wrapBSama = document.getElementById('bulanan-sama-wrap');
+    const wrapBBeda = document.getElementById('bulanan-beda-wrap');
+    const wrapTBulan = document.getElementById('tidak-bulanan-wrap');
+
+    let total = 0;
+    let pajakTotal = 0;
+    let tarifUsedGlobal = new Set();
+
+    const tarifField = wrapBSama.querySelector('p.res');
+    const tarifFieldTidak = wrapTBulan.querySelectorAll('p.res')[2];
+
+    const updateTarifText = (setTarif, element) => {
+      const unique = [...setTarif].sort((a, b) => a - b).map(v => `${v * 100}%`);
+      element.textContent = unique.join(' - ') || '-';
+    };
+
+    if (isBulanan && isSama) {
+      const bruto = parseRupiah(document.getElementById('floatingGaji').value);
+      const bulan = parseInt(document.getElementById('floatingInput').value || '0');
+      const netoPerBulan = bruto * 0.5;
+      const { pajak, tarifUsed } = hitungTarif(netoPerBulan);
+      pajakTotal = pajak * bulan;
+      total = bruto * bulan;
+      wrapBSama.querySelector('#metodeHitungSama').textContent = 'Penghasilan Bruto x 50% x Tarif Pasal 17';
+      wrapBSama.querySelector('#pphRataSama').textContent = formatRupiah(pajak);
+      updateTarifText(tarifUsed, tarifField);
+    } else if (isBulanan && isBeda) {
+      const wrap = document.getElementById('bulanan-beda-wrap');
+      wrap.querySelector('#metodeHitungBeda').textContent = 'Penghasilan Bruto x 50% x Tarif Pasal 17';
+      const oldFields = wrap.querySelectorAll('.bulanPajak');
+      oldFields.forEach(field => field.remove());
+
+      monthNames.forEach((bulan) => {
+        const el = document.getElementById(bulan);
+        if (!el) return;
+        const bruto = parseRupiah(el.value || '0');
+        if (bruto <= 0) return;
+        const neto = bruto * 0.5;
+        const { pajak, tarifUsed } = hitungTarif(neto);
+        pajakTotal += pajak;
+        total += bruto;
+        tarifUsed.forEach(t => tarifUsedGlobal.add(t));
+
+        const div = document.createElement('div');
+        div.classList.add('res-field', 'bulanPajak');
+        div.innerHTML = `<p class="label">${bulan}</p><p class="res pphBulan">${formatRupiah(pajak)}</p>`;
+        wrap.appendChild(div);
+      });
+      updateTarifText(tarifUsedGlobal, tarifField);
+    } else {
+      const bruto = parseRupiah(document.getElementById('floatingTerpotong').value);
+      let biaya = 0;
+      if (document.getElementById('ketiga-ya').checked) {
+        biaya = parseRupiah(document.querySelector('#yaPihak input').value);
+      }
+      const neto = bruto - biaya;
+      wrapTBulan.querySelectorAll('p.res')[0].textContent = formatRupiah(neto);
+      wrapTBulan.querySelectorAll('p.res')[1].textContent = 'Penghasilan Bruto x 50% x Tarif Pasal 17';
+      const { pajak, tarifUsed } = hitungTarif(neto * 0.5);
+      pajakTotal = pajak;
+      updateTarifText(tarifUsed, tarifFieldTidak);
+    }
+
+    document.querySelector('.rp-total').textContent = formatRupiah(pajakTotal);
+  }
+
+  document.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', hitung);
+    el.addEventListener('change', hitung);
+  });
+
+  hitung();
+});
+
+
 
 function calculateTaxDates() {
     const today = new Date();

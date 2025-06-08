@@ -10,6 +10,39 @@
                 <h5 class="blue card-title">Informasi Pemberian Gaji</h5>
                 <div class="form-wrap">
                     <div class="form-floating form-check input-field btn-group" role="group">
+                            <p class="label">Apa jenis kelamin Anda?</p>
+                            <div class="radio-wrap">
+                                <div class="opt">
+                                    <input type="radio" name="sex" value="0"> Pria
+                                    <label></label>
+                                </div>
+                                <div class="opt">
+                                    <input type="radio" name="sex" value="1"> Wanita
+                                    <label></label>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-floating input-field">
+                        <input type="number" class="form-control" id="jmlTanggungan" placeholder="2" min="0" max="3">
+                        <label for="jmlTanggungan">Berapa total tanggungan Anda?</label>
+                        <div class="tooltip-container">
+                            <span class="tooltip-circle">?</span>
+                            <div class="tooltip-content">
+                                Yang bisa jadi tanggungan adalah keluarga sedarah (contoh: orang tua dan anak kandung), keluarga semenda (contoh: mertua dan anak tiri), dan anak angkat—dengan syarat mereka tidak punya penghasilan dan seluruh biaya hidupnya ditanggung oleh wajib pajak. Maksimal tanggungan yang diakui cuma 3 orang, dihitung dari kondisi awal tahun.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-floating input-field">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
+                            <option disabled selected>Pilih satu</option>
+                            <option value="0">Kawin</option>
+                            <option value="1">Tidak Kawin</option>
+                            <option value="2">Hidup Berpisah</option>
+                        </select>
+                        <label for="floatingSelect">Apa status perkawinan Anda?</label>
+                    </div>
+                    <div class="form-floating form-check input-field btn-group" role="group">
                         <p class="label">Apakah Anda dibayar bulanan atau tidak?</p>
                         <div class="radio-wrap">
                             <div class="opt">
@@ -17,7 +50,7 @@
                                 <label for="dibayar-ya"></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="tidak" id="dibayar-tidak"> Tidak
+                                <input type="radio" name="dibayar_bulanan" value="tidak" id="dibayar-tidak" checked> Tidak
                                 <label for="dibayar-tidak"></label>
                             </div>
                         </div>
@@ -29,45 +62,48 @@
                 <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap" id="tidakBulanan">
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingGaji" placeholder="0">
-                        <label for="floatingGaji">Berapa penghasilan bruto Anda (per hari/per proyek)?</label>
+                        <input class="form-control rp" id="brutoProyek" placeholder="0">
+                        <label for="brutoProyek">Berapa penghasilan bruto Anda di proyek/pekerjaan ini?</label>
                     </div>
 
                     <div class="form-floating input-field">
-                        <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0">
-                        <label for="floatingInput">Berapa hari pekerjaan dilakukan?</label>
+                        <input type="number" class="form-control" id="lamaKerja" placeholder="2" min="0">
+                        <label for="lamaKerja">Berapa hari lamanya pekerjaan dilakukan?</label>
                     </div>
-
+                    <div class="total">
+                        <p class="title-total">Rata-rata Penghasilan Bruto Sehari</p>
+                        <p class="rp-total" id="avBruto">Rp 0</p>
+                    </div>
                 </div>
                 <div class="form-wrap" id="bulanan" style="display: none;">
                     <div class="form-floating form-check input-field btn-group" role="group">
                             <p class="label">Apakah penghasilan setiap bulan Anda sama?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="bin" value="0" id="sama"> Ya
+                                    <input type="radio" name="bulananSamaGa" value="0" id="sama"> Ya
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="bin" value="1" id="tidakSama"> Tidak
+                                    <input type="radio" name="bulananSamaGa" value="1" id="tidakSama"> Tidak
                                     <label></label>
                                 </div>
                             </div>
                     </div>
                     <div id="tiapBulanSama" style="display: none;">
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="floatingGaji" placeholder="0">
-                            <label for="floatingGaji">Berapa penghasilan bruto bulanan Anda?</label>
+                            <input class="form-control rp" id="brutoBulanan" placeholder="0">
+                            <label for="brutoBulanan">Berapa penghasilan bruto bulanan Anda?</label>
                         </div>
     
                         <div class="form-floating input-field">
-                            <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0">
-                            <label for="floatingInput">Berapa bulan Anda bekerja di tahun ini?</label>
+                            <input type="number" class="form-control" id="jmlBulan" placeholder="2" min="0">
+                            <label for="jmlBulan">Berapa bulan Anda bekerja di tahun ini?</label>
                         </div>
                     </div>
                     <div id="tiapBulanBeda" style="display: none;">
                         <p class="label tiapBulan">Masukkan penghasilan bruto Anda di setiap bulan:</p>
                         <div class="form-floating input-field mon">
-                            <input class="form-control rp" id="Januari " placeholder="0">
+                            <input class="form-control rp" id="Januari" placeholder="0">
                             <label for="Januari">Januari</label>
                         </div>
                         <div class="form-floating input-field">
@@ -117,44 +153,41 @@
 
                     </div>
                 </div>
-                <div class="total">
-                    <p class="title-total">Total Penghasilan Bruto</p>
-                    <p class="rp-total">Rp450.960.000,00</p>
-                </div>
             </div>
         </div>
         <div class="right">
             <div class="card">
                 <h5 class="orange card-title">Penghitungan</h5>
-                <div class="form-wrap">
-                    <div class="res-field">
-                        <p class="label">Dasar Pengenaan dan Pemotongan Pajak (DPP) </p>
-                        <p class="res">Rp    234.400.000,00</p>
-                        <div class="tooltip-container hasil">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                DPP adalah dasar untuk hitung pajak. Biasanya sebesar penghasilan bruto, atau 50% dari bruto jika penghasilan per hari > Rp2,5 juta
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-wrap" id="bulanan-sama-wrap" style="display: none;">
                     <div class="res-field">
                         <p class="label">Metode Penghitungan</p>
-                        <p class="res"> TER / 50% x Ps.17</p>
+                        <p class="res" id="metodeHitungSama">-</p>
                     </div>
                     <div class="res-field">
-                        <p class="label">Tarif Pajak Progresif yang Dikenakan</p>
-                        <p class="res">5%</p>
-                        <div class="tooltip-container hasil">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Tarif pajak <b>progresif</b> berarti semakin tinggi penghasilan kena pajak Anda, semakin tinggi persentase pajaknya. Tarif dimulai dari 5% dan naik bertahap sesuai jumlah penghasilan.
-                            </div>
-                        </div>
+                        <p class="label">PPh 21 per bulan</p>
+                        <p class="res" id="pphRataSama">Rp 0</p>
                     </div>
-                    <div class="total grand">
-                        <p class="title-total">PPh 21 Terutang</p>
-                        <p class="rp-total">Rp  14.595.000,00</p>
+                </div>
+                <div class="form-wrap" id="bulanan-beda-wrap" style="display: none;">
+                    <div class="res-field">
+                        <p class="label">Metode Penghitungan</p>
+                        <p class="res" id="metodeHitungBeda">-</p>
                     </div>
+                    <p class="label tiapBulan">PPh 21 Anda di Bulan..</p>
+                </div>
+                <div class="form-wrap" id="tidak-bulanan-wrap">
+                    <div class="res-field">
+                        <p class="label">Metode Penghitungan</p>
+                        <p class="res" id="metodeHitungTidakBulan">-</p>
+                    </div>
+                    <div class="res-field">
+                        <p class="label">PPh 21 per hari</p>
+                        <p class="res" id="pphRataHari">Rp 0</p>
+                    </div>
+                </div>
+                <div class="total grand mt-3">
+                    <p class="title-total">PPh 21 Terutang</p>
+                    <p class="rp-total" id="rp-total">Rp  0</p>
                 </div>
             </div>
 

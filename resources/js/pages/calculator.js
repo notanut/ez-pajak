@@ -66,10 +66,6 @@ function checkSPDNVisibility() {
 startMonthInput.addEventListener('change', checkSPDNVisibility);
 endMonthInput.addEventListener('change', checkSPDNVisibility);
 
-// Kalkulasi PPh 21 Pegawai Tetap
-
-// Kalkulasi PPh 21 Pegawai Tetap
-
 document.addEventListener("DOMContentLoaded", function () {
   const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
 
