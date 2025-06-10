@@ -11,3 +11,7 @@ Route::get('/calculator', function () {
 Route::get('/payment/success', function () {
     return view('payment.success');
 });
+
+Route::get('/payment/paypage', function () {
+    return view('payment.paypage');
+});

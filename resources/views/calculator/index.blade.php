@@ -45,7 +45,7 @@
                                 <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" required>
                                 <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
                             </div>
-    
+
                             <div class="form-floating input-field">
                                 <!-- <select id="endMonth" class="form-select" required>
                                     <option value="" disabled selected>Pilih bulan</option>
@@ -96,32 +96,32 @@
                         <input class="form-control rp" id="floatingGaji" placeholder="0">
                         <label for="floatingGaji">Total Gaji/Pensiun dalam Setahun</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingPPh" placeholder="0">
                         <label for="floatingPPh">Tunjangan PPh</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingLain" placeholder="0">
                         <label for="floatingLain">Tunjangan Lainnya, Uang Lembur, dan sebagainya</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingHonor" placeholder="0">
                         <label for="floatingHonor">Honorarium dan Imbalan Lainnya Sejenisnya</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingPremi" placeholder="0">
                         <label for="floatingPremi">Premi Asuransi yang dibayar Pemberi Kerja</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingNatura" placeholder="0">
                         <label for="floatingNatura">Natura dan Kenikmatan Lainnya</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingTantiem" placeholder="0">
                         <label for="floatingTantiem">Tantiem, Bonus, Gratifikasi, Jasa Produksi dan THR</label>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <h5 class="blue card-title">Pengurangan</h5>
                 <div class="form-wrap">
@@ -141,17 +141,17 @@
                         <input class="form-control rp" id="floatingBiaya" placeholder="0">
                         <label for="floatingBiaya">Biaya Jabatan</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingTHT" placeholder="0">
                         <label for="floatingTHT">Iuran Pensiun atau Iuran THT/JHT</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingZakar" placeholder="0">
                         <label for="floatingZakar">Zakat/Sumbangan Keagamaan yang Bersifat Wajib yang Dibayarkan Melalui Pemberi Kerja</label>
                     </div>
-                
+
                     <div class="total">
                         <p class="title-total">Total Pengurangan</p>
                         <p class="rp-total">Rp450.960.000,00</p>

@@ -1,0 +1,11 @@
+.bg-cyan-blue{
+    background-color: #F4F8FF;
+}
+
+.ringkasan {
+    display: flex;
+    flex: row;
+    gap: 3;
+    justify-content: space-around;
+    height: 10vh;
+}
