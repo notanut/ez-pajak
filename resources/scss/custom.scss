@@ -23,3 +23,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // pages
 @import "pages/calculator";
 @import "pages/success";
+
+body {
+  background-color: map-get($custom-colors, "broken-white");
+}
