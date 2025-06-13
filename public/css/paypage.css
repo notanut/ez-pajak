@@ -9,3 +9,22 @@
     justify-content: space-around;
     height: 10rem;
 }
+
+input[type="date"] {
+      /* margin-top: 10px; */
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="date"]:focus {
+      border-color: #007bff;
+    }
+
+.bg-orange{
+    background-color: #FE8F1D !important;
+
+}

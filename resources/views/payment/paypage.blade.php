@@ -9,12 +9,12 @@
     </div>
 
 
-    <div class="d-flex flex-row gap-5 p-5 pt-0">
-        <div class="d-flex flex-column w-50">
+    <div class="d-flex flex-row gap-4 p-5 pt-0">
+        <div class="d-flex flex-column w-50 gap-4">
             {{-- Ringkasan --}}
             <div class="d-flex flex-column border border-2 cyan-blue">
                 <h3 class="p-3 m-0">Ringkasan</h3>
-                <div class="ringkasan object-fit-md-contain border border-2 mx-4 mb-3 bg-white pt-2">
+                <div class="ringkasan object-fit-md-contain border border-2 mx-4 mb-4 bg-white pt-2">
                     <h5 class="m-0">NPWP</h5>
                     <h5 class="m-0">Status</h5>
                     <h5 class="m-0">Jumlah</h5>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border border-2 mt-4 ps-4 py-4 bg-primary">
+            <div class="border border-2 mt-4 ps-3 py-3 bg-primary">
                 <form class="m-0 d-flex flex-row align-items-center justify-content-between" action="">
                     <label class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</label>
                     <input type="file" id="file-upload" name="file">
@@ -58,15 +58,26 @@
                 </div>
 
                 {{-- Credit Card --}}
-                <div class="method border border-2 p-5 pt-3" id="Credit Card">
+                <div class="method border border-2 pt-4 pb-5 px-5" id="Credit Card">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingNumCard" placeholder="0">
                         <label class="fs-3 p-0" for="floatingNumCard">Number Card</label>
                     </div>
-                    <div class="form-floating input-field">
-                        <input class="form-control" id="floatingNumCard" placeholder="0">
-                        <label class="fs-3 p-0" for="floatingNumCard">Number Card</label>
+                    <div class="d-flex flex-row align-items-center gap-3">
+                        <div class="form-floating input-field w-50">
+                            <input class="form-control" id="floatingNumCard" placeholder="0">
+                            <label class="fs-3 p-0" for="floatingNumCard">CVV</label>
+                        </div>
+                        <div class="w-50 ">
+                            <label class="p-0">Expiry date:</label><br>
+                            <input type="date" id="date" name="date">
+                        </div>
                     </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></div>
+                    </div>
+
+
                 </div>
 
                 {{-- Gopay --}}
