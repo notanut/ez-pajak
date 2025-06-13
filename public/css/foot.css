@@ -25,6 +25,15 @@
     border-color: #151F6D;
 }
 
+
+
 .cyan-blue{
     background-color: #F4F8FF;
+}
+
+.hr-custom{
+    border-width: 0;
+    color: #151F6D;
+    background-color: #151F6D;
+    height: 2px;
 }
