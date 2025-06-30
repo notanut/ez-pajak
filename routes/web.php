@@ -18,6 +18,14 @@ Route::get('/payment/success', function () {
     return view('payment.success');
 });
 
+Route::get('/dashboard', function (){
+    return view('dashboard.index');
+});
+Route::get('/home', function (){
+    return view('home.index');
+});
+
+
 Route::get('/payment/paypage', function () {
     return view('payment.paypage');
 });

@@ -140,7 +140,7 @@ select:focus {
         display: flex;
         align-items: center;
         gap: 7px;
-        
+
         input[type="radio"] {
           background-color: map-get($custom-colors, "element-orange");
           border-color: map-get($custom-colors, "element-orange");
@@ -148,7 +148,7 @@ select:focus {
           height: 1rem;
           cursor: pointer;
         }
-        
+
         input[type="radio"]:checked {
             background-color: map-get($custom-colors, "element-orange");
             border-color: map-get($custom-colors, "element-orange");
@@ -186,7 +186,7 @@ select:focus {
         margin-bottom: 7px;
         padding-right: 1.5rem;
     }
-    
+
     .res {
         color: map-get($custom-colors, "primary");
         font-size: 1rem;
@@ -224,7 +224,7 @@ select:focus {
             margin-bottom: 0;
         }
     }
-    
+
     .end {
         display: flex;
         flex-direction: column;
@@ -258,33 +258,33 @@ select:focus {
 }
 
 .pay-now {
-  padding: 0.5rem 0.75rem; 
-  background-color: map-get($custom-colors, "primary"); 
+  padding: 0.5rem 0.75rem;
+  background-color: map-get($custom-colors, "primary");
   color: white;
   border: none;
-  margin-right: 1rem; 
+  margin-right: 1rem;
   border: 1px solid map-get($custom-colors, "primary");
   cursor: pointer;
   transition: .3s all ease-in-out;
 }
 
 .later {
-    padding: 0.5rem 0.75rem; 
+    padding: 0.5rem 0.75rem;
     background-color: white;
-    color: map-get($custom-colors, "primary"); 
+    color: map-get($custom-colors, "primary");
     border: 1px solid map-get($custom-colors, "primary");
     cursor: pointer;
     transition: .3s all ease-in-out;
 }
 
 .pay-now:hover {
-    color: map-get($custom-colors, "primary"); 
+    color: map-get($custom-colors, "primary");
     background-color: white;
     box-shadow: $box-shadow-sm;
 }
 
 .later:hover {
-    background-color: map-get($custom-colors, "primary"); 
+    background-color: map-get($custom-colors, "primary");
     color: white;
     box-shadow: $box-shadow-sm;
 }
@@ -319,7 +319,7 @@ select:focus {
       visibility: hidden;
       opacity: 0;
       width: calc(100vw - 300px); /* ⬅️ Fleksibel: viewport width dikurangi margin */
-      max-width: 300px; 
+      max-width: 300px;
       background-color: #333;
       color: #fff;
       text-align: left;
@@ -341,7 +341,7 @@ select:focus {
     .hasil {
         top: 0;
         .tooltip-content {
-            max-width: 250px; 
+            max-width: 250px;
             right: 100%;
         }
 }
