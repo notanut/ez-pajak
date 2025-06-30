@@ -13,17 +13,17 @@
                             <p class="label">Apa jenis kelamin Anda?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="bin" value="0"> Pria
+                                    <input type="radio" name="sex" value="0"> Pria
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="bin" value="1"> Wanita
+                                    <input type="radio" name="sex" value="1"> Wanita
                                     <label></label>
                                 </div>
                             </div>
                     </div>
                     <div class="form-floating input-field">
-                        <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0">
+                        <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0" max="3">
                         <label for="floatingInput">Berapa total tanggungan Anda?</label>
                         <div class="tooltip-container">
                             <span class="tooltip-circle">?</span>
@@ -50,9 +50,9 @@
                                 <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" required>
                                 <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
                             </div>
-    
+
                             <div class="form-floating input-field">
-                                <input type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required>
+                                <input type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled>
                                 <label for="endMonth" class="form-label fst-italic">Bulan Akhir</label>
                             </div>
                         </div>
@@ -62,29 +62,18 @@
                         <p class="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="bin" value="0"> Ya
+                                <input type="radio" name="bin" value="0" id="spdn-ya"> Ya
                                 <label></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="bin" value="1"> Tidak
+                                <input type="radio" name="bin" value="1" id="spdn-tidak"> Tidak
                                 <label></label>
                             </div>
                         </div>
                         <div class="tooltip-container spdn">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
-                                SPDN adalah orang pribadi yang bertempat tinggal di Indonesia, orang pribadi yang berada di Indonesia lebih dari 183 hari dalam jangka waktu 12 bulan, atau orang pribadi yang dalam suatu tahun pajak berada di Indonesia dan mempunyai niat untuk bertempat tinggal di Indonesia.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTerpotong" placeholder="0">
-                        <label for="floatingTerpotong">PPh 21 yang telah Dipotong Masa Sebelumnya</label>
-                        <div class="tooltip-container">
-                            <span class="tooltip-circle">?</span>
-                            <div class="tooltip-content">
-                                Jumlah PPh 21 yang sudah dipotong dan disetor oleh pemberi kerja untuk pegawai dalam bulan-bulan sebelum masa pajak saat ini.
+                                SPDN adalah orang pribadi yang bertempat tinggal di Indonesia, orang pribadi yang berada di Indonesia lebih dari 183 hari dalam jangka waktu 12 bulan, atau orang pribadi yang dalam suatu tahun pajak berada di Indonesia dan mempunyai niat untuk bertempat tinggal di Indonesia. Jika menjadi SPDN penuh, maka akan menggunakan perhitungan <b>Setahun</b>. Jika sebaliknya, maka akan menggunakan perhitungan <b>Disetahunkan</b>
                             </div>
                         </div>
                     </div>
@@ -96,9 +85,9 @@
                 <div class="form-wrap">
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingGaji" placeholder="0">
-                        <label for="floatingGaji">Total Gaji/Pensiun dalam Setahun</label>
+                        <label for="floatingGaji">Gaji/Pensiun</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingPPh" placeholder="0">
                         <label for="floatingPPh">Tunjangan PPh</label>
@@ -109,27 +98,27 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingLain" placeholder="0">
                         <label for="floatingLain">Tunjangan Lainnya, Uang Lembur, dan sebagainya</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingHonor" placeholder="0">
                         <label for="floatingHonor">Honorarium dan Imbalan Lainnya Sejenisnya</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingPremi" placeholder="0">
                         <label for="floatingPremi">Premi Asuransi yang dibayar Pemberi Kerja</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingNatura" placeholder="0">
                         <label for="floatingNatura">Natura dan Kenikmatan Lainnya</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingTantiem" placeholder="0">
                         <label for="floatingTantiem">Tantiem, Bonus, Gratifikasi, Jasa Produksi dan THR</label>
@@ -137,38 +126,38 @@
 
                     <div class="total">
                         <p class="title-total">Total Penghasilan Bruto</p>
-                        <p class="rp-total">Rp450.960.000,00</p>
+                        <p class="rp-total">Rp 0</p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <h5 class="blue card-title">Pengurangan</h5>
                 <div class="form-wrap">
-                    <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingBiaya" placeholder="0">
-                        <label for="floatingBiaya">Biaya Jabatan</label>
-                        <div class="tooltip-container">
+                    <div class="res-field">
+                        <p class="label">Biaya Jabatan</p>
+                        <p id="biayaJabatan">Rp    0</p>
+                        <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
                                 Ditetapkan 5% dari penghasilan bruto, atau maksimal 500 ribu sebulan
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingTHT" placeholder="0">
                         <label for="floatingTHT">Iuran Pensiun atau Iuran THT/JHT</label>
                     </div>
-                
+
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingZakar" placeholder="0">
                         <label for="floatingZakar">Zakat/Sumbangan Keagamaan yang Bersifat Wajib yang Dibayarkan Melalui Pemberi Kerja</label>
                     </div>
-                
+
                     <div class="total">
                         <p class="title-total">Total Pengurangan</p>
-                        <p class="rp-total">Rp450.960.000,00</p>
+                        <p class="rp-total">Rp 0</p>
                     </div>
                 </div>
             </div>
@@ -179,7 +168,7 @@
                 <div class="form-wrap">
                     <div class="res-field">
                         <p class="label">Penghasilan Neto</p>
-                        <p class="res">Rp    234.400.000,00</p>
+                        <p class="res">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -187,9 +176,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="res-field">
-                        <p class="label">Penghasilan Neto Masa sebelumnya</p>
-                        <p class="res">Rp    234.400.000,00</p>
+                    <div class="form-floating input-field">
+                        <input class="form-control rp" id="floatingMasaSebelum" placeholder="0">
+                        <label for="floatingMasaSebelum">Penghasilan Neto Masa sebelumnya</label>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -199,7 +188,7 @@
                     </div>
                     <div class="res-field">
                         <p class="label">Penghasilan Neto untuk PPh 21 (Setahun/Disetahunkan)</p>
-                        <p class="res">Rp    234.400.000,00</p>
+                        <p class="res">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -209,7 +198,7 @@
                     </div>
                     <div class="res-field">
                         <p class="label">Penghasilan Tidak Kena Pajak (PTKP)</p>
-                        <p class="res">Rp    234.400.000,00</p>
+                        <p class="res">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -218,8 +207,8 @@
                         </div>
                     </div>
                     <div class="res-field">
-                        <p class="label">Penghasilan Kena Pajak Setahun/Disetahunkan</p>
-                        <p class="res">Rp    234.400.000,00</p>
+                        <p class="label" id="pkpsetahun">Penghasilan Kena Pajak Setahun/Disetahunkan</p>
+                        <p class="res">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -237,9 +226,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="res-field">
+                        <p class="label" id="pphPkpTitle">PPh Pasal 21 atas PKP Setahun/Disetahunkan</p>
+                        <p class="res">0</p>
+                        <div class="tooltip-container hasil">
+                            <span class="tooltip-circle">?</span>
+                            <div class="tooltip-content">
+                                Pajak sebelum dikurangi PPh 21 yang telah dipotong/disetor masa sebelumnya.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating input-field">
+                        <input class="form-control rp" id="floatingTerpotong" placeholder="0">
+                        <label for="floatingTerpotong">PPh 21 yang telah Dipotong Masa Pajak Sebelumnya</label>
+                        <div class="tooltip-container">
+                            <span class="tooltip-circle">?</span>
+                            <div class="tooltip-content">
+                                Jumlah PPh 21 yang sudah dipotong dan disetor oleh pemberi kerja untuk pegawai dalam bulan-bulan sebelum masa pajak saat ini.
+                            </div>
+                        </div>
+                    </div>
                     <div class="total grand">
                         <p class="title-total">PPh 21 Terutang</p>
-                        <p class="rp-total">Rp  14.595.000,00</p>
+                        <p class="rp-total">Rp  0</p>
                     </div>
                 </div>
             </div>
@@ -253,15 +262,15 @@
                     <div class="date-due">
                         <div class="start">
                             <p class="date-title">Akhir Tahun Pajak</p>
-                            <p class="date-ex">31 Des 2025</p>
+                            <p class="date-ex" id="akhir-tahun">31 Des 2025</p>
                             <p class="batas-sub">batas waktu pembayaran: </p>
-                            <p class="batas-date">2 Bulan 1 Minggu 3 Hari</p>
+                            <p class="batas-date" id="batas-start">2 Bulan 1 Minggu 3 Hari</p>
                         </div>
                         <div class="end">
                             <p class="date-title">Jatuh Tempo Terakhir</p>
-                            <p class="date-ex">31 Mar 2026</p>
+                            <p class="date-ex" id="jatuh-tempo">31 Mar 2026</p>
                             <p class="batas-sub">batas waktu pembayaran: </p>
-                            <p class="batas-date">2 Bulan 1 Minggu 3 Hari</p>
+                            <p class="batas-date" id="batas-end">2 Bulan 1 Minggu 3 Hari</p>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ $custom-colors: (
   "white": #FFFFFF,
   "broken-white": #FBFBFB,
   "baby-blue": #EEF2F8,
+//   "cyan-blue": #F4F8FF,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
