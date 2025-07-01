@@ -36,7 +36,7 @@
             </div>
             <div class="border border-2 mt-4 ps-3 py-3 bg-primary">
                 <form class="m-0 d-flex flex-row align-items-center justify-content-between" action="">
-                    <label class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</label>
+                    <label for="file-upload" class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</label>
                     <input type="file" id="file-upload" name="file">
                 </form>
             </div>
