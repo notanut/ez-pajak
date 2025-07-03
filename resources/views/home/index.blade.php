@@ -14,7 +14,7 @@
     <!-- Card Section -->
     <div class="dashboard-cards d-flex flex-nowrap overflow-hidden rounded mb-5">
         <!-- Durasi Jatuh Tempo -->
-        <div class="dashboard-card bg-dark text-white p-4">
+        <div class="dashboard-card bg-card text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span>Durasi Jatuh Tempo</span>
                 <div class= "icon-card">
@@ -29,7 +29,7 @@
         </div>
 
         <!-- Unduh PDF -->
-        <div class="dashboard-card bg-primary text-white p-4">
+        <div class="dashboard-card bg-card2 text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span>Unduh PDF</span>
                 <div class="icon-card">
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Jumlah Pembayaran Pajak -->
-        <div class="dashboard-card bg-info text-white p-4">
+        <div class="dashboard-card bg-card3 text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span>Jumlah Pembayaran Pajak</span>
                 <div class="icon-card">

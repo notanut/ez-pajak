@@ -7,6 +7,9 @@
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
+  --bs-card: 20, 33, 67;
+  --bs-card2: 21, 31, 109;
+  --bs-card3: 0, 69, 190;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
@@ -9227,6 +9230,21 @@ textarea.form-control-lg {
 .bg-dark {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-card {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-card)) !important;
+}
+
+.bg-card2 {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-card2)) !important;
+}
+
+.bg-card3 {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-card3)) !important;
 }
 
 .bg-element-dark {
