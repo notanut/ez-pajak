@@ -1,0 +1,75 @@
+@extends('layouts.app')
+
+@section('content')
+
+    <section class="py-5" style="background-color: #EEF2F8;">
+        <div class="container py-0">
+            <!-- Heading -->
+            <div class="mb-0">
+                <h2 class="fw-bold " style="color: #142143;"><strong>Mulai Perhitungan PPh 21</strong> Kamu Disini</h2>
+                <p class="mb-0" style="color:#142143; font-style:italic">
+                    Sebelum masuk ke perhitungan, kamu termasuk kategori mana nih?
+                </p>
+            </div>
+
+            <!-- Cards -->
+            <div class="row g-4 mt-0">
+                <!-- Pegawai Tetap -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow border-0 m-0">
+                        <div class="card-body text-center px-4 py-3">
+                            <img src="images/home_PegawaiTetap.png" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tetap">
+                            <h5 class="mb-2">
+                                <span class="text-blue">Pegawai</span> <strong class="text-primary">Tetap</strong>
+                            </h5>
+                            <p class="mb-3" style="color: #142143">
+                                Pilih jika kamu bekerja dengan penghasilan rutin bulanan dan memiliki <strong>kontrak kerja jangka panjang</strong>.
+                            </p>
+                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                                Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pegawai Tidak Tetap -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow border-0 m-0">
+                        <div class="card-body text-center px-4 py-3">
+                            <img src="images/home_PegawaitidakTetap.png" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
+                            <h5 class="mb-2">
+                                <span class="text-blue">Pegawai</span> <strong class="text-primary">tidak Tetap</strong>
+                            </h5>
+                            <p class="mb-3" style="color: #142143">
+                                Pilih jika kamu bekerja di perusahaan sebagai pegawai tapi <strong>tanpa kontrak tetap</strong>, dan hanya dibayar jika bekerja.
+                            </p>
+                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                                Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bukan Pegawai -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow border-0 m-0">
+                        <div class="card-body text-center px-4 py-3">
+                            <img src="images/home_BukanPegawai.png" class="img-fluid mb-2" style="max-height: 120px;" alt="Bukan Pegawai">
+                            <h5 class="mb-2">
+                                <strong class="text-primary">Bukan</strong> <span class="text-primary">Pegawai</span>
+                            </h5>
+                            <p class="mb-3" style="color: #142143">
+                                Pilih jika kamu memberikan jasa pribadi seperti <strong>freelance</strong> atau konsultan, tidak terikat karyawan.
+                            </p>
+                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                                Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+@endsection
