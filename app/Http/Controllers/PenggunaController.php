@@ -11,9 +11,14 @@ class PenggunaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function show($id)
     {
         //
+        $penggunas = Pengguna::with('transaksis')->find($id);
+        $transaksi = $penggunas->transaksis->first();
+
+
+        return view('payment.paypage',compact('penggunas','transaksi'));
     }
 
     /**
@@ -35,10 +40,6 @@ class PenggunaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pengguna $pengguna)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

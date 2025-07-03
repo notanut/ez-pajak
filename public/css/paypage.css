@@ -32,3 +32,20 @@ input[type="date"] {
 input[type="file"]{
     display: none;
 }
+
+.expiry-date{
+    width: 22%;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid #142143;
+}
+
+.paybox{
+    height: 342px;
+}
+
+.upload{
+    margin-right: 30px;
+    height: 8%;
+    width: 8%;
+}
