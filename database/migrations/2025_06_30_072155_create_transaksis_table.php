@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->float('total');
             $table->foreignId('pengguna_id')->constrained('penggunas')->onDelete('cascade');
-            $table->boolean('status_pemnbayaran');
+            $table->boolean('status_pembayaran');
             $table->string('metode_pembayaran');
             $table->date('tanggal_pembayaran');
             $table->timestamps();
