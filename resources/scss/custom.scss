@@ -23,6 +23,9 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // pages
 @import "pages/calculator";
 @import "pages/success";
+
+// components
+@import "components/navbar";
 @import "pages/home";
 
 body {

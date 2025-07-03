@@ -5,7 +5,7 @@
 
     <div class="d-flex flex-column p-3">
         <h1><span class="fw-light">Halaman</span> Pembayaran</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Tinggal selangkah lagi nih. Pengisian data dibawah ini yang sudah kami rangkum rapi sesuai regulasi masa kini. Kamu tinggal pilih metode pembayaran yang paling nyaman dan cocok buat kamu yaa!</p>
     </div>
 
 
@@ -30,14 +30,15 @@
                     </div>
                     <div class="d-flex flex-row justify-content-between">
                         <h4>Jumlah total (Rp)</h4>
-                        <h4>Rp.XXXXXX</h4>
+                        <h4>Rp.{{$transaksi->total}}</h4>
                     </div>
                 </div>
             </div>
             <div class="border border-2 mt-4 ps-3 py-3 bg-primary">
                 <form class="m-0 d-flex flex-row align-items-center justify-content-between" action="">
-                    <label class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</label>
+                    <label for="file-upload" class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</label>
                     <input type="file" id="file-upload" name="file">
+                    <img class="upload" src="{{asset('img/material-symbols_upload.png')}}" alt="">
                 </form>
             </div>
         </div>
@@ -58,30 +59,34 @@
                 </div>
 
                 {{-- Credit Card --}}
-                <div class="method border border-2 pt-4 pb-5 px-5" id="Credit Card">
+                <div class="method border border-2 py-4 px-5 paybox" id="Credit Card">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingNumCard" placeholder="0">
-                        <label class="fs-3 p-0" for="floatingNumCard">Number Card</label>
+                        <label class="fs-4 p-0" for="floatingNumCard">Number Card</label>
                     </div>
-                    <div class="d-flex flex-row align-items-center gap-3">
+                    <div class="d-flex flex-row align-items-center gap-3 mb-4">
                         <div class="form-floating input-field w-50">
                             <input class="form-control" id="floatingNumCard" placeholder="0">
-                            <label class="fs-3 p-0" for="floatingNumCard">CVV</label>
+                            <label class="fs-4 p-0" for="floatingNumCard">CVV</label>
                         </div>
                         <div class="w-50 ">
-                            <label class="p-0">Expiry date:</label><br>
-                            <input type="date" id="date" name="date">
+                            <label class="fs-5 p-0">Expiry date</label><br>
+                            <div class="input-grup">
+                                <input class="expiry-date" type="text" id="expiry-day" maxlength="2">
+                                <span>/</span>
+                                <input class="expiry-date" type="text" id="expiry-month" maxlength="2">
+                                <span>/</span>
+                                <input class="expiry-date" type="text" id="expiry-year" maxlength="4">
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></div>
+                        <a href="#" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
                     </div>
-
-
                 </div>
 
                 {{-- Gopay --}}
-                <div class="method border border-2 p-5 pt-3" id="Gopay" style="display:none">
+                <div class="method border border-2 p-5 pt-3 paybox" id="Gopay" style="display:none">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingNumCard" placeholder="0">
                         <label class="fs-3 p-0" for="floatingNumCard">Gopay</label>
@@ -89,7 +94,7 @@
                 </div>
 
                 {{-- OVO --}}
-                <div class="method border border-2 p-5 pt-3" id="OVO" style="display:none">
+                <div class="method border border-2 p-5 pt-3 paybox" id="OVO" style="display:none">
                     <div class="form-floating input-field">
                         <input class="form-control" id="floatingNumCard" placeholder="0">
                         <label class="fs-3 p-0" for="floatingNumCard">OVO</label>
