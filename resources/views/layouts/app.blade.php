@@ -23,7 +23,6 @@
 <body>
     @include('layouts.partials.navbarAfterLogin')
 
-
         @yield('content')
 
 

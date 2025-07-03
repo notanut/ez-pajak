@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->float('total');
-            $table->foreignId('pengguna_id')->constrained('penggunas')->onDelete('cascade');
             $table->boolean('status_pembayaran');
             $table->string('metode_pembayaran');
             $table->date('tanggal_pembayaran');
+
+            // Polymorphic relation
+            $table->morphs('transaksiable'); // menghasilkan: transaksiable_id, transaksiable_type
+
             $table->timestamps();
         });
+
     }
 
     /**
