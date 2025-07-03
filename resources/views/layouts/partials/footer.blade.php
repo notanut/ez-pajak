@@ -13,9 +13,9 @@
 </head>
 <body>
     <div class="d-flex flex-column cyan-blue pt-4">
-        <div class="d-flex flex-row ps-3 pe-3">
+        <div class="row ps-3 pe-3">
             {{-- footer 1 --}}
-            <div class="col d-flex flex-column w-50 p-3 gap-3">
+            <div class="col-12 col-md-6 d-flex flex-column p-3 gap-3">
                 <h4>LOGO</h4>
                 <p class="mb-0 w-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                 <div class="d-flex flex-row gap-4 align-items-center">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             {{-- footer 2 --}}
-            <div class="d-flex flex-column w-25 p-3">
+            <div class="col-6 col-md-3 d-flex flex-column p-3">
                 <h4>Kontak informasi</h4>
                 <ul class="ps-0">
                     <li class="list-group-item">Landing Page</li>
@@ -52,7 +52,7 @@
                 </ul>
             </div>
             {{-- footer 3 --}}
-            <div class="d-flex flex-column w-25 p-3">
+            <div class="col-6 col-md-3 d-flex flex-column p-3">
                 <h4>Kontak kami</h4>
                 <ul class="ps-0">
                     <li class="list-group-item">

@@ -17,8 +17,13 @@ class PenggunaController extends Controller
         $penggunas = Pengguna::with('transaksis')->find($id);
         $transaksi = $penggunas->transaksis->first();
 
+        if($transaksi->status_pembayaran == '1'){
+            $status = 'Sudah dibayar';
+        }else{
+            $status = 'Belum dibayar';
+        }
 
-        return view('payment.paypage',compact('penggunas','transaksi'));
+        return view('payment.paypage',compact('penggunas','transaksi','status'));
     }
 
     /**

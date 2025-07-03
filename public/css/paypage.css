@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 .bg-cyan-blue{
     background-color: #F4F8FF;
 }
@@ -10,8 +14,8 @@
     height: 10rem;
 }
 
-input[type="date"] {
-      /* margin-top: 10px; */
+/* input[type="date"] {
+      margin-top: 10px;
       padding: 8px 12px;
       font-size: 1rem;
       border: 1px solid #ccc;
@@ -22,7 +26,7 @@ input[type="date"] {
 
     input[type="date"]:focus {
       border-color: #007bff;
-    }
+    } */
 
 .bg-orange{
     background-color: #FE8F1D !important;
@@ -37,11 +41,11 @@ input[type="file"]{
     width: 22%;
     border: none;
     text-align: center;
-    border-bottom: 1px solid #142143;
+    /* border-bottom: 1px solid #142143; */
 }
 
 .paybox{
-    height: 342px;
+    height: 340px;
 }
 
 .upload{

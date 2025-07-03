@@ -44,7 +44,7 @@ Route::get('/payment/paypage', function () {
 });
 
 
-// Route::post('/payment/paypage/{id}',[PenggunaController::class,'index']);
+Route::post('/payment/paypage/{id}',[PenggunaController::class,'index']);
 Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
 
 Route::get('/kuesioner', function () {
