@@ -4,14 +4,15 @@
 
 // 2. Override colors sebelum import bootstrap
 $custom-colors: (
-    "primary": #151f6d,
-    "secondary": #ffaf00,
-    "element-dark": #142143,
-    "element-orange": #fe8f1d,
-    "element-yellow": #ffd35b,
-    "white": #ffffff,
-    "broken-white": #fbfbfb,
-    "baby-blue": #eef2f8,
+  "primary": #151F6D,
+  "secondary": #FFAF00,
+  "element-dark": #142143,
+  "element-orange": #FE8F1D,
+  "element-yellow": #FFD35B,
+  "white": #FFFFFF,
+  "broken-white": #FBFBFB,
+  "baby-blue": #EEF2F8,
+//   "cyan-blue": #F4F8FF,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
@@ -25,3 +26,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // components
 @import "components/navbar";
+@import "pages/home";
+
+body {
+  background-color: map-get($custom-colors, "broken-white");
+}

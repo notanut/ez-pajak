@@ -1,0 +1,51 @@
+.bg-cyan-blue{
+    background-color: #F4F8FF;
+}
+
+.ringkasan {
+    display: flex;
+    flex: row;
+    gap: 3;
+    justify-content: space-around;
+    height: 10rem;
+}
+
+input[type="date"] {
+      /* margin-top: 10px; */
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="date"]:focus {
+      border-color: #007bff;
+    }
+
+.bg-orange{
+    background-color: #FE8F1D !important;
+
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.expiry-date{
+    width: 22%;
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid #142143;
+}
+
+.paybox{
+    height: 342px;
+}
+
+.upload{
+    margin-right: 30px;
+    height: 8%;
+    width: 8%;
+}

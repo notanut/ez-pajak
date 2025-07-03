@@ -1,0 +1,39 @@
+.w-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.w-x{
+    width: 24px;
+    height: 24px;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+/* .h-arrow{
+    height: 18px;
+    width: 24px;
+} */
+
+.border-primary{
+    border-color: #151F6D;
+}
+
+
+
+.cyan-blue{
+    background-color: #F4F8FF;
+}
+
+.hr-custom{
+    border-width: 0;
+    color: #151F6D;
+    background-color: #151F6D;
+    height: 2px;
+}

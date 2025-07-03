@@ -4,7 +4,9 @@
 @section('content')
 <section class="d-flex flex-column justify-content-center align-items-center text-center">
     <h1 class="text-primary">Hore! Pembayaran Berhasil!</h1>
-    <img src="" alt="">
+    <div class="p-4" style="max-width: 450px;">
+        <img src="{{ asset('assets/payment-success/pembayaran-sukses.png') }}" alt="Pembayaran Sukses" class="img-fluid">
+    </div>
     <button>Ke Dashboard Saya</button>
 </section>
 @endsection

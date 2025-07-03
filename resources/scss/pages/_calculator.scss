@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-wrap {
-    margin-top: .15rem;
+    margin-top: 1rem;
 }
 
 
@@ -58,7 +58,8 @@ h1, h2, h3, h4, h5, h6 {
 .input-field, .res-field {
     border-width: 0;
     border-bottom: 1px solid map-get($custom-colors, "primary");
-    margin: 2em 0;
+    margin-bottom: 1.5em;
+    margin-top: 1rem;
 }
 
 .form-control, .form-select {
@@ -117,6 +118,9 @@ select:focus {
     flex-direction: column;
     padding: 0;
     border-radius: 0;
+    // border: 0;
+    margin-bottom: 0;
+    margin-top: 1.75rem;
 
     p {
         font-weight: 600;
@@ -136,7 +140,7 @@ select:focus {
         display: flex;
         align-items: center;
         gap: 7px;
-        
+
         input[type="radio"] {
           background-color: map-get($custom-colors, "element-orange");
           border-color: map-get($custom-colors, "element-orange");
@@ -144,7 +148,7 @@ select:focus {
           height: 1rem;
           cursor: pointer;
         }
-        
+
         input[type="radio"]:checked {
             background-color: map-get($custom-colors, "element-orange");
             border-color: map-get($custom-colors, "element-orange");
@@ -173,18 +177,27 @@ select:focus {
 }
 
 .res-field {
+    position: relative;
+    margin-top: 1.75rem;
     .label {
         font-weight: 600;
         color: map-get($custom-colors, "element-dark");
         font-size: 1rem;
         margin-bottom: 7px;
+        padding-right: 1.5rem;
     }
-    
+
     .res {
         color: map-get($custom-colors, "primary");
         font-size: 1rem;
         margin-bottom: 5px;
     }
+}
+
+#biayaJabatan {
+    color: map-get($custom-colors, "primary");
+    font-size: 1rem;
+    margin-bottom: 5px;
 }
 
 .grand {
@@ -211,7 +224,7 @@ select:focus {
             margin-bottom: 0;
         }
     }
-    
+
     .end {
         display: flex;
         flex-direction: column;
@@ -245,33 +258,109 @@ select:focus {
 }
 
 .pay-now {
-  padding: 0.5rem 0.75rem; 
-  background-color: map-get($custom-colors, "primary"); 
+  padding: 0.5rem 0.75rem;
+  background-color: map-get($custom-colors, "primary");
   color: white;
   border: none;
-  margin-right: 1rem; 
+  margin-right: 1rem;
   border: 1px solid map-get($custom-colors, "primary");
   cursor: pointer;
   transition: .3s all ease-in-out;
 }
 
 .later {
-    padding: 0.5rem 0.75rem; 
+    padding: 0.5rem 0.75rem;
     background-color: white;
-    color: map-get($custom-colors, "primary"); 
+    color: map-get($custom-colors, "primary");
     border: 1px solid map-get($custom-colors, "primary");
     cursor: pointer;
     transition: .3s all ease-in-out;
 }
 
 .pay-now:hover {
-    color: map-get($custom-colors, "primary"); 
+    color: map-get($custom-colors, "primary");
     background-color: white;
     box-shadow: $box-shadow-sm;
 }
 
 .later:hover {
-    background-color: map-get($custom-colors, "primary"); 
+    background-color: map-get($custom-colors, "primary");
     color: white;
     box-shadow: $box-shadow-sm;
+}
+
+.tooltip-container {
+      position: absolute;
+      top: 15px;
+      right: 0;
+    //   transform: translateX(250px) translateY(15px);
+      display: inline-block;
+    }
+
+    .tooltip-circle {
+      display: inline-block;
+    //   width: 24px;
+    //   height: 24px;
+      background-color: transparent;
+      color: #b1b1b1;
+      border-radius: 50%;
+      border: 2px solid #b1b1b1;
+      text-align: center;
+      font-weight: 700;
+      line-height: 10px;
+      font-size: 11px;
+      padding: 2.5px 4.5px;
+    // height: 10px;
+    // width: 10px;
+      cursor: pointer;
+    }
+
+    .tooltip-content {
+      visibility: hidden;
+      opacity: 0;
+      width: calc(100vw - 300px); /* ⬅️ Fleksibel: viewport width dikurangi margin */
+      max-width: 300px;
+      background-color: #333;
+      color: #fff;
+      text-align: left;
+      padding: 10px;
+      position: absolute;
+      z-index: 1000;
+      top: 125%;
+      transition: opacity 0.3s;
+      font-size: 11px;
+      right: 100%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    }
+
+    .tooltip-container:hover .tooltip-content {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .hasil {
+        top: 0;
+        .tooltip-content {
+            max-width: 250px;
+            right: 100%;
+        }
+}
+
+.spdn {
+    top: 25px;
+}
+
+.label {
+    padding-right: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.tiapBulan {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.mon {
+    margin-top: 0;
 }
