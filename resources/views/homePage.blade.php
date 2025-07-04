@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="py-5" style="background-color:rgb(250, 214, 214);">
+    <section class="py-5 px-5">
         <div class="container-fluid m-0">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
