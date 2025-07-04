@@ -30,7 +30,7 @@
         </div>
 
         <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex">
-            <a class="btn btn-primary rounded-0 fs-5" href="#">Log Out</a>
+            <a class="btn btn-primary rounded-0 fs-5" href="{{route('pengguna.logout')}}">Log Out</a>
         </div>
     </div>
 </nav>

@@ -17,7 +17,7 @@ class PenggunaSeeder extends Seeder
         Pengguna::create([
         'nama' => 'Rahmat',
         'email' => 'rahmat@gmail.com',
-        'password' => '12345',
+        'password' => Hash::make('12345'),
         ]);
 
         Pengguna::create([
