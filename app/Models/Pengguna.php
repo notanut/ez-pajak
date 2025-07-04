@@ -10,7 +10,13 @@ class Pengguna extends Model
     /** @use HasFactory<\Database\Factories\PenggunaFactory> */
     use HasFactory;
 
-    protected $fillable = ['nama','email','password','jenis_pekerjaan','penghasilan_bruto','penghasilan_neto'];
+    protected $fillable = [
+    'nama',
+    'email',
+    'password',
+    'transaksiable_id',
+    'transaksiable_type',
+    ];
 
     public function transaksis(){
         return $this->hasMany(Transaksi::class);

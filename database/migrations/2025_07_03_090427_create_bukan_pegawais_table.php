@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('bukan_pegawais', function (Blueprint $table) {
             $table->id();
+            $table->string('role');
             $table->timestamps();
         });
     }

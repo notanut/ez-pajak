@@ -18,7 +18,7 @@
                     <div class="ringkasan object-fit-md-contain border border-2 mx-4 mb-4 bg-white pt-2">
                         <div class="column">
                             <h5 class="m-0">NPWP</h5>
-                            <h5 class="m-0 mt-2">XXXXXXX</h5>
+                            <h5 class="m-0 mt-2">{{$info}}</h5>
                         </div>
                         <div class="column">
                             <h5 class="m-0">Status</h5>

@@ -17,8 +17,8 @@ class Transaksi extends Model
     }
 
     public function transaksiable()
-{
-    return $this->morphTo();
-}
+    {
+        return $this->morphTo();
+    }
 
 }

@@ -9,6 +9,9 @@ class PegawaiTetap extends Model
 {
     /** @use HasFactory<\Database\Factories\PegawaiTetapFactory> */
     use HasFactory;
+
+    protected $fillable = ['role'];
+
     public function transaksis()
     {
         return $this->morphMany(Transaksi::class, 'transaksiable');

@@ -23,7 +23,8 @@ class PenggunaController extends Controller
             $status = 'Belum dibayar';
         }
 
-        return view('payment.paypage',compact('penggunas','transaksi','status'));
+        $info = $transaksi->transaksiable_type;
+        return view('payment.paypage',compact('penggunas','transaksi','status','info'));
     }
 
     /**
@@ -32,6 +33,7 @@ class PenggunaController extends Controller
     public function create()
     {
         //
+
     }
 
     /**

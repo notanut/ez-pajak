@@ -35,6 +35,6 @@ class TransaksiSeeder extends Seeder
             'metode_pembayaran'=> 'OVO',
             'tanggal_pembayaran' => '2025-7-2'
         ]);
-        
+
     }
 }

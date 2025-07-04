@@ -14,6 +14,7 @@ class TransaksiController extends Controller
     public function index()
     {
         //
+
     }
 
     /**

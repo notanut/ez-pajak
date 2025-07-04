@@ -18,18 +18,12 @@ class PenggunaSeeder extends Seeder
         'nama' => 'Rahmat',
         'email' => 'rahmat@gmail.com',
         'password' => '12345',
-        'jenis_pekerjaan' => 'bukan_pegawai',
-        'penghasilan_bruto' => '54000000',
-        'penghasilan_neto' => '50000000'
         ]);
 
         Pengguna::create([
         'nama' => 'Violet',
         'email' => 'violet@gmail.com',
         'password' => '54321',
-        'jenis_pekerjaan' => 'pegawai_tidak_tetap',
-        'penghasilan_bruto' => '5400000',
-        'penghasilan_neto' => '5000000'
         ]);
 
     }
