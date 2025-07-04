@@ -1,0 +1,76 @@
+p {
+  color: #142143;
+}
+
+body, main {
+    font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+    font-family: "Raleway", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+button {
+  border-radius: 0 !important;
+}
+
+.left-section{
+    background-color: #F4F8FF;
+    padding: 3rem;
+}
+
+.inner-left-section{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-illustration{
+    width: 100%;
+}
+
+.right-section{
+    padding: 3rem;
+}
+
+.inner-right-section{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.border-bottom{
+    border-bottom: 2px solid #151F6D;
+    padding: 0 !important;
+}
+
+.btn{
+    width: 35%;
+    padding: 0.2rem;
+}
+
+.form-setting{
+    padding: 1.25rem;
+    margin: 0px;
+}
+
+.border-setting{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1.5px solid #151F6D;
+    padding: 0 !important;
+}
+
+.text-login{
+    color: #ffa500;
+}

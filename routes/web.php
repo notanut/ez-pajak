@@ -52,3 +52,15 @@ Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
 Route::get('/kuesioner', function () {
     return view('kuesioner');
 });
+
+Route::post('/register', [PenggunaController::class, 'store'])->name('pengguna.store');
+Route::get('/register', [PenggunaController::class, 'create'])->name('pengguna.create');
+Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
+
+// Route::get('/register', function (){
+//     return view('registration.register');
+// });
+
+Route::get('/login', function (){
+    return view('registration.login');
+});
