@@ -12,10 +12,10 @@
                     </p>
                     <a href="#" class="btn btn-lg rounded-0 px-4 py-3 d-inline-flex align-items-center w-200 h-40 text-white" style="background-color:#FE8F1D">
                         Coba Sekarang
-                        <i class="ms-2 bi bi-box-arrow-up-right"></i> 
-                        <img src="images/icon_login.png" alt="Paper Plane" style="width: 50px; height: auto;" class="ms-2"> 
+                        <i class="ms-2 bi bi-box-arrow-up-right"></i>
+                        <img src="images/icon_login.png" alt="Paper Plane" style="width: 50px; height: auto;" class="ms-2">
                     </a>
-                    
+
                 </div>
 
                 <div class="col-lg-6 col-md-12 text-center">
@@ -70,7 +70,7 @@
                             <p class="mb-3" style="color: #142143">
                                 Pilih jika kamu bekerja dengan penghasilan rutin bulanan dan memiliki <strong>kontrak kerja jangka panjang</strong>.
                             </p>
-                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                            <a href="/calculator/pegawai" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
                                 Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
@@ -88,7 +88,7 @@
                             <p class="mb-3" style="color: #142143">
                                 Pilih jika kamu bekerja di perusahaan sebagai pegawai tapi <strong>tanpa kontrak tetap</strong>, dan hanya dibayar jika bekerja.
                             </p>
-                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                            <a href="/calculator/pegawaiTidakTetap" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
                                 Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
@@ -106,7 +106,7 @@
                             <p class="mb-3" style="color: #142143">
                                 Pilih jika kamu memberikan jasa pribadi seperti <strong>freelance</strong> atau konsultan, tidak terikat karyawan.
                             </p>
-                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                            <a href="/calculator/bukanPegawai" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
                                 Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
