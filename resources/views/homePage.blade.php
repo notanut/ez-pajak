@@ -5,7 +5,7 @@
         <div class="container-fluid m-0">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
-                    <h1 class="display-4 fw-bold mb-3" style="color: #142143">Apa itu EZPajak ?</h1>
+                    <h1 class="display-4 fw-bold mb-3 text-blue"><span class="fw-normal">Apa itu </span> EZPajak ?</h1>
                     <p class="lead mb-4">
                         EZPajak adalah website interaktif berbasis browser yang memandu warga Indonesia
                         menyiapkan dan mengekspor SPT Tahunan secara mudah dan aman.
@@ -28,7 +28,7 @@
                     <div class="d-flex align-items-start">
                         <img src="images/icon_smartWay.png" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
-                            <h4 class="fw-bold" style="color: #142143">Smart Way</h4>
+                            <h4 class="fw-bold text-blue">Smart Way</h4>
                             <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang uruss.</p>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     <div class="d-flex align-items-start">
                         <img src="images/icon_autoFlow.png" alt="Auto Flow Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
-                            <h4 class="fw-bold" style="color: #142143">Auto Flow</h4>
+                            <h4 class="fw-bold text-blue">Auto Flow</h4>
                             <p class="mb-0 fst-italic" style="color: #142143">Kami menyediakan alur perhitungan dan pembayaran otomatis dari awal sampai selesai loh!</p>
                         </div>
                     </div>
