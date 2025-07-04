@@ -21,7 +21,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    @include('layouts.partials.navbarAfterLogin')
+    @auth
+        @include('layouts.partials.navbarAfterLogin')
+    @endauth
+
+    @guest
+        @include('layouts.partials.navbarBeforeLogin')
+    @endguest
+
 
         @yield('content')
 
