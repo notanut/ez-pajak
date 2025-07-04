@@ -11,7 +11,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid px-4">
         <a class="navbar-brand d-flex align-items-center" href="/">
-            <img src="images/logo.png" width="40" height="40" class="d-inline-block align-middle">
+            <img src="{{ asset('images/logo.png') }}"  width="40" height="40" class="d-inline-block align-middle">
             <span class="ms-2 align-middle fs-4 fw-bold ezpajak-color">EZPajak</span>
         </a>
 
@@ -30,10 +30,11 @@
             </div>
         </div>
 
-        <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex">
-            <a class="btn btn-outline-primary rounded-0 fs-5" href="/login">Login</a>
-            <a class="btn btn-primary rounded-0 fs-5" href="/register">Register</a>
+        <div class="navbar-nav gap-2 ms-auto d-none d-lg-flex ">
+            <a class="btn btn-outline-primary rounded-0 fs-5 px-3" href="/login">Login</a>
+            <a class="btn btn-primary rounded-0 fs-5 px-3" href="/register">Register</a>
         </div>
+
     </div>
 </nav>
 
