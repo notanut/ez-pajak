@@ -65,3 +65,8 @@ Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 Route::get('/login', function (){
     return view('registration.login');
 });
+
+
+Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
+
+Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');

@@ -38,7 +38,7 @@
                                         <button type="submit" class="btn btn-primary fw-bold mt-3">Masuk</button>
                                     </div>
                                 </form>
-                                <p class="text-center mt-3">Belum punya akun? <a href="#"
+                                <p class="text-center mt-3">Belum punya akun? <a href="/register"
                                         class="text-login fw-semibold text-decoration-none">Daftar di sini</a></p>
                             </div>
                         </div>
