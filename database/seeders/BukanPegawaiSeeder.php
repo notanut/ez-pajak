@@ -19,9 +19,11 @@ class BukanPegawaiSeeder extends Seeder
         $rahmat = Pengguna::where('nama','Rahmat')->first();
         $violet = Pengguna::where('nama','Violet')->first();
 
-        $bukanPegawai = BukanPegawai::create(['role'=> 'Hai aku PTT']);
+        $bukanPegawai1 = BukanPegawai::create(['role'=> 'Hai aku BP1']);
+        $bukanPegawai2 = BukanPegawai::create(['role'=> 'Hai aku BP2']);
 
-        $bukanPegawai->transaksis()->create([
+
+        $bukanPegawai1->transaksis()->create([
             'total' => '2400000',
             'pengguna_id' => $rahmat->id,
             'status_pembayaran' => 1,
@@ -29,7 +31,7 @@ class BukanPegawaiSeeder extends Seeder
             'tanggal_pembayaran' => '2025-7-1'
         ]);
 
-        $bukanPegawai->transaksis()->create([
+        $bukanPegawai2->transaksis()->create([
             'total' => '1200000',
             'pengguna_id' => $violet->id,
             'status_pembayaran' => 0,

@@ -19,9 +19,11 @@ class PegawaiTetapSeeder extends Seeder
         $rahmat = Pengguna::where('nama','Rahmat')->first();
         $violet = Pengguna::where('nama','Violet')->first();
 
-        $pegawaiTetap = PegawaiTetap::create(['role'=> 'Hai aku PT']);
+        $pegawaiTetap1 = PegawaiTetap::create(['role'=> 'Hai aku PT1']);
+        $pegawaiTetap2 = PegawaiTetap::create(['role'=> 'Hai aku PT12']);
 
-        $pegawaiTetap->transaksis()->create([
+
+        $pegawaiTetap1->transaksis()->create([
             'total' => '2400000',
             'pengguna_id' => $rahmat->id,
             'status_pembayaran' => 1,
@@ -29,7 +31,7 @@ class PegawaiTetapSeeder extends Seeder
             'tanggal_pembayaran' => '2025-7-1'
         ]);
 
-        $pegawaiTetap->transaksis()->create([
+        $pegawaiTetap2->transaksis()->create([
             'total' => '1200000',
             'pengguna_id' => $violet->id,
             'status_pembayaran' => 0,

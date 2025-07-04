@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
+use App\Models\Transaksi;
 use App\Http\Requests\StorePenggunaRequest;
 use App\Http\Requests\UpdatePenggunaRequest;
 
@@ -16,6 +17,7 @@ class PenggunaController extends Controller
         //
         $penggunas = Pengguna::with('transaksis')->find($id);
         $transaksi = $penggunas->transaksis->first();
+        $penggunaa = Pengguna::with('transaksis.transaksiable')->find($id);
 
         if($transaksi->status_pembayaran == '1'){
             $status = 'Sudah dibayar';
@@ -23,8 +25,10 @@ class PenggunaController extends Controller
             $status = 'Belum dibayar';
         }
 
+        $detail = $penggunaa->transaksis;
+        $details = $detail->transaksiable;
         $info = $transaksi->transaksiable_type;
-        return view('payment.paypage',compact('penggunas','transaksi','status','info'));
+        return view('payment.paypage',compact('penggunas','transaksi','status','info','penggunaa','detail','details'));
     }
 
     /**
