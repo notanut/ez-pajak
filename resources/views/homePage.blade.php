@@ -12,8 +12,8 @@
                     </p>
                     <a href="#" class="btn btn-lg rounded-0 px-4 py-3 d-inline-flex align-items-center w-200 h-40 text-white" style="background-color:#FE8F1D">
                         Coba Sekarang
-                        <i class="ms-2 bi bi-box-arrow-up-right"></i> 
-                        <img src="images/icon_login.png" alt="Paper Plane" style="width: 50px; height: auto;" class="ms-2"> 
+                        {{-- <i class="ms-2 bi bi-box-arrow-up-right"></i> --}}
+                        <img src="images/icon_login.png" alt="Paper Plane" style="width: 25px; height: auto;" class="ms-2">
                     </a>
                     
                 </div>
@@ -29,7 +29,7 @@
                         <img src="images/icon_smartWay.png" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
                             <h4 class="fw-bold" style="color: #142143">Smart Way</h4>
-                            <p class="mb-0" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang uruss.</p>
+                            <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang uruss.</p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <img src="images/icon_autoFlow.png" alt="Auto Flow Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
                             <h4 class="fw-bold" style="color: #142143">Auto Flow</h4>
-                            <p class="mb-0" style="color: #142143">Kami menyediakan alur perhitungan dan pembayaran otomatis dari awal sampai selesai loh!</p>
+                            <p class="mb-0 fst-italic" style="color: #142143">Kami menyediakan alur perhitungan dan pembayaran otomatis dari awal sampai selesai loh!</p>
                         </div>
                     </div>
                 </div>

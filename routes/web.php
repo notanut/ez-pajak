@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenggunaController;
 
 use App\Http\Controllers\PegawaiTetapController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('homePage');
-});
+})->name('exit');
 
 
 Route::get('/calculator/pegawai', function () {
@@ -64,3 +65,12 @@ Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 Route::get('/login', function (){
     return view('registration.login');
 });
+<<<<<<< HEAD
+
+
+Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
+
+Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
+
+=======
+>>>>>>> d45ce6d6e84c9b07cde843559b303551672a1179
