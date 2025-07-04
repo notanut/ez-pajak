@@ -16,4 +16,9 @@ class Transaksi extends Model
         return $this->belongsTo(Pengguna::class);
     }
 
+    // public function transaksiable()
+    // {
+    //     return $this->morphTo();
+    // }
+
 }

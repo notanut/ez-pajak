@@ -2,7 +2,7 @@
 
 @section('title', 'EzPajak | Kalkulator Pajak untuk Pegawai Tetap')
 @section('content')
-<section class="d-block d-md-flex gap-5 justify-content-evenly">
+<section class="d-block d-md-flex gap-5 justify-content-evenly container py-4">
         <div class="left">
             <h2 class="text-primary">Isi Data <span class="fw-normal">Anda Disini</span></h2>
             <p class="fst-italic">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
@@ -228,7 +228,7 @@
                     </div>
                     <div class="res-field">
                         <p class="label" id="pphPkpTitle">PPh Pasal 21 atas PKP Setahun/Disetahunkan</p>
-                        <p class="res">0</p>
+                        <p class="res">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">

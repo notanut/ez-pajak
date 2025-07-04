@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaksi;
-use App\Http\Requests\StoreTransaksiRequest;
-use App\Http\Requests\UpdateTransaksiRequest;
+use App\Models\pegawaiTidakTetap;
+use App\Http\Requests\StorepegawaiTidakTetapRequest;
+use App\Http\Requests\UpdatepegawaiTidakTetapRequest;
 
-class TransaksiController extends Controller
+class PegawaiTidakTetapController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class TransaksiController extends Controller
     public function index()
     {
         //
-
     }
 
     /**
@@ -28,7 +27,7 @@ class TransaksiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTransaksiRequest $request)
+    public function store(StorepegawaiTidakTetapRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class TransaksiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaksi $transaksi)
+    public function show(pegawaiTidakTetap $pegawaiTidakTetap)
     {
         //
     }
@@ -44,7 +43,7 @@ class TransaksiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaksi $transaksi)
+    public function edit(pegawaiTidakTetap $pegawaiTidakTetap)
     {
         //
     }
@@ -52,7 +51,7 @@ class TransaksiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTransaksiRequest $request, Transaksi $transaksi)
+    public function update(UpdatepegawaiTidakTetapRequest $request, pegawaiTidakTetap $pegawaiTidakTetap)
     {
         //
     }
@@ -60,7 +59,7 @@ class TransaksiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaksi $transaksi)
+    public function destroy(pegawaiTidakTetap $pegawaiTidakTetap)
     {
         //
     }

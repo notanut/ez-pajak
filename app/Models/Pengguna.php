@@ -10,10 +10,28 @@ class Pengguna extends Model
     /** @use HasFactory<\Database\Factories\PenggunaFactory> */
     use HasFactory;
 
-    protected $fillable = ['nama','email','password','jenis_pekerjaan','penghasilan_bruto','penghasilan_neto'];
+    protected $fillable = [
+    'nama',
+    'email',
+    'password'
+    ];
 
-    public function transaksis(){
+    public function transaksis()
+    {
         return $this->hasMany(Transaksi::class);
+    }
+
+    public function pegawaitetap()
+    {
+        return $this->hasOne(PegawaiTetap::class);
+    }
+    public function pegawaitidaktetap()
+    {
+        return $this->hasOne(PegawaiTetap::class);
+    }
+    public function bukanpegawai()
+    {
+        return $this->hasOne(PegawaiTetap::class);
     }
 
 }

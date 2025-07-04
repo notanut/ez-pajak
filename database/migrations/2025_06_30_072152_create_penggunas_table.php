@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email');
             $table->string('password');
-            $table->string('jenis_pekerjaan');
-            $table->float('penghasilan_bruto');
-            $table->float('penghasilan_neto');
             $table->timestamps();
         });
     }

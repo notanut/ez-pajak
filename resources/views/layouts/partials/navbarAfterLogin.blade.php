@@ -11,7 +11,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-white">
     <div class="container px-4">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="images/logo.png" width="40" height="40" class="d-inline-block align-middle">
+            <img src="{{asset('images/logo.png')}}" width="40" height="40" class="d-inline-block align-middle">
             <span class="ms-2 align-middle fs-4 fw-bold ezpajak-color text-blue">EZPajak</span>
         </a>
 
@@ -20,16 +20,16 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-4"> <a class="nav-link active fs-5 me-3" aria-current="page" href="#">Dashboard</a> 
+            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-4"> <a class="nav-link active fs-5 me-3" aria-current="page" href="#">Dashboard</a>
                 <a class="nav-link active fs-5" href="#">Kalkulator</a>
             </div>
 
-            <div class="navbar-nav gap-3 d-lg-none mt-3"> 
+            <div class="navbar-nav gap-3 d-lg-none mt-3">
                 <a class="btn btn-primary rounded-0 fs-5 w-100" href="#">Log Out</a>
             </div>
         </div>
 
-        <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex"> 
+        <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex">
             <a class="btn btn-primary rounded-0 fs-5" href="#">Log Out</a>
         </div>
     </div>
