@@ -12,6 +12,7 @@ class pegawaiTidakTetap extends Model
 
     protected $fillable = [
         'role',
+        'pengguna_id',
         'jenis_kelamin',
         'tanggungan',
         'status_perkawinan',
@@ -65,9 +66,13 @@ class pegawaiTidakTetap extends Model
         'pph21_perhari',
     ];
 
-    public function transaksis()
+    // public function transaksis()
+    // {
+    //     return $this->morphMany(Transaksi::class, 'transaksiable');
+    // }
+    public function penggunas()
     {
-        return $this->morphMany(Transaksi::class, 'transaksiable');
+        return $this->belongsTo(Pengguna::class);
     }
 
 }

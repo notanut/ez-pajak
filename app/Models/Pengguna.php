@@ -13,13 +13,25 @@ class Pengguna extends Model
     protected $fillable = [
     'nama',
     'email',
-    'password',
-    'transaksiable_id',
-    'transaksiable_type',
+    'password'
     ];
 
-    public function transaksis(){
+    public function transaksis()
+    {
         return $this->hasMany(Transaksi::class);
+    }
+
+    public function pegawaitetap()
+    {
+        return $this->hasOne(PegawaiTetap::class);
+    }
+    public function pegawaitidaktetap()
+    {
+        return $this->hasOne(PegawaiTetap::class);
+    }
+    public function bukanpegawai()
+    {
+        return $this->hasOne(PegawaiTetap::class);
     }
 
 }

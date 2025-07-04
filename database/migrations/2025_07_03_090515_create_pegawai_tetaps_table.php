@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('pegawai_tetaps', function (Blueprint $table) {
             $table->id();
-            $table->string('role');
+            $table->foreign('pengguna_id')->constrained('penggunas')->onDelete('cascade');
+            $table->string('role')->default('Pegawai Tetap');
             $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
             $table->integer('tanggungan');
             $table->enum('status_perkawinan', ['Kawin','Tidak Kawin', 'Hidup Berpisah']);

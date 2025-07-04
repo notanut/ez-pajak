@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenggunaController;
 
+use App\Http\Controllers\PegawaiTetapController;
 
 Route::get('/', function () {
     return view('homePage');
@@ -13,6 +14,7 @@ Route::get('/calculator/pegawai', function () {
     return view('calculator.index');
 });
 
+Route::post('/calculator/pegawai/store', [PegawaiTetapController::class, 'store'])->name('pegawai.store');
 
 Route::get('/calculator/pegawaiTidakTetap', function () {
     return view('calculator.pegawaiTidakTetap');

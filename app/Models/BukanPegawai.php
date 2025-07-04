@@ -12,6 +12,7 @@ class BukanPegawai extends Model
 
     protected $fillable = [
         'role',
+        'pengguna_id',
         'dibayar_bulanan',
         'bulanan_sama',
 
@@ -62,9 +63,14 @@ class BukanPegawai extends Model
         'penghasilan_neto',
     ];
 
-    public function transaksis()
+    // public function transaksis()
+    // {
+    //     return $this->morphMany(Transaksi::class, 'transaksiable');
+    // }
+
+    public function penggunas()
     {
-        return $this->morphMany(Transaksi::class, 'transaksiable');
+        return $this->belongsTo(Pengguna::class);
     }
 
 }

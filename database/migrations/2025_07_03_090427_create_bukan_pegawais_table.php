@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('bukan_pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('role');
+            $table->foreign('pengguna_id')->constrained('penggunas')->onDelete('cascade');
+            $table->string('role')->default('Bukan Pegawai');
             $table->boolean('dibayar_bulanan');
             $table->boolean('bulanan_sama')->default(false);
 

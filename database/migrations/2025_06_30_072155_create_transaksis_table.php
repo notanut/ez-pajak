@@ -18,13 +18,13 @@ return new class extends Migration
             $table->boolean('status_pembayaran');
             $table->string('metode_pembayaran');
             $table->date('tanggal_pembayaran');
-            $table->unsignedBigInteger('transaksiable_id');
-            $table->string('transaksiable_type');
+            // $table->unsignedBigInteger('transaksiable_id');
+            // $table->string('transaksiable_type');
             // Polymorphic relation
             // $table->morphs('transaksiable'); // menghasilkan: transaksiable_id, transaksiable_type
 
             $table->timestamps();
-            $table->index(['transaksiable_id', 'transaksiable_type']);
+            // $table->index(['transaksiable_id', 'transaksiable_type']);
         });
 
     }
