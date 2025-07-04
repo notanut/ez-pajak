@@ -31,9 +31,9 @@ Route::get('/payment/success', function () {
 });
 
 
-Route::get('/dashboard', function (){
-    return view('calculator.index');
-});
+// Route::get('/dashboard', function (){
+//     return view('calculator.index');
+// });
 
 
 Route::get('/home', function (){

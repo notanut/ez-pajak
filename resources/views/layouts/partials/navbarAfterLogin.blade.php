@@ -20,7 +20,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-4"> <a class="nav-link active fs-5 me-3" aria-current="page" href="/dashboard">Dashboard</a>
+            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-4"> <a class="nav-link active fs-5 me-3" aria-current="page" href="/home">Dashboard</a>
                 <a class="nav-link active fs-5" href="#">Kalkulator</a>
             </div>
 
