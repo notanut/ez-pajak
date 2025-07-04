@@ -5,10 +5,10 @@
 <main>
     <div class="container mt-6 mb-6">
         <div class="card shadow-sm bg-white p-0 border-0">
-            <div class="card-body p-0">
+             <div class="card-body p-0">
                 <div class="row g-0">
                      <!-- left section -->
-                      <div class="col-lg-6 d-flex flex-column justify-content-between align-items-center right-section">
+                    <div class="col-lg-6 d-flex flex-column justify-content-between align-items-center right-section">
                         <div class="inner-right-section mt-2 mb-2">
                                 <div class="d-flex gap-2 mb-3">
                                     <h2 class="fw-bold text-primary">Masuk</h2>

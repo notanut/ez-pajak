@@ -23,7 +23,7 @@ class PenggunaSeeder extends Seeder
         Pengguna::create([
         'nama' => 'Violet',
         'email' => 'violet@gmail.com',
-        'password' => '54321',
+        'password' => Hash::make('54321'),
         ]);
 
     }

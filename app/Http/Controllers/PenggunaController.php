@@ -18,7 +18,7 @@ class PenggunaController extends Controller
         //
         $penggunas = Pengguna::with('transaksis')->find($id);
         $transaksi = $penggunas->transaksis->first();
-        $penggunaa = Pengguna::with('transaksis.transaksiable')->find($id);
+        // $penggunaa = Pengguna::with('transaksis.transaksiable')->find($id);
 
         if($transaksi->status_pembayaran == '1'){
             $status = 'Sudah dibayar';
@@ -26,10 +26,10 @@ class PenggunaController extends Controller
             $status = 'Belum dibayar';
         }
 
-        $detail = $penggunaa->transaksis;
-        $details = $detail->transaksiable;
-        $info = $transaksi->transaksiable_type;
-        return view('payment.paypage',compact('penggunas','transaksi','status','info','penggunaa','detail','details'));
+        // $detail = $penggunaa->transaksis;
+        // $details = $detail->transaksiable;
+        // $info = $transaksi->transaksiable_type;
+        return view('payment.paypage',compact('penggunas','transaksi','status'));
     }
 
     /**
@@ -51,7 +51,7 @@ class PenggunaController extends Controller
      */
     public function store(StorePenggunaRequest $request)
     {
-        $validated = $request->validate();
+        $validated = $request->validated();
 
         Pengguna::create([
             'nama' => $validated['nama'],

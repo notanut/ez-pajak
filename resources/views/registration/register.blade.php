@@ -33,12 +33,12 @@
                                     <h2 class="fw-bold text-primary">Buat</h2>
                                     <h2 class="fw-light text-primary">Akun</h2>
                                 </div>
-                            <form class="form-register" action="{{ route('pengguna.store')}}" method="POST">
+                            <form class="form-register" action="{{route('pengguna.store')}}" method="POST">
                                 @csrf
                                 <!-- form content goes here -->
-                                 <div class="d-flex flex-column mb-3">
+                                <div class="d-flex flex-column mb-3">
                                     <label for="nama" class="form-label fw-semibold text-primary m-0">Nama Lengkap</label>
-                                    <input type="text" class="form-setting border-setting  rounded-0 shadow-none ps-0" value="{{ old('nama') }}" 
+                                    <input type="text" class="form-setting border-setting  rounded-0 shadow-none ps-0" value="{{ old('nama') }}"
                                         name="nama" id="nama" placeholder="Daftarkan nama lengkap kamu" @error('nama') is-invalid @enderror>
                                     @error('nama')
                                         <div class="text-danger">
@@ -80,7 +80,7 @@
                                     <button type="submit" class="btn btn-primary fw-bold mt-3">Daftar</button>
                                 </div>
                             </form>
-                            <p class="text-center mt-3">Sudah punya akun? <a href="" class="text-login fw-semibold text-decoration-none">Masuk di sini</a></p>
+                            <p class="text-center mt-3">Sudah punya akun? <a href="/login" class="text-login fw-semibold text-decoration-none">Masuk di sini</a></p>
                         </div>
                     </div>
                 </div>
