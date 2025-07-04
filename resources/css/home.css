@@ -21,7 +21,6 @@ button {
 .dashboard-cards {
     border-radius: 0 !important;
     display: flex;
-    flex-wrap: nowrap;
     gap: 0;
     overflow: hidden;
     background-color: #1D267D;
