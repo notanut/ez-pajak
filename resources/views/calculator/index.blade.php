@@ -228,7 +228,7 @@
                     </div>
                     <div class="res-field">
                         <p class="label" id="pphPkpTitle">PPh Pasal 21 atas PKP Setahun/Disetahunkan</p>
-                        <p class="res">0</p>
+                        <p class="res">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
