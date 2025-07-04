@@ -32,9 +32,9 @@ Route::get('/payment/success', function () {
 });
 
 
-Route::get('/dashboard', function (){
-    return view('calculator.index');
-});
+// Route::get('/dashboard', function (){
+//     return view('calculator.index');
+// });
 
 
 Route::get('/home', function (){
@@ -65,9 +65,12 @@ Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 Route::get('/login', function (){
     return view('registration.login');
 });
+<<<<<<< HEAD
 
 
 Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
 
+=======
+>>>>>>> d45ce6d6e84c9b07cde843559b303551672a1179
