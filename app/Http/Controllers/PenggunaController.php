@@ -6,6 +6,7 @@ use App\Models\Pengguna;
 use App\Models\Transaksi;
 use App\Http\Requests\StorePenggunaRequest;
 use App\Http\Requests\UpdatePenggunaRequest;
+use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
@@ -36,16 +37,29 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        //
+        return view('registration.register');
 
     }
+
+     public function prosesForm(Request $request){
+        dump($request);
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StorePenggunaRequest $request)
     {
-        //
+        $validated = $request->validate();
+
+        Pengguna::create([
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password'])
+        ]);
+
+        return redirect()->route('pengguna.create')->with('success', 'Registrasi berhasil!');
     }
 
     /**

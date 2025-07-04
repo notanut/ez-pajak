@@ -20,17 +20,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-4"> <a class="nav-link active fs-5 me-3" aria-current="page" href="#">Home</a> 
+            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-4"> <a class="nav-link active fs-5 me-3" aria-current="page" href="#">Home</a>
                 <a class="nav-link active fs-5" href="#">Kalkulator</a>
             </div>
 
-            <div class="navbar-nav gap-3 d-lg-none mt-3"> 
+            <div class="navbar-nav gap-3 d-lg-none mt-3">
                 <a class="btn btn-outline-primary rounded-0 fs-5 w-100" href="#">Login</a>
                 <a class="btn btn-primary rounded-0 fs-5 w-100" href="#">Register</a>
             </div>
         </div>
 
-        <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex"> 
+        <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex">
             <a class="btn btn-outline-primary rounded-0 fs-5" href="#">Login</a>
             <a class="btn btn-primary rounded-0 fs-5" href="#">Register</a>
         </div>
