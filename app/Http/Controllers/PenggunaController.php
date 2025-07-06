@@ -41,7 +41,7 @@ class PenggunaController extends Controller
 
     }
 
-     public function prosesForm(Request $request){
+    public function prosesForm(Request $request){
         dump($request);
     }
 
