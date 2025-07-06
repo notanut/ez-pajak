@@ -70,4 +70,3 @@ Route::get('/login', function (){
 Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
-
