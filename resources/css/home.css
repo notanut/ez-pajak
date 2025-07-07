@@ -94,11 +94,6 @@ button {
   padding-right: 1rem;
 }
 
-.split-pengingat {
-    display: flex;
-    justify-content: space-between;
-}
-
 .button-pengingat {
   align-self: flex-start;
 }
@@ -180,12 +175,6 @@ button, .btn {
 .reminder-detail {
   h6 {
     color: #1d267d;
-  }
-
-  .keterangan-waktu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   select.form-select {

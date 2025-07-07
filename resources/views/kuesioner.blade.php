@@ -25,7 +25,7 @@
                             <p class="mb-3 fst-italic" style="color: #142143; font-size: 1vw;">
                                 Pilih jika kamu bekerja dengan penghasilan rutin bulanan dan memiliki <strong>kontrak kerja jangka panjang</strong>.
                             </p>
-                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                            <a href="/calculator/pegawai" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
                                 Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
@@ -43,7 +43,7 @@
                             <p class="mb-3 fst-italic" style="color: #142143; font-size: 1vw;">
                                 Pilih jika kamu bekerja di perusahaan sebagai pegawai tapi <strong>tanpa kontrak tetap</strong>, dan hanya dibayar jika bekerja.
                             </p>
-                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                            <a href="/calculator/pegawaiTidakTetap" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
                                 Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
@@ -61,7 +61,7 @@
                             <p class="mb-3 fst-italic" style="color: #142143; font-size: 1vw;">
                                 Pilih jika kamu memberikan jasa pribadi seperti <strong>freelance</strong> atau konsultan, tidak terikat karyawan.
                             </p>
-                            <a href="#" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
+                            <a href="/calculator/bukanPegawai" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
                                 Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>

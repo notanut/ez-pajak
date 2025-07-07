@@ -18,7 +18,7 @@
     </div>
 
     <!-- Card Section -->
-    <div class="dashboard-cards d-flex flex-nowrap overflow-hidden rounded mb-5">
+    <div class="d-flex flex-nowrap overflow-hidden rounded mb-5 flex-column flex-lg-row">
         <!-- Durasi Jatuh Tempo -->
         <div class="dashboard-card bg-card text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -77,7 +77,7 @@
             <h4 class="text-primary">Kustom <span class="fw-normal">Pengingat</span></h4>
         <p class="fst-italic">Gak mau ketinggalan bayar pajak? Atur pengingat sesuai tanggal yang kamu mau. Bebas, fleksibel, dan kamu yang tentuin.</p>
 
-        <div class="split-pengingat">
+        <div class="d-flex flex-column flex-lg-row justify-content-between">
              <div class="keterangan-pengingat">
                 <h6 class="mt-4 fw-bold text-primary">Pengingat <span class="fw-normal">Kamu</span></h6>
                 <p class="fst-italic">Ini daftar tanggal penting yang udah kamu set. Kami akan bantu ingetin di tanggal itu yaa.</p>
@@ -129,7 +129,7 @@
                 <h6 class="text-primary">Detail <span class="fw-normal">Pengingat</span></h6>
                 <p class="fst-italic text-muted">Jangan lupa tentuin mau diingetin seberapa jauh sebelum hari H ya!</p>
 
-                <div class="d-flex gap-2 mb-3">
+                <div class="d-flex gap-2 mb-3 flex-column flex-md-row">
                 {{-- <input type="number" class="form-control" value="3"> --}}
                 <select class="form-select">
                     <option>0</option>
@@ -143,14 +143,15 @@
                     <option>Minggu</option>
                     <option>Hari</option>
                 </select>
-                <div class="keterangan-waktu"><p>sebelumnya, pukul</p></div>
-                <select class="form-select">
-                    <option>07:00</option>
-                    <option>10:00</option>
-                    <option>13:00</option>
-                    <option>16:00</option>
-                    <option>19:00</option>
-                </select>
+                <div class="d-flex justify-content-center align-items-center">
+                    <p>sebelumnya, pukul</p></div>
+                    <select class="form-select">
+                        <option>07:00</option>
+                        <option>10:00</option>
+                        <option>13:00</option>
+                        <option>16:00</option>
+                        <option>19:00</option>
+                    </select>
                 </div>
 
                 <h6 class="text-primary">Email <span class="fw-normal">Pengingat</span></h6>
