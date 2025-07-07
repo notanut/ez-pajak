@@ -58,10 +58,6 @@ Route::post('/register', [PenggunaController::class, 'store'])->name('pengguna.s
 Route::get('/register', [PenggunaController::class, 'create'])->name('pengguna.create');
 Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 
-// Route::get('/register', function (){
-//     return view('registration.register');
-// });
-
 Route::get('/login', function (){
     return view('registration.login');
 });
@@ -70,3 +66,24 @@ Route::get('/login', function (){
 Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
+
+Route::get('/history', function (){
+    return view('history');
+});
+
+
+Route::get('user-notify', [PenggunaController::class, 'index']);
+
+// use Illuminate\Support\Facades\Mail;
+
+// Route::get('/tes-email', function () {
+//     try {
+//         Mail::raw('Ini adalah isi email percobaan.', function ($message) {
+//             $message->to('test@example.com') // Ganti dengan email tujuan di Mailtrap
+//                     ->subject('Tes Koneksi Email Laravel');
+//         });
+//         return 'Email berhasil dikirim (secara teori). Cek Mailtrap!';
+//     } catch (\Exception $e) {
+//         return 'Gagal mengirim email. Error: ' . $e->getMessage();
+//     }
+// });

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<link rel="stylesheet" href="{{ asset('css/paypage.css') }}">
 @section('content')
 <main class="container py-4">
     <section class="d-block d-md-flex flex-column">
@@ -18,7 +19,7 @@
                     <div class="ringkasan object-fit-md-contain border border-2 mx-4 mb-4 bg-white pt-2">
                         <div class="column">
                             <h5 class="m-0">NPWP</h5>
-                            <h5 class="m-0 mt-2">XXXXXXX</h5>
+                            <h5 class="m-0 mt-2" id="outputNPWP"></h5>
                             {{-- @if ($detail instanceof \App\Models\PegawaiTetap)
                                 <h5 class="m-0 mt-2">{{$detail->role}}</h5>
                             @elseif ($detail instanceof \App\Models\PegawaiTidakTetap)
@@ -64,10 +65,11 @@
             </div>
             <div class="col-12 col-md-6 d-flex flex-column">
                 {{-- form NPWP --}}
-                <div class="form-floating input-field">
-                        <input class="form-control" id="floatingNPWP" placeholder="0">
+                <form id="dataNPWP" class="form-floating input-field">
+                        <input type="text" class="form-control" id="NPWP" placeholder="0">
                         <label class="fs-3 p-0" for="floatingNPWP">NPWP</label>
-                </div>
+
+                </form>
                 {{-- Metode Pembayaran --}}
                 <div class="d-flex flex-column">
                     <h3>Metode Pembayaran</h3>
@@ -101,23 +103,33 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
+                            <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
                         </div>
                     </div>
 
                     {{-- Gopay --}}
                     <div class="method border border-2 p-5 pt-3 paybox" id="Gopay" style="display:none">
-                        <div class="form-floating input-field">
-                            <input class="form-control" id="floatingNumCard" placeholder="0">
-                            <label class="fs-3 p-0" for="floatingNumCard">Gopay</label>
+                        <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="form-floating input-field">
+                                <input class="form-control" id="floatingNumCard" placeholder="0">
+                                <label class="fs-3 p-0" for="floatingNumCard">Gopay</label>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
+                            </div>
                         </div>
                     </div>
 
                     {{-- OVO --}}
                     <div class="method border border-2 p-5 pt-3 paybox" id="OVO" style="display:none">
-                        <div class="form-floating input-field">
-                            <input class="form-control" id="floatingNumCard" placeholder="0">
-                            <label class="fs-3 p-0" for="floatingNumCard">OVO</label>
+                        <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="form-floating input-field">
+                                <input class="form-control" id="floatingNumCard" placeholder="0">
+                                <label class="fs-3 p-0" for="floatingNumCard">OVO</label>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
+                            </div>
                         </div>
                     </div>
                 </div>
