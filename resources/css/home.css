@@ -186,6 +186,7 @@ button, .btn {
     justify-content: center;
     text-align: center;
     width: 148px;
+    padding-right: 30px;
   }
 
   .form-control[type="time"] {

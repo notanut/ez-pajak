@@ -27,7 +27,7 @@
                     <i class="bi bi-clock"></i>
                 </div>
             </div>
-            <h4>2 Bulan, 4 Hari</h4>
+            <h4 id="countdown">– Bulan, – Minggu, – Hari</h4>
             <p class="fst-italic card-text text-white">Ini adalah sisa waktu yang kamu punya sebelum deadline pembayaran pajak berikutnya.</p>
             <div class="site">
                 <a href="#" class="card-text text-white small text-decoration-none"><span class="fw-bold">Bayar</span> Sekarang &rsaquo;</a>
@@ -173,42 +173,8 @@
 @endsection
 
 @push('scripts')
-  <!-- FullCalendar CDN CSS & JS -->
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
-  <!-- Calendar Init Script -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const calendarEl = document.getElementById('calendar');
-    let selectedDate = null; // untuk simpan tanggal
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      selectable: true,
-      dateClick: function(info) {
-        selectedDate = info.dateStr;
-        // opsional: tampilkan highlight atau info tanggal
-        console.log("Tanggal dipilih:", selectedDate);
-      }
-    });
-
-    calendar.render();
-
-    // Saat tombol 'Tambah +' diklik
-    document.getElementById('btnTambah').addEventListener('click', function () {
-      if (selectedDate) {
-        alert('Tanggal yang akan disimpan: ' + selectedDate);
-
-        // TODO: bisa lanjut kirim ke server lewat form hidden / fetch / axios
-        // contoh:
-        // axios.post('/simpan-pengingat', { tanggal: selectedDate });
-
-      } else {
-        alert('Pilih tanggal terlebih dahulu dari kalender!');
-      }
-    });
-  });
-</script>
-
+    <!-- FullCalendar CDN CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    @vite('resources/js/pages/home.js')
 @endpush

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section class="py-5" style="background-color: #EEF2F8;">
+    <section class="py-5" style="background-color: #FBFBFB;">
         <div class="container py-0">
             <!-- Heading -->
             <div class="mb-0">
