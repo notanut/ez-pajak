@@ -6,18 +6,29 @@
         <div class="left">
             <h2 class="text-primary">Isi Data <span class="fw-normal">Anda Disini</span></h2>
             <p class="fst-italic">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
-            <div class="card">
+            @guest
+                <div class="d-flex">
+                    <i class="bi bi-exclamation-circle text-danger"></i>
+                    <p class="fst-italic text-danger ms-2">Kamu harus login untuk menikmati fitur pembayaran dan notifikasi yang kami sediakan. Jika belum login, kamu hanya dapat melihat nominal yang harus  dibayar saja.</p>
+                </div>
+                <div class="navbar-nav gap-2 ms-auto d-flex flex-row align-items-center ">
+                    <a class="btn btn-primary rounded-0 fs-5 px-3" href="/login">Login</a>
+                    <p class="text-center m-0">atau</p>
+                    <a class="btn btn-outline-primary rounded-0 fs-5 px-3" href="/register">Register</a>
+                </div>
+            @endguest
+            <div class="card mt-5">
                 <h5 class="blue card-title">Informasi Pemberian Gaji</h5>
                 <div class="form-wrap">
                     <div class="form-floating form-check input-field btn-group" role="group">
                         <p class="label">Apakah Anda dibayar bulanan atau tidak?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="ya" id="dibayar-ya"> Ya
+                                <input type="radio" name="dibayar_bulanan" value="0" id="dibayar-ya"> Ya
                                 <label for="dibayar-ya"></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="tidak" id="dibayar-tidak" checked> Tidak
+                                <input type="radio" name="dibayar_bulanan" value="1" id="dibayar-tidak" checked> Tidak
                                 <label for="dibayar-tidak"></label>
                             </div>
                         </div>
@@ -37,11 +48,11 @@
                         <p class="label">Apakah sebagian penghasilan ini digunakan untuk membayar pihak ketiga (alat, material, dll)?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="pihak_ketiga" value="ya" id="ketiga-ya"> Ya
+                                <input type="radio" name="pihak_ketiga" value="0" id="ketiga-ya"> Ya
                                 <label for="ketiga-ya"></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="pihak_ketiga" value="tidak" id="ketiga-tidak"> Tidak
+                                <input type="radio" name="pihak_ketiga" value="1" id="ketiga-tidak"> Tidak
                                 <label for="ketiga-tidak"></label>
                             </div>
                         </div>
@@ -54,8 +65,8 @@
                     </div>
 
                     <div id="yaPihak" style="display :none;" class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTerpotong" placeholder="0">
-                        <label for="floatingTerpotong">Berapa total biaya pihak ketiga?</label>
+                        <input class="form-control rp" id="floatingPihakKetiga" placeholder="0">
+                        <label for="floatingPihakKetiga">Berapa total biaya pihak ketiga?</label>
                     </div>
                 </div>
                 <div class="form-wrap" id="bulanan" style="display: none;">
@@ -79,7 +90,7 @@
                         </div>
     
                         <div class="form-floating input-field">
-                            <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0">
+                            <input type="number" class="form-control" id="floatingInput" placeholder="2" min="1" max="12">
                             <label for="floatingInput">Berapa bulan Anda bekerja di tahun ini?</label>
                         </div>
                     </div>
@@ -171,7 +182,7 @@
                 <div class="form-wrap" id="tidak-bulanan-wrap">
                     <div class="res-field">
                         <p class="label">Penghasilan Neto</p>
-                        <p class="res">Rp    0</p>
+                        <p class="res" id="netoTidakBulanan">Rp    0</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -222,8 +233,8 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now">Bayar Sekarang</button>
-                    <button class="later">Ingatkan Nanti</button>
+                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
+                    <button class="later" id="remind-later">Ingatkan Nanti</button>
                 </div>
             </div>
         </div>

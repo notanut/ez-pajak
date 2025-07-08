@@ -6,24 +6,36 @@
         <div class="left">
             <h2 class="text-primary">Isi Data <span class="fw-normal">Anda Disini</span></h2>
             <p class="fst-italic">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
-            <div class="card">
+            @guest
+                <div class="d-flex">
+                    <i class="bi bi-exclamation-circle text-danger"></i>
+                    <p class="fst-italic text-danger ms-2">Kamu harus login untuk menikmati fitur pembayaran dan notifikasi yang kami sediakan. Jika belum login, kamu hanya dapat melihat nominal yang harus  dibayar saja.</p>
+                </div>
+                <div class="navbar-nav gap-2 ms-auto d-flex flex-row align-items-center ">
+                    <a class="btn btn-primary rounded-0 fs-5 px-3" href="/login">Login</a>
+                    <p class="text-center m-0">atau</p>
+                    <a class="btn btn-outline-primary rounded-0 fs-5 px-3" href="/register">Register</a>
+                </div>
+            @endguest
+            <div class="card mt-5">
                 <h5 class="blue card-title">Informasi Pegawai</h5>
                 <div class="form-wrap">
                     <div class="form-floating form-check input-field btn-group" role="group">
                             <p class="label">Apa jenis kelamin Anda?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="0"> Pria
+                                    <input type="radio" name="sex" value="Pria"> Pria
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="1"> Wanita
+                                    <input type="radio" name="sex" value="Wanita"> Wanita
                                     <label></label>
                                 </div>
                             </div>
                     </div>
-                    <div class="form-floating input-field">
-                        <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0" max="3">
+                    <p id="error-jenis_kelamin" class="text-danger small mt-1 mb-0 fw-normal"></p>
+                    <div class="form-floating input-field mb-0 mt-3">
+                         <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0" max="3">
                         <label for="floatingInput">Berapa total tanggungan Anda?</label>
                         <div class="tooltip-container">
                             <span class="tooltip-circle">?</span>
@@ -32,41 +44,49 @@
                             </div>
                         </div>
                     </div>
+                    <p id="error-tanggungan" class="text-danger small my-0 fw-normal"></p>
 
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0 mt-3">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
                             <option disabled selected>Pilih satu</option>
-                            <option value="0">Kawin</option>
-                            <option value="1">Tidak Kawin</option>
-                            <option value="2">Hidup Berpisah</option>
+                            <option value="Kawin">Kawin</option>
+                            <option value="Tidak Kawin">Tidak Kawin</option>
+                            <option value="Hidup Berpisah">Hidup Berpisah</option>
                         </select>
                         <label for="floatingSelect">Apa status perkawinan Anda?</label>
                     </div>
+                    <p id="error-status_perkawinan" class="text-danger small mt-0 mb-3 fw-normal"></p>
 
-                    <div class="form-date-wrap">
+                    <div class="form-date-wrap mt-4">
                         <p class="title-date">Masa Penghasilan</p>
                         <div class="form-date">
-                            <div class="form-floating input-field">
-                                <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" required>
-                                <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
+                            <div class="w-100">
+                                <div class="form-floating input-field w-100">
+                                    <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" name="masa_awal" required>
+                                    <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
+                                </div>
+                                <p id="error-masa_awal" class="text-danger small mt-1 mb-0 fw-normal"></p>
                             </div>
-
-                            <div class="form-floating input-field">
-                                <input type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled>
-                                <label for="endMonth" class="form-label fst-italic">Bulan Akhir</label>
+                            
+                            <div class="w-100">
+                                <div class="form-floating input-field w-100">
+                                    <input name="masa_akhir" type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled>
+                                    <label for="endMonth" class="form-label fst-italic">Bulan Akhir</label>
+                                </div>
+                                <p id="error-masa_akhir" class="text-danger small mt-1 mb-0 fw-normal"></p>
                             </div>
                         </div>
                     </div>
 
                     <div id="spdnForm" style="display: none;" class="form-floating form-check input-field btn-group" role="group">
-                        <p class="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
+                        <p clainss="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="bin" value="0" id="spdn-ya"> Ya
+                                <input type="radio" name="spdn" value="0" id="spdn-ya"> Ya
                                 <label></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="bin" value="1" id="spdn-tidak"> Tidak
+                                <input type="radio" name="spdn" value="1" id="spdn-tidak"> Tidak
                                 <label></label>
                             </div>
                         </div>
@@ -77,6 +97,7 @@
                             </div>
                         </div>
                     </div>
+                    <p id="error-disetahunkan" class="text-danger small mt-1 mb-0 fw-normal"></p>
                 </div>
             </div>
 
@@ -87,6 +108,7 @@
                         <input class="form-control rp" id="floatingGaji" placeholder="0">
                         <label for="floatingGaji">Gaji/Pensiun</label>
                     </div>
+                    <p id="error-gaji" class="text-danger small mt-1 mb-0 fw-normal"></p>
 
                     <div class="form-floating input-field">
                         <input class="form-control rp" id="floatingPPh" placeholder="0">
@@ -275,8 +297,8 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now">Bayar Sekarang</button>
-                    <button class="later">Ingatkan Nanti</button>
+                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
+                    <button class="later" id="remind-later">Ingatkan Nanti</button>
                 </div>
             </div>
         </div>
