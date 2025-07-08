@@ -138,5 +138,6 @@
         </div>
     </section>
 </main>
-
+{{-- JS --}}
+    <script src="{{ asset('js/paypage.js') }}"></script>
 @endsection

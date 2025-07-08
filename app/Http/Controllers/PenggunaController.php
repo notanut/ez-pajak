@@ -51,7 +51,7 @@ class PenggunaController extends Controller
         $transaksi = $penggunas->transaksis->first();
         // $penggunaa = Pengguna::with('transaksis.transaksiable')->find($id);
 
-        if($transaksi->status_pembayaran == '1'){
+        if($transaksi->status_pembayaran == true){
             $status = 'Sudah dibayar';
         }else{
             $status = 'Belum dibayar';

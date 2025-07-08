@@ -6,10 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PegawaiTetap;
 use App\Models\Transaksi;
+use App\Models\Pengguna;
 use Carbon\Carbon;
 
 class PegawaiTetapController extends Controller
 {
+
+    public function create(){
+        $pengguna = Auth::user();
+
+        return view('calculator.index',compact('pengguna'));
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();

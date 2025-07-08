@@ -18,12 +18,12 @@ Route::get('/', function () {
 })->name('exit');
 
 
-Route::get('/calculator/pegawai', function () {
-    return view('calculator.index');
-});
+// Route::get('/calculator/pegawai', function () {
+//     return view('calculator.index');
+// });
 
-Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])->name('pegawai-tetap.store')
-    ->middleware('auth');
+Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])->name('pegawai-tetap.store')->middleware('auth');
+Route::get('/pegawai-tetap/store', [PegawaiTetapController::class, 'create'])->name('pegawai-tetap.create')->middleware('auth');
 
 
 Route::get('/calculator/pegawaiTidakTetap', function () {

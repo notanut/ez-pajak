@@ -20,20 +20,19 @@ class TransaksiSeeder extends Seeder
 
 
         Transaksi::create([
-            'total' => '2400000',
             'pengguna_id' => $rahmat->id,
-            'status_pembayaran' => 1,
-            'metode_pembayaran'=> 'Gopay',
-            'tanggal_pembayaran' => '2025-7-1'
+            'total' => 25000000,
+            'status_pembayaran' => false,
+            'metode_pembayaran' => 'belum',
+            'tanggal_pembayaran' => now(),
         ]);
 
-
         Transaksi::create([
-            'total' => '1200000',
             'pengguna_id' => $violet->id,
-            'status_pembayaran' => 0,
-            'metode_pembayaran'=> 'OVO',
-            'tanggal_pembayaran' => '2025-7-2'
+            'total' => 250000000,
+            'status_pembayaran' => true,
+            'metode_pembayaran' => 'belum',
+            'tanggal_pembayaran' => now(),
         ]);
 
     }

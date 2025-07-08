@@ -297,15 +297,13 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now" href="/payment/paypage/{{$pengguna_id}}" id="pay-now">Bayar Sekarang</button>
+                    <a class="pay-now" href="/payment/paypage/{{$pengguna->id}}" id="pay-now">Bayar Sekarang</a>
                     <button class="later" id="remind-later">Ingatkan Nanti</button>
                 </div>
             </div>
         </div>
     </section>
 @endsection
-
-
 
 @push('scripts')
     @vite('resources/js/pages/calculator.js')

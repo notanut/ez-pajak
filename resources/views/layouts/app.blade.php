@@ -34,8 +34,6 @@
     @include('layouts.partials.footer')
 
     @stack('scripts')
-    {{-- JS --}}
-    <script src="{{ asset('js/paypage.js') }}"></script>
 </body>
 
 </html>
