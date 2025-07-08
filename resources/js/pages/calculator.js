@@ -219,3 +219,177 @@ function calculateTaxDates() {
   }
 
 calculateTaxDates();
+
+document.getElementById('pay-now').addEventListener('click', async function () {
+  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+    if (!isLoggedIn) {
+        // Simpan URL saat ini ke sessionStorage
+        sessionStorage.setItem('redirect_after_login', window.location.pathname);
+        // Redirect ke halaman login
+        window.location.href = '/login';
+        return;
+    }
+    const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+
+    const data = {
+        jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
+        tanggungan: document.getElementById('floatingInput').value,
+        status_perkawinan: document.getElementById('floatingSelect').value,
+        masa_awal: document.getElementById('startMonth').value + '-01',
+        masa_akhir: document.getElementById('endMonth').value + '-01',
+        disetahunkan: document.getElementById('spdn-tidak')?.checked ?? false,
+
+        gaji: parseRupiah(document.getElementById('floatingGaji').value),
+        tunjangan_pph: parseRupiah(document.getElementById('floatingPPh').value),
+        tunjangan_lain: parseRupiah(document.getElementById('floatingLain').value),
+        honor: parseRupiah(document.getElementById('floatingHonor').value),
+        premi: parseRupiah(document.getElementById('floatingPremi').value),
+        natura: parseRupiah(document.getElementById('floatingNatura').value),
+        tantiem: parseRupiah(document.getElementById('floatingTantiem').value),
+
+        biaya_jabatan: parseRupiah(document.getElementById('biayaJabatan').textContent),
+        iuran_pensiun: parseRupiah(document.getElementById('floatingTHT').value),
+        zakat: parseRupiah(document.getElementById('floatingZakar').value),
+
+        penghasilan_bruto: parseRupiah(document.querySelectorAll('.rp-total')[0].textContent),
+        pengurangan: parseRupiah(document.querySelectorAll('.rp-total')[1].textContent),
+        penghasilan_neto: parseRupiah(document.querySelectorAll('.res')[0].textContent),
+        penghasilan_neto_masa_sebelumnya: parseRupiah(document.getElementById('floatingMasaSebelum').value),
+        penghasilan_neto_pph21: parseRupiah(document.querySelectorAll('.res')[1].textContent),
+        ptkp: parseRupiah(document.querySelectorAll('.res')[2].textContent),
+        pkp: parseRupiah(document.querySelectorAll('.res')[3].textContent),
+        tarif_progresif: document.querySelectorAll('.res')[4].textContent,
+        pph21_pkp: parseRupiah(document.querySelectorAll('.res')[5].textContent),
+        pph21_dipotong_masa_sebelum: parseRupiah(document.getElementById('floatingTerpotong').value),
+        pph21_terutang: parseRupiah(document.querySelectorAll('.rp-total')[2].textContent)
+    };
+
+    fetch('/pegawai-tetap/store', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          },
+          body: JSON.stringify(data)
+      })
+      .then(async response => {
+          if (!response.ok) {
+              if (response.status === 422) {
+                  return response.json().then(error => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Bersihkan semua error dulu
+                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                      // Tampilkan error dari Laravel
+                      for (let field in error.errors) {
+                          const target = document.getElementById(`error-${field}`);
+                          if (target) {
+                              target.textContent = error.errors[field][0];
+                          }
+                      }
+                  });
+              } else {
+                  console.error('Unexpected error:', response.status);
+              }
+          } else {
+              return response.json().then(data => {
+                  // sukses
+                  console.log('Berhasil:', data);
+              });
+          }
+      })
+      .catch(err => {
+          console.error('Network error:', err);
+      });
+});
+document.getElementById('remind-later').addEventListener('click', async function () {
+  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+    if (!isLoggedIn) {
+        // Simpan URL saat ini ke sessionStorage
+        sessionStorage.setItem('redirect_after_login', window.location.pathname);
+        // Redirect ke halaman login
+        window.location.href = '/login';
+        return;
+    }
+    const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+
+    const data = {
+        jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
+        tanggungan: document.getElementById('floatingInput').value,
+        status_perkawinan: document.getElementById('floatingSelect').value,
+        masa_awal: document.getElementById('startMonth').value + '-01',
+        masa_akhir: document.getElementById('endMonth').value + '-01',
+        disetahunkan: document.getElementById('spdn-tidak')?.checked ?? false,
+
+        gaji: parseRupiah(document.getElementById('floatingGaji').value),
+        tunjangan_pph: parseRupiah(document.getElementById('floatingPPh').value),
+        tunjangan_lain: parseRupiah(document.getElementById('floatingLain').value),
+        honor: parseRupiah(document.getElementById('floatingHonor').value),
+        premi: parseRupiah(document.getElementById('floatingPremi').value),
+        natura: parseRupiah(document.getElementById('floatingNatura').value),
+        tantiem: parseRupiah(document.getElementById('floatingTantiem').value),
+
+        biaya_jabatan: parseRupiah(document.getElementById('biayaJabatan').textContent),
+        iuran_pensiun: parseRupiah(document.getElementById('floatingTHT').value),
+        zakat: parseRupiah(document.getElementById('floatingZakar').value),
+
+        penghasilan_bruto: parseRupiah(document.querySelectorAll('.rp-total')[0].textContent),
+        pengurangan: parseRupiah(document.querySelectorAll('.rp-total')[1].textContent),
+        penghasilan_neto: parseRupiah(document.querySelectorAll('.res')[0].textContent),
+        penghasilan_neto_masa_sebelumnya: parseRupiah(document.getElementById('floatingMasaSebelum').value),
+        penghasilan_neto_pph21: parseRupiah(document.querySelectorAll('.res')[1].textContent),
+        ptkp: parseRupiah(document.querySelectorAll('.res')[2].textContent),
+        pkp: parseRupiah(document.querySelectorAll('.res')[3].textContent),
+        tarif_progresif: document.querySelectorAll('.res')[4].textContent,
+        pph21_pkp: parseRupiah(document.querySelectorAll('.res')[5].textContent),
+        pph21_dipotong_masa_sebelum: parseRupiah(document.getElementById('floatingTerpotong').value),
+        pph21_terutang: parseRupiah(document.querySelectorAll('.rp-total')[2].textContent)
+    };
+
+    // const currentPath = window.location.pathname;
+    // window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+
+      fetch('/pegawai-tetap/store', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          },
+          body: JSON.stringify(data)
+      })
+      .then(response => {
+          if (!response.ok) {
+              if (response.status === 422) {
+                  return response.json().then(error => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Bersihkan semua error dulu
+                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                      // Tampilkan error dari Laravel
+                      for (let field in error.errors) {
+                          const target = document.getElementById(`error-${field}`);
+                          if (target) {
+                              target.textContent = error.errors[field][0];
+                          }
+                      }
+                  });
+              } else {
+                  console.error('Unexpected error:', response.status);
+              }
+          } else {
+              return response.json().then(data => {
+                  // sukses
+                  console.log('Berhasil:', data);
+              });
+          }
+      })
+      .catch(err => {
+          console.error('Network error:', err);
+      });
+
+});
+
