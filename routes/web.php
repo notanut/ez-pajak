@@ -4,7 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenggunaController;
 
 use App\Http\Controllers\PegawaiTetapController;
+use App\Http\Controllers\BukanPegawaiController;
+use App\Http\Controllers\PegawaiTidakTetapController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/cek-user', function () {
+    dd(Auth::user());
+});
 
 Route::get('/', function () {
     return view('homePage');
@@ -15,7 +22,10 @@ Route::get('/calculator/pegawai', function () {
     return view('calculator.index');
 });
 
-Route::post('/calculator/pegawai/store', [PegawaiTetapController::class, 'store'])->name('pegawai.store');
+Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])
+    ->name('pegawai-tetap.store')
+    ->middleware('auth');
+
 
 Route::get('/calculator/pegawaiTidakTetap', function () {
     return view('calculator.pegawaiTidakTetap');
@@ -25,6 +35,8 @@ Route::get('/calculator/pegawaiTidakTetap', function () {
 Route::get('/calculator/bukanPegawai', function () {
     return view('calculator.bukanPegawai');
 });
+
+Route::middleware('auth')->post('/bukan-pegawai/store', [BukanPegawaiController::class, 'store'])->name('bukan-pegawai.store');
 
 
 Route::get('/payment/success', function () {

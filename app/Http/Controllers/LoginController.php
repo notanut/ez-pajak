@@ -28,6 +28,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $redirect = $request->input('redirect'); // dari ?redirect=...
             return redirect()->intended('home');
         }
 
@@ -42,6 +43,17 @@ class LoginController extends Controller
         request()->session()->regenerateToken();
 
         return redirect()->route('exit');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        // Coba ambil URL sebelumnya dari sessionStorage via cookie fallback
+        $redirectTo = session('url.intended', '/home');
+
+        // Jika kamu ingin mengambil dari query string:
+        // $redirectTo = $request->input('redirect') ?? '/dashboard';
+
+        return redirect()->intended($redirectTo);
     }
 
     // use AuthenticatesUsers;

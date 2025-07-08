@@ -6,7 +6,18 @@
         <div class="left">
             <h2 class="text-primary">Isi Data <span class="fw-normal">Anda Disini</span></h2>
             <p class="fst-italic">Ketahui PPh 21 terutang Anda dalam beberapa pertanyaan</p>
-            <div class="card">
+            @guest
+                <div class="d-flex">
+                    <i class="bi bi-exclamation-circle text-danger"></i>
+                    <p class="fst-italic text-danger ms-2">Kamu harus login untuk menikmati fitur pembayaran dan notifikasi yang kami sediakan. Jika belum login, kamu hanya dapat melihat nominal yang harus  dibayar saja.</p>
+                </div>
+                <div class="navbar-nav gap-2 ms-auto d-flex flex-row align-items-center ">
+                    <a class="btn btn-primary rounded-0 fs-5 px-3" href="/login">Login</a>
+                    <p class="text-center m-0">atau</p>
+                    <a class="btn btn-outline-primary rounded-0 fs-5 px-3" href="/register">Register</a>
+                </div>
+            @endguest
+            <div class="card mt-5">
                 <h5 class="blue card-title">Informasi Pemberian Gaji</h5>
                 <div class="form-wrap">
                     <div class="form-floating form-check input-field btn-group" role="group">
@@ -213,8 +224,8 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now">Bayar Sekarang</button>
-                    <button class="later">Ingatkan Nanti</button>
+                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
+                    <button class="later" id="remind-later">Ingatkan Nanti</button>
                 </div>
             </div>
         </div>

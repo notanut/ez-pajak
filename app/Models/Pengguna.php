@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Transaksi;
+use App\Models\PegawaiTetap;
+use App\Models\PegawaiTidakTetap;
+use App\Models\BukanPegawai;
 
 class Pengguna extends Authenticatable
 {
@@ -29,11 +33,11 @@ class Pengguna extends Authenticatable
     }
     public function pegawaitidaktetap()
     {
-        return $this->hasOne(PegawaiTetap::class);
+        return $this->hasOne(PegawaiTidakTetap::class);
     }
     public function bukanpegawai()
     {
-        return $this->hasOne(PegawaiTetap::class);
+        return $this->hasOne(BukanPegawai::class);
     }
 
 }
