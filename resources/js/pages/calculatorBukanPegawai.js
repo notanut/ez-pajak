@@ -191,7 +191,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const div = document.createElement('div');
         div.classList.add('res-field', 'bulanPajak');
-        div.innerHTML = `<p class="label">${bulan}</p><p class="res pphBulan">${formatRupiah(pajak)}</p>`;
+        const key = bulan.toLowerCase().slice(0, 3); // contoh: januari => jan
+        div.innerHTML = `<p class="label">${bulan}</p><p id="pajak-${key}" class="res pphBulan">${formatRupiah(pajak)}</p>`;
+
         wrap.appendChild(div);
       });
       updateTarifText(tarifUsedGlobal, tarifField);
@@ -293,14 +295,13 @@ document.getElementById('pay-now').addEventListener('click', async function () {
 
     // Bulanan beda
     if (isBulanan && isBeda) {
-        bulanList.forEach((bulan, index) => {
-            data[`bruto_${bulan.toLowerCase().slice(0, 3)}`] = parseRupiah(document.getElementById(bulan).value);
-            const pajakElem = document.querySelectorAll('.pphBulan')[index];
-            if (pajakElem) {
-                const key = `pajak_${bulan.toLowerCase().slice(0, 3)}`;
-                data[key] = parseRupiah(pajakElem.textContent);
-            }
-        });
+        bulanList.forEach((bulan) => {
+          const key = bulan.toLowerCase().slice(0, 3);
+          data[`bruto_${key}`] = parseRupiah(document.getElementById(bulan).value || '0');
+
+          const pajakElem = document.getElementById(`pajak-${key}`);
+          data[`pajak_${key}`] = pajakElem ? parseRupiah(pajakElem.textContent || '0') : 0;
+      });
     }
 
     // Tidak bulanan
