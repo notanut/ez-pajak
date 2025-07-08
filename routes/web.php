@@ -37,6 +37,7 @@ Route::get('/calculator/bukanPegawai', function () {
 });
 
 Route::middleware('auth')->post('/bukan-pegawai/store', [BukanPegawaiController::class, 'store'])->name('bukan-pegawai.store');
+Route::middleware('auth')->post('/pegawai-tidak-tetap/store', [PegawaiTidakTetapController::class, 'store'])->name('pegawai-tidak-tetap.store');
 
 
 Route::get('/payment/success', function () {

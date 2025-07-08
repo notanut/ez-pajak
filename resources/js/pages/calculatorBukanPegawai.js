@@ -339,3 +339,83 @@ document.getElementById('pay-now').addEventListener('click', async function () {
         console.error('Network error:', err);
     });
 });
+document.getElementById('remind-later').addEventListener('click', async function () {
+    const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+    if (!isLoggedIn) {
+        sessionStorage.setItem('redirect_after_login', window.location.pathname);
+        window.location.href = '/login';
+        return;
+    }
+
+    const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+
+    const isBulanan = document.querySelector('input[name="dibayar_bulanan"]:checked')?.value === "0";
+    const isSama = document.querySelector('input#sama')?.checked;
+    const isBeda = document.querySelector('input#tidakSama')?.checked;
+    const pihakKetiga = document.querySelector('input[name="pihak_ketiga"]:checked')?.value === "0";
+
+    const bulanList = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const data = {
+        dibayar_bulanan: isBulanan ? 1 : 0,
+        bulanan_sama: isSama ? 1 : 0,
+        metode_penghitungan: document.querySelector('#metodeHitungSama')?.textContent || document.querySelector('#metodeHitungBeda')?.textContent || document.querySelector('#tidak-bulanan-wrap p.res:nth-child(2)')?.textContent || '-',
+        tarif: document.querySelector('#bulanan-sama-wrap p.res:nth-child(2)')?.textContent ||
+               document.querySelector('#bulanan-beda-wrap p.res:nth-child(2)')?.textContent ||
+               document.querySelector('#tidak-bulanan-wrap p.res:nth-child(3)')?.textContent || '-',
+        pph21_terutang: parseRupiah(document.querySelector('.rp-total').textContent || '0'),
+    };
+
+    // Bulanan sama
+    if (isBulanan && isSama) {
+        data.bruto_perbulan = parseRupiah(document.getElementById('floatingGaji').value);
+        data.banyak_bulan_bekerja = parseInt(document.getElementById('floatingInput').value || '0');
+        data.pph21_perbulan = parseRupiah(document.getElementById('pphRataSama').textContent);
+    }
+
+    // Bulanan beda
+    if (isBulanan && isBeda) {
+        bulanList.forEach((bulan) => {
+          const key = bulan.toLowerCase().slice(0, 3);
+          data[`bruto_${key}`] = parseRupiah(document.getElementById(bulan).value || '0');
+
+          const pajakElem = document.getElementById(`pajak-${key}`);
+          data[`pajak_${key}`] = pajakElem ? parseRupiah(pajakElem.textContent || '0') : 0;
+      });
+    }
+
+    // Tidak bulanan
+    if (!isBulanan) {
+        data.total_bruto = parseRupiah(document.getElementById('floatingTerpotong').value);
+        data.pihak_ketiga = pihakKetiga ? 1 : 0;
+        data.biaya_pihak_ketiga = pihakKetiga ? parseRupiah(document.getElementById('floatingPihakKetiga').value) : 0;
+        data.penghasilan_neto = parseRupiah(document.getElementById('netoTidakBulanan').textContent);
+    }
+
+    fetch('/bukan-pegawai/store', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(data)
+    })
+    .then(async response => {
+        if (!response.ok) {
+            if (response.status === 422) {
+                const error = await response.json();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+            } else {
+                console.error('Unexpected error:', response.status);
+            }
+        } else {
+            const res = await response.json();
+            alert('Data berhasil disimpan!');
+        }
+    })
+    .catch(err => {
+        console.error('Network error:', err);
+    });
+});

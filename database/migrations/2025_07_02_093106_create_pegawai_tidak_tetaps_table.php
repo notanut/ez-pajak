@@ -18,54 +18,54 @@ return new class extends Migration
              $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
             $table->integer('tanggungan');
             $table->enum('status_perkawinan', ['Kawin','Tidak Kawin', 'Hidup Berpisah']);
-            $table->boolean('bulanan_sama')->default(false);
+            $table->boolean('bulanan_sama');
 
             // kalau dibayar bulanan, tiap bulannya tetap
-            $table->decimal('bruto_perbulan', 15, 2)->default(0);
-            $table->integer('banyak_bulan_bekerja')->default(0);
+            $table->decimal('bruto_perbulan', 15, 2)->nullable();
+            $table->integer('banyak_bulan_bekerja')->nullable();
 
             // dibayar bulanan, tiap bulannya beda
-            $table->decimal('bruto_jan',15,2)->default(0);
-            $table->decimal('bruto_feb',15,2)->default(0);
-            $table->decimal('bruto_mar',15,2)->default(0);
-            $table->decimal('bruto_apr',15,2)->default(0);
-            $table->decimal('bruto_mei',15,2)->default(0);
-            $table->decimal('bruto_jun',15,2)->default(0);
-            $table->decimal('bruto_jul',15,2)->default(0);
-            $table->decimal('bruto_agut',15,2)->default(0);
-            $table->decimal('bruto_sept',15,2)->default(0);
-            $table->decimal('bruto_okt',15,2)->default(0);
-            $table->decimal('bruto_nov',15,2)->default(0);
-            $table->decimal('bruto_des',15,2)->default(0);
+            $table->decimal('bruto_jan',15,2)->nullable();
+            $table->decimal('bruto_feb',15,2)->nullable();
+            $table->decimal('bruto_mar',15,2)->nullable();
+            $table->decimal('bruto_apr',15,2)->nullable();
+            $table->decimal('bruto_mei',15,2)->nullable();
+            $table->decimal('bruto_jun',15,2)->nullable();
+            $table->decimal('bruto_jul',15,2)->nullable();
+            $table->decimal('bruto_agu',15,2)->nullable();
+            $table->decimal('bruto_sep',15,2)->nullable();
+            $table->decimal('bruto_okt',15,2)->nullable();
+            $table->decimal('bruto_nov',15,2)->nullable();
+            $table->decimal('bruto_des',15,2)->nullable();
 
 
-            $table->decimal('total_bruto', 15,2)->default(0);
-            $table->integer('lama_hari_bekerja')->default(0);
-            $table->decimal('avg_bruto', 15,2)->default(0);
+            $table->decimal('total_bruto', 15,2)->nullable();
+            $table->integer('lama_hari_bekerja')->nullable();
+            $table->decimal('avg_bruto', 15,2)->nullable();
 
             // penghitungan
             $table->string('metode_penghitungan');
-            $table->decimal('pph21_terutang',15,2)->default(0);
+            $table->decimal('pph21_terutang',15,2)->nullable();
 
             // penghitungan dibayar bulanan + tetap
-            $table->decimal('pph21_perbulan',15,2)->default(0);
+            $table->decimal('pph21_perbulan',15,2)->nullable();
 
             // penghitungan dibayar bulanan + tidak tetap
-            $table->decimal('pajak_jan',15,2)->default(0);
-            $table->decimal('pajak_feb',15,2)->default(0);
-            $table->decimal('pajak_mar',15,2)->default(0);
-            $table->decimal('pajak_apr',15,2)->default(0);
-            $table->decimal('pajak_mei',15,2)->default(0);
-            $table->decimal('pajak_jun',15,2)->default(0);
-            $table->decimal('pajak_jul',15,2)->default(0);
-            $table->decimal('pajak_agt',15,2)->default(0);
-            $table->decimal('pajak_sept',15,2)->default(0);
-            $table->decimal('pajak_okt',15,2)->default(0);
-            $table->decimal('pajak_nov',15,2)->default(0);
-            $table->decimal('pajak_des',15,2)->default(0);
+            $table->decimal('pajak_jan',15,2)->nullable();
+            $table->decimal('pajak_feb',15,2)->nullable();
+            $table->decimal('pajak_mar',15,2)->nullable();
+            $table->decimal('pajak_apr',15,2)->nullable();
+            $table->decimal('pajak_mei',15,2)->nullable();
+            $table->decimal('pajak_jun',15,2)->nullable();
+            $table->decimal('pajak_jul',15,2)->nullable();
+            $table->decimal('pajak_agu',15,2)->nullable();
+            $table->decimal('pajak_sep',15,2)->nullable();
+            $table->decimal('pajak_okt',15,2)->nullable();
+            $table->decimal('pajak_nov',15,2)->nullable();
+            $table->decimal('pajak_des',15,2)->nullable();
 
             // penghitungan tidak bulanan
-            $table->decimal('pph21_perhari',15,2)->default(0);
+            $table->decimal('pph21_perhari',15,2)->nullable();
             $table->timestamps();
         });
     }

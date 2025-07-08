@@ -24,11 +24,11 @@
                             <p class="label">Apa jenis kelamin Anda?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="0"> Pria
+                                    <input type="radio" name="sex" value="Pria"> Pria
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="1"> Wanita
+                                    <input type="radio" name="sex" value="Wanita"> Wanita
                                     <label></label>
                                 </div>
                             </div>
@@ -47,9 +47,9 @@
                     <div class="form-floating input-field">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
                             <option disabled selected>Pilih satu</option>
-                            <option value="0">Kawin</option>
-                            <option value="1">Tidak Kawin</option>
-                            <option value="2">Hidup Berpisah</option>
+                            <option value="Kawin">Kawin</option>
+                            <option value="Tidak Kawin">Tidak Kawin</option>
+                            <option value="Hidup Berpisah">Hidup Berpisah</option>
                         </select>
                         <label for="floatingSelect">Apa status perkawinan Anda?</label>
                     </div>
@@ -57,11 +57,11 @@
                         <p class="label">Apakah Anda dibayar bulanan atau tidak?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="ya" id="dibayar-ya"> Ya
+                                <input type="radio" name="dibayar_bulanan" value="0" id="dibayar-ya"> Ya
                                 <label for="dibayar-ya"></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="tidak" id="dibayar-tidak" checked> Tidak
+                                <input type="radio" name="dibayar_bulanan" value="1" id="dibayar-tidak" checked> Tidak
                                 <label for="dibayar-tidak"></label>
                             </div>
                         </div>
