@@ -67,7 +67,7 @@
                                 </div>
                                 <p id="error-masa_awal" class="text-danger small mt-1 mb-0 fw-normal"></p>
                             </div>
-                            
+
                             <div class="w-100">
                                 <div class="form-floating input-field w-100">
                                     <input name="masa_akhir" type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled>
@@ -297,13 +297,15 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
+                    <button class="pay-now" href="/payment/paypage/{{$pengguna_id}}" id="pay-now">Bayar Sekarang</button>
                     <button class="later" id="remind-later">Ingatkan Nanti</button>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+
 
 @push('scripts')
     @vite('resources/js/pages/calculator.js')

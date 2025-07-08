@@ -22,8 +22,7 @@ Route::get('/calculator/pegawai', function () {
     return view('calculator.index');
 });
 
-Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])
-    ->name('pegawai-tetap.store')
+Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])->name('pegawai-tetap.store')
     ->middleware('auth');
 
 
