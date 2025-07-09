@@ -366,9 +366,136 @@ document.getElementById('pay-now').addEventListener('click', async function () {
     .then(async response => {
         if (!response.ok) {
             if (response.status === 422) {
-                const error = await response.json();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                // const error = await response.json();
+                // window.scrollTo({ top: 0, behavior: 'smooth' });
+                // alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                return response.json().then(error => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Bersihkan semua error dulu
+                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                      // Tampilkan error dari Laravel
+                      for (let field in error.errors) {
+                        console.log(field)
+                          const target = document.getElementById(`error-${field}`);
+                          if (target) {
+                              target.textContent = error.errors[field][0];
+                          }
+                      }
+                  });
+            } else {
+                console.error('Unexpected error:', response.status);
+            }
+        } else {
+            const res = await response.json();
+            alert('Data berhasil disimpan!');
+        }
+    })
+    .catch(err => {
+        console.error('Network error:', err);
+    });
+});
+document.getElementById('remind-later').addEventListener('click', async function () {
+    const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+    if (!isLoggedIn) {
+        sessionStorage.setItem('redirect_after_login', window.location.pathname);
+        window.location.href = '/login';
+        return;
+    }
+
+    const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+
+    const isBulanan = document.querySelector('input[name="dibayar_bulanan"]:checked')?.value === "0";
+    const isSama = document.querySelector('input#sama')?.checked;
+    const isBeda = document.querySelector('input#tidakSama')?.checked;
+
+    const gender = document.querySelector('input[name="sex"]:checked')?.value;
+    const kawin = document.getElementById('floatingSelect')?.value;
+    const tanggungan = parseInt(document.getElementById('jmlTanggungan')?.value);
+
+    const bulanMap = {
+        Januari: 'jan', Februari: 'feb', Maret: 'mar', April: 'apr',
+        Mei: 'mei', Juni: 'jun', Juli: 'jul', Agustus: 'agu',
+        September: 'sep', Oktober: 'okt', November: 'nov', Desember: 'des'
+    };
+
+    
+
+    const data = {
+        jenis_kelamin: gender,
+        status_perkawinan: kawin,
+        tanggungan: tanggungan,
+        dibayar_bulanan: isBulanan ? 1 : 0,
+        bulanan_sama: isSama ? 1 : 0,
+        // metode_penghitungan: document.getElementById('metodeHitungSama')?.textContent || document.getElementById('metodeHitungBeda')?.textContent || document.getElementById('metodeHitungTidakBulan')?.textContent || '-',
+        pph21_terutang: parseRupiah(document.getElementById('rp-total')?.textContent || '0')
+    };
+    if (isBulanan) {
+      data.bulanan_sama = isSama ? 1 : 0;
+
+      if (isSama) {
+          data.metode_penghitungan = document.getElementById('metodeHitungSama')?.textContent || '-';
+      } else if (isBeda) {
+          data.metode_penghitungan = document.getElementById('metodeHitungBeda')?.textContent || '-';
+      }
+  } else {
+      data.metode_penghitungan = document.getElementById('metodeHitungTidakBulan')?.textContent || '-';
+  }
+
+
+    if (isBulanan && isSama) {
+        data.bruto_perbulan = parseRupiah(document.getElementById('brutoBulanan').value);
+        data.banyak_bulan_bekerja = parseInt(document.getElementById('jmlBulan').value || '0');
+        data.pph21_perbulan = parseRupiah(document.getElementById('pphRataSama')?.textContent || '0');
+    }
+
+    if (isBulanan && isBeda) {
+        Object.entries(bulanMap).forEach(([bulan, key]) => {
+            data[`bruto_${key}`] = parseRupiah(document.getElementById(bulan)?.value || '0');
+            const pajakElem = document.getElementById(`pajak-${key}`);
+            data[`pajak_${key}`] = pajakElem ? parseRupiah(pajakElem.textContent || '0') : 0;
+        });
+    }
+
+    if (!isBulanan) {
+        data.total_bruto = parseRupiah(document.getElementById('brutoProyek').value);
+        data.lama_hari_bekerja = parseInt(document.getElementById('lamaKerja').value || '0');
+        data.avg_bruto = parseRupiah(document.getElementById('avBruto')?.textContent || '0');
+        data.pph21_perhari = parseRupiah(document.getElementById('pphRataHari')?.textContent || '0');
+    }
+    console.log("Data yang dikirim:", data);
+
+
+    fetch('/pegawai-tidak-tetap/store', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(data)
+    })
+    .then(async response => {
+        if (!response.ok) {
+            if (response.status === 422) {
+                // const error = await response.json();
+                // window.scrollTo({ top: 0, behavior: 'smooth' });
+                // alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                return response.json().then(error => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Bersihkan semua error dulu
+                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                      // Tampilkan error dari Laravel
+                      for (let field in error.errors) {
+                        console.log(field)
+                          const target = document.getElementById(`error-${field}`);
+                          if (target) {
+                              target.textContent = error.errors[field][0];
+                          }
+                      }
+                  });
             } else {
                 console.error('Unexpected error:', response.status);
             }

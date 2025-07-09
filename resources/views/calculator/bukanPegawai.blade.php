@@ -39,10 +39,11 @@
             <div class="card">
                 <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap" id="tidakBulanan">
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0 mt-3">
                         <input class="form-control rp" id="floatingTerpotong" placeholder="0">
                         <label for="floatingTerpotong">Berapa total penghasilan bruto Anda?</label>
                     </div>
+                    <p id="error-total_bruto" class="text-danger small my-0 fw-normal"></p>
 
                     <div class="form-floating form-check input-field btn-group" role="group">
                         <p class="label">Apakah sebagian penghasilan ini digunakan untuk membayar pihak ketiga (alat, material, dll)?</p>
@@ -64,10 +65,11 @@
                         </div>
                     </div>
 
-                    <div id="yaPihak" style="display :none;" class="form-floating input-field">
+                    <div id="yaPihak" style="display :none;" class="form-floating input-field mb-0 mt-3">
                         <input class="form-control rp" id="floatingPihakKetiga" placeholder="0">
                         <label for="floatingPihakKetiga">Berapa total biaya pihak ketiga?</label>
                     </div>
+                    <p id="error-biaya_pihak_ketiga" class="text-danger small my-0 fw-normal"></p>
                 </div>
                 <div class="form-wrap" id="bulanan" style="display: none;">
                     <div class="form-floating form-check input-field btn-group" role="group">
@@ -84,18 +86,21 @@
                             </div>
                     </div>
                     <div id="tiapBulanSama" style="display: none;">
-                        <div class="form-floating input-field">
+                        <div class="form-floating input-field mb-0 mt-3">
                             <input class="form-control rp" id="floatingGaji" placeholder="0">
                             <label for="floatingGaji">Berapa penghasilan bruto bulanan Anda?</label>
                         </div>
+                        <p id="error-bruto_perbulan" class="text-danger small my-0 fw-normal"></p>
     
-                        <div class="form-floating input-field">
+                        <div class="form-floating input-field mb-0 mt-3">
                             <input type="number" class="form-control" id="floatingInput" placeholder="2" min="1" max="12">
                             <label for="floatingInput">Berapa bulan Anda bekerja di tahun ini?</label>
                         </div>
+                        <p id="error-banyak_bulan_bekerja" class="text-danger small my-0 fw-normal"></p>
                     </div>
                     <div id="tiapBulanBeda" style="display: none;">
                         <p class="label tiapBulan">Masukkan penghasilan bruto Anda di setiap bulan:</p>
+                        <p id="error-bruto_jan" class="text-danger small my-0 fw-normal"></p>
                         <div class="form-floating input-field mon">
                             <input class="form-control rp" id="Januari" placeholder="0">
                             <label for="Januari">Januari</label>

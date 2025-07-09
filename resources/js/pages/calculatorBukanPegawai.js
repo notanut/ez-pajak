@@ -324,9 +324,23 @@ document.getElementById('pay-now').addEventListener('click', async function () {
     .then(async response => {
         if (!response.ok) {
             if (response.status === 422) {
-                const error = await response.json();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                // const error = await response.json();
+                // window.scrollTo({ top: 0, behavior: 'smooth' });
+                // alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                return response.json().then(error => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Bersihkan semua error dulu
+                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                      // Tampilkan error dari Laravel
+                      for (let field in error.errors) {
+                        console.log(field)
+                          const target = document.getElementById(`error-${field}`);
+                          if (target) {
+                              target.textContent = error.errors[field][0];
+                          }
+                      }
+                  });
             } else {
                 console.error('Unexpected error:', response.status);
             }
@@ -404,9 +418,22 @@ document.getElementById('remind-later').addEventListener('click', async function
     .then(async response => {
         if (!response.ok) {
             if (response.status === 422) {
-                const error = await response.json();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                // const error = await response.json();
+                // window.scrollTo({ top: 0, behavior: 'smooth' });
+                // alert('Gagal: ' + Object.values(error.errors).flat().join(', '));
+                return response.json().then(error => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Bersihkan semua error dulu
+                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                      // Tampilkan error dari Laravel
+                      for (let field in error.errors) {
+                          const target = document.getElementById(`error-${field}`);
+                          if (target) {
+                              target.textContent = error.errors[field][0];
+                          }
+                      }
+                  });
             } else {
                 console.error('Unexpected error:', response.status);
             }
