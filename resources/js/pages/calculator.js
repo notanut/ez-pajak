@@ -125,8 +125,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Hitung PTKP
     let ptkp = 54000000; // TK/0 default
-    if (statusKawin === '0' && gender === '0') ptkp += 4500000; // hanya pria kawin dapat tambahan K/0
-    ptkp += Math.min(3, tanggungan) * 4500000;
+    const jumlahTanggungan = Math.min(3, tanggungan);
+
+    // 2. Terapkan logika berdasarkan status
+    if (statusKawin === 'Kawin') {
+        if (gender === 'Pria') {
+            // Pria Kawin: dapat tambahan kawin + tanggungan (yang sudah dibatasi)
+            ptkp += 4500000; // Tambahan kawin
+            ptkp += jumlahTanggungan * 4500000; // Gunakan variabel baru
+        }
+        // Untuk Wanita Kawin, PTKP tetap 54.000.000.
+
+    } else {
+        // 'Tidak Kawin' (Pria atau Wanita): hanya dapat tambahan tanggungan
+        ptkp += jumlahTanggungan * 4500000; // Gunakan variabel baru
+    }
 
     const pkp = Math.max(0, netoUntukPPh - ptkp);
 
@@ -295,8 +308,19 @@ document.getElementById('pay-now').addEventListener('click', async function () {
               }
           } else {
               return response.json().then(data => {
-                  // sukses
-                  console.log('Berhasil:', data);
+                  // Cek jika server mengembalikan 'success: true' dan 'user_id'
+                  if (data.success && data.user_id) {
+                      console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
+                      
+                      // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
+                      console.log(data.user_id)
+                      window.location.href = '/payment/paypage/' + data.user_id;
+                  
+                  } else {
+                      // Jika sukses tapi tidak ada ID, tampilkan error
+                      alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
+                      // Aktifkan kembali tombol jika perlu
+                  }
               });
           }
       })
@@ -304,6 +328,7 @@ document.getElementById('pay-now').addEventListener('click', async function () {
           console.error('Network error:', err);
       });
 });
+
 document.getElementById('remind-later').addEventListener('click', async function () {
   const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
 
@@ -380,10 +405,21 @@ document.getElementById('remind-later').addEventListener('click', async function
               } else {
                   console.error('Unexpected error:', response.status);
               }
-          } else {
+            } else {
               return response.json().then(data => {
-                  // sukses
-                  console.log('Berhasil:', data);
+                  // Cek jika server mengembalikan 'success: true' dan 'user_id'
+                  if (data.success && data.user_id) {
+                      console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
+                      
+                      // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
+                      console.log(data.user_id)
+                      window.location.href = '/home';
+                  
+                  } else {
+                      // Jika sukses tapi tidak ada ID, tampilkan error
+                      alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
+                      // Aktifkan kembali tombol jika perlu
+                  }
               });
           }
       })

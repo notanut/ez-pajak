@@ -104,7 +104,7 @@
             <div class="card">
                 <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap">
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0">
                         <input class="form-control rp" id="floatingGaji" placeholder="0">
                         <label for="floatingGaji">Gaji/Pensiun</label>
                     </div>
@@ -297,7 +297,7 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <a class="pay-now" href="/payment/paypage/{{$pengguna->id}}" id="pay-now">Bayar Sekarang</a>
+                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
                     <button class="later" id="remind-later">Ingatkan Nanti</button>
                 </div>
             </div>

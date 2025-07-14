@@ -387,9 +387,22 @@ document.getElementById('pay-now').addEventListener('click', async function () {
                 console.error('Unexpected error:', response.status);
             }
         } else {
-            const res = await response.json();
-            alert('Data berhasil disimpan!');
-        }
+              return response.json().then(data => {
+                  // Cek jika server mengembalikan 'success: true' dan 'user_id'
+                  if (data.success && data.user_id) {
+                      console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
+                      
+                      // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
+                      console.log(data.user_id)
+                      window.location.href = '/payment/paypage/' + data.user_id;
+                  
+                  } else {
+                      // Jika sukses tapi tidak ada ID, tampilkan error
+                      alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
+                      // Aktifkan kembali tombol jika perlu
+                  }
+              });
+          }
     })
     .catch(err => {
         console.error('Network error:', err);
@@ -500,9 +513,22 @@ document.getElementById('remind-later').addEventListener('click', async function
                 console.error('Unexpected error:', response.status);
             }
         } else {
-            const res = await response.json();
-            alert('Data berhasil disimpan!');
-        }
+              return response.json().then(data => {
+                  // Cek jika server mengembalikan 'success: true' dan 'user_id'
+                  if (data.success && data.user_id) {
+                      console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
+                      
+                      // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
+                      console.log(data.user_id)
+                      window.location.href = '/home';
+                  
+                  } else {
+                      // Jika sukses tapi tidak ada ID, tampilkan error
+                      alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
+                      // Aktifkan kembali tombol jika perlu
+                  }
+              });
+          }
     })
     .catch(err => {
         console.error('Network error:', err);
