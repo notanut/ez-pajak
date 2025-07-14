@@ -170,7 +170,10 @@ class BukanPegawaiController extends Controller
             'tanggal_pembayaran' => now(),
         ]);
 
-        return response()->json(['success' => true]);
+        return response()->json([
+            'success' => true,
+            'user_id' => $user->id,
+        ]);
     }
 
 

@@ -114,7 +114,7 @@
     <!-- Tambah Kalender -->
     <div class="addreminder-wrapper py-5">
         <h5 class="text-primary">Tambah <span class="fw-normal">Pengingat</span></h5>
-        <p class="fst-italic text-muted">Kamu tinggal pilih tanggal dari kalende dan klik button tambah.</p>
+        <p class="fst-italic text-muted">Kamu tinggal pilih tanggal dari kalender dan klik button tambah.</p>
         <div class="row g-4">
             <div class="col-md-6">
                 {{-- Kalender bang --}}
