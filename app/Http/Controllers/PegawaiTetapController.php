@@ -6,14 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PegawaiTetap;
 use App\Models\Transaksi;
+use App\Models\Pengguna;
 use Carbon\Carbon;
 
 class PegawaiTetapController extends Controller
 {
+
+    public function create(){
+        $pengguna = Auth::user();
+
+        return view('calculator.index',compact('pengguna'));
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();
-        // dd(Auth::user());
 
         $request->validate([
             'jenis_kelamin' => 'required|in:Pria,Wanita',
@@ -24,7 +31,7 @@ class PegawaiTetapController extends Controller
             'disetahunkan' => 'required|boolean',
 
             // Penghasilan
-            'gaji' => 'required|numeric|min:0',
+            'gaji' => 'required|numeric|gt:0',
             'tunjangan_pph' => 'required|numeric|min:0',
             'tunjangan_lain' => 'required|numeric|min:0',
             'honor' => 'required|numeric|min:0',
@@ -96,6 +103,9 @@ class PegawaiTetapController extends Controller
             'tanggal_pembayaran' => now(),
         ]);
 
-        return response()->json(['success' => true]);
+        return response()->json([
+            'success' => true,
+            'user_id' => $user->id,
+        ]);
     }
 }

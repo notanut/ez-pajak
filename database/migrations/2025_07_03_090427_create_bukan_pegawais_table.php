@@ -30,8 +30,8 @@ return new class extends Migration
             $table->decimal('bruto_mei',15,2)->nullable();
             $table->decimal('bruto_jun',15,2)->nullable();
             $table->decimal('bruto_jul',15,2)->nullable();
-            $table->decimal('bruto_agut',15,2)->nullable();
-            $table->decimal('bruto_sept',15,2)->nullable();
+            $table->decimal('bruto_agu',15,2)->nullable();
+            $table->decimal('bruto_sep',15,2)->nullable();
             $table->decimal('bruto_okt',15,2)->nullable();
             $table->decimal('bruto_nov',15,2)->nullable();
             $table->decimal('bruto_des',15,2)->nullable();
@@ -59,8 +59,8 @@ return new class extends Migration
             $table->decimal('pajak_mei',15,2)->nullable();
             $table->decimal('pajak_jun',15,2)->nullable();
             $table->decimal('pajak_jul',15,2)->nullable();
-            $table->decimal('pajak_agt',15,2)->nullable();
-            $table->decimal('pajak_sept',15,2)->nullable();
+            $table->decimal('pajak_agu',15,2)->nullable();
+            $table->decimal('pajak_sep',15,2)->nullable();
             $table->decimal('pajak_okt',15,2)->nullable();
             $table->decimal('pajak_nov',15,2)->nullable();
             $table->decimal('pajak_des',15,2)->nullable();

@@ -16,9 +16,7 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        // --- LANGKAH DEBUGGING (Bisa dihapus jika sudah berhasil) ---
-        // Tujuan: Memeriksa secara manual apakah user ada dan password cocok.
-        // Hapus komentar (//) pada baris di bawah ini untuk mengaktifkan debug.
+        // --- UNTUK DEBUGGING ---
 
         // $user = User::where('email', $credentials['email'])->first();
         // if ($user) {

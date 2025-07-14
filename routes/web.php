@@ -24,9 +24,8 @@ Route::get('/calculator/pegawai', function () {
     return view('calculator.index');
 });
 
-Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])
-    ->name('pegawai-tetap.store')
-    ->middleware('auth');
+Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])->name('pegawai-tetap.store')->middleware('auth');
+Route::get('/pegawai-tetap/store', [PegawaiTetapController::class, 'create'])->name('pegawai-tetap.create')->middleware('auth');
 
 
 Route::get('/calculator/pegawaiTidakTetap', function () {
@@ -39,6 +38,7 @@ Route::get('/calculator/bukanPegawai', function () {
 });
 
 Route::middleware('auth')->post('/bukan-pegawai/store', [BukanPegawaiController::class, 'store'])->name('bukan-pegawai.store');
+Route::middleware('auth')->post('/pegawai-tidak-tetap/store', [PegawaiTidakTetapController::class, 'store'])->name('pegawai-tidak-tetap.store');
 
 
 Route::get('/payment/success', function () {
@@ -73,19 +73,7 @@ Route::post('/register', [PenggunaController::class, 'store'])->name('pengguna.s
 Route::get('/register', [PenggunaController::class, 'create'])->name('pengguna.create');
 Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 
-// Route::get('/register', function (){
-//     return view('registration.register');
-// });
-
-// Route::get('/login', function (){
-//     return view('registration.login');
-// });
-
-// Route::get('/login', function () {
-//     return view('registration.login');
-// })->name('login');
-
-Route::get('/login', function () {
+Route::get('/login', function (){
     return view('registration.login');
 })->middleware('guest')->name('login');
 
@@ -94,4 +82,23 @@ Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
 
-Route::post('/import-guest-pajak', [PajakController::class, 'importGuest'])->middleware('auth');
+Route::get('/history', function (){
+    return view('history');
+});
+
+
+Route::get('user-notify', [PenggunaController::class, 'index']);
+
+// use Illuminate\Support\Facades\Mail;
+
+// Route::get('/tes-email', function () {
+//     try {
+//         Mail::raw('Ini adalah isi email percobaan.', function ($message) {
+//             $message->to('test@example.com') // Ganti dengan email tujuan di Mailtrap
+//                     ->subject('Tes Koneksi Email Laravel');
+//         });
+//         return 'Email berhasil dikirim (secara teori). Cek Mailtrap!';
+//     } catch (\Exception $e) {
+//         return 'Gagal mengirim email. Error: ' . $e->getMessage();
+//     }
+// });

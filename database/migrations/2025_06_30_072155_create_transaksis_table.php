@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('total', 15, 2);
             $table->foreignid('pengguna_id')->constrained('penggunas')->onDelete('cascade');
-            $table->boolean('status_pembayaran');
+            $table->boolean('status_pembayaran')->default(false);
             $table->string('metode_pembayaran')->default('belum ada');
             $table->date('tanggal_pembayaran');
             // $table->unsignedBigInteger('transaksiable_id');

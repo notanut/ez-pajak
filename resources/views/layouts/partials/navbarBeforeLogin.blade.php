@@ -31,8 +31,8 @@
         </div>
 
         <div class="navbar-nav gap-2 ms-auto d-none d-lg-flex ">
-            <a class="btn btn-outline-primary rounded-0 fs-5 px-3" href="/login">Login</a>
-            <a class="btn btn-primary rounded-0 fs-5 px-3" href="/register">Register</a>
+            <a class="btn btn-outline-primary rounded-0 fs-5 px-3 w-100" href="/login">Login</a>
+            <a class="btn btn-primary rounded-0 fs-5 px-3 w-100" href="/register">Register</a>
         </div>
 
     </div>

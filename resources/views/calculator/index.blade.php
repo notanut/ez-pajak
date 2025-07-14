@@ -67,7 +67,7 @@
                                 </div>
                                 <p id="error-masa_awal" class="text-danger small mt-1 mb-0 fw-normal"></p>
                             </div>
-                            
+
                             <div class="w-100">
                                 <div class="form-floating input-field w-100">
                                     <input name="masa_akhir" type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled>
@@ -104,7 +104,7 @@
             <div class="card">
                 <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap">
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0">
                         <input class="form-control rp" id="floatingGaji" placeholder="0">
                         <label for="floatingGaji">Gaji/Pensiun</label>
                     </div>

@@ -24,16 +24,17 @@
                             <p class="label">Apa jenis kelamin Anda?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="0"> Pria
+                                    <input type="radio" name="sex" value="Pria"> Pria
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="1"> Wanita
+                                    <input type="radio" name="sex" value="Wanita"> Wanita
                                     <label></label>
                                 </div>
                             </div>
                     </div>
-                    <div class="form-floating input-field">
+                    <p id="error-jenis_kelamin" class="text-danger small mt-1 mb-0 fw-normal"></p>
+                    <div class="form-floating input-field mb-0 mt-3">
                         <input type="number" class="form-control" id="jmlTanggungan" placeholder="2" min="0" max="3">
                         <label for="jmlTanggungan">Berapa total tanggungan Anda?</label>
                         <div class="tooltip-container">
@@ -43,25 +44,27 @@
                             </div>
                         </div>
                     </div>
+                    <p id="error-tanggungan" class="text-danger small my-0 fw-normal"></p>
 
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0 mt-3">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
                             <option disabled selected>Pilih satu</option>
-                            <option value="0">Kawin</option>
-                            <option value="1">Tidak Kawin</option>
-                            <option value="2">Hidup Berpisah</option>
+                            <option value="Kawin">Kawin</option>
+                            <option value="Tidak Kawin">Tidak Kawin</option>
+                            <option value="Hidup Berpisah">Hidup Berpisah</option>
                         </select>
                         <label for="floatingSelect">Apa status perkawinan Anda?</label>
                     </div>
+                    <p id="error-status_perkawinan" class="text-danger small mt-0 mb-3 fw-normal"></p>
                     <div class="form-floating form-check input-field btn-group" role="group">
                         <p class="label">Apakah Anda dibayar bulanan atau tidak?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="ya" id="dibayar-ya"> Ya
+                                <input type="radio" name="dibayar_bulanan" value="0" id="dibayar-ya"> Ya
                                 <label for="dibayar-ya"></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="tidak" id="dibayar-tidak" checked> Tidak
+                                <input type="radio" name="dibayar_bulanan" value="1" id="dibayar-tidak" checked> Tidak
                                 <label for="dibayar-tidak"></label>
                             </div>
                         </div>
@@ -72,15 +75,17 @@
             <div class="card">
                 <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap" id="tidakBulanan">
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0 mt-3">
                         <input class="form-control rp" id="brutoProyek" placeholder="0">
                         <label for="brutoProyek">Berapa penghasilan bruto Anda di proyek/pekerjaan ini?</label>
                     </div>
+                    <p id="error-total_bruto" class="text-danger small mt-0 mb-3 fw-normal"></p>
 
-                    <div class="form-floating input-field">
+                    <div class="form-floating input-field mb-0 mt-3">
                         <input type="number" class="form-control" id="lamaKerja" placeholder="2" min="0">
                         <label for="lamaKerja">Berapa hari lamanya pekerjaan dilakukan?</label>
                     </div>
+                    <p id="error-lama_hari_bekerja" class="text-danger small mt-0 mb-3 fw-normal"></p>
                     <div class="total">
                         <p class="title-total">Rata-rata Penghasilan Bruto Sehari</p>
                         <p class="rp-total" id="avBruto">Rp 0</p>
@@ -101,18 +106,21 @@
                             </div>
                     </div>
                     <div id="tiapBulanSama" style="display: none;">
-                        <div class="form-floating input-field">
+                        <div class="form-floating input-field mb-0 mt-3">
                             <input class="form-control rp" id="brutoBulanan" placeholder="0">
                             <label for="brutoBulanan">Berapa penghasilan bruto bulanan Anda?</label>
                         </div>
+                        <p id="error-bruto_perbulan" class="text-danger small my-0 fw-normal"></p>
     
-                        <div class="form-floating input-field">
+                        <div class="form-floating input-field mb-0 mt-3">
                             <input type="number" class="form-control" id="jmlBulan" placeholder="2" min="0">
                             <label for="jmlBulan">Berapa bulan Anda bekerja di tahun ini?</label>
                         </div>
+                        <p id="error-banyak_bulan_bekerja" class="text-danger small my-0 fw-normal"></p>
                     </div>
                     <div id="tiapBulanBeda" style="display: none;">
                         <p class="label tiapBulan">Masukkan penghasilan bruto Anda di setiap bulan:</p>
+                        <p id="error-bruto_jan" class="text-danger small my-0 fw-normal"></p>
                         <div class="form-floating input-field mon">
                             <input class="form-control rp" id="Januari" placeholder="0">
                             <label for="Januari">Januari</label>

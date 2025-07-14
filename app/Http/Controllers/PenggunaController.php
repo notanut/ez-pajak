@@ -7,12 +7,43 @@ use App\Models\Transaksi;
 use App\Http\Requests\StorePenggunaRequest;
 use App\Http\Requests\UpdatePenggunaRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Notifications\NotifikasiEmail;
 
 class PenggunaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public function index(Request $request)
+    {
+        $penggunas = Pengguna::find(5);
+
+        $messages['hi'] = "Hey, {$penggunas->name}";
+        $messages['isi'] = "Ayo Bayar Pajak lewat EzPajak";
+
+        $penggunas->notify(new NotifikasiEmail($messages));
+
+        dd('Done');
+
+    }
+
+    public function indexJadwal(Request $request, Pengguna $pengguna)
+    {
+
+        $messages["hi"] = "Hey, {$pengguna->name}";
+        $messages["isi"] = "Ini adalah pengingat terjadwal Anda!";
+
+        // Waktu kirimnya kapan
+        $waktuKirim = now()->addDays(5);
+
+        KirimNotifikasiTerjadwal::dispatch($pengguna, $messages)
+                                ->delay($waktuKirim);
+
+        return "Notifikasi untuk {$pengguna->name} telah dijadwalkan untuk dikirim pada: " . $waktuKirim->format('Y-m-d H:i:s');
+    }
+
     public function show($id)
     {
         //
@@ -20,7 +51,7 @@ class PenggunaController extends Controller
         $transaksi = $penggunas->transaksis->first();
         // $penggunaa = Pengguna::with('transaksis.transaksiable')->find($id);
 
-        if($transaksi->status_pembayaran == '1'){
+        if($transaksi->status_pembayaran == true){
             $status = 'Sudah dibayar';
         }else{
             $status = 'Belum dibayar';
@@ -41,7 +72,7 @@ class PenggunaController extends Controller
 
     }
 
-     public function prosesForm(Request $request){
+    public function prosesForm(Request $request){
         dump($request);
     }
 
@@ -58,6 +89,9 @@ class PenggunaController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password'])
         ]);
+
+
+
 
         return redirect()->route('pengguna.create')->with('success', 'Registrasi berhasil!');
     }

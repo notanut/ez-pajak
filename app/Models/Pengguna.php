@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use App\Models\Transaksi;
 use App\Models\PegawaiTetap;
 use App\Models\PegawaiTidakTetap;
@@ -13,7 +14,7 @@ use App\Models\BukanPegawai;
 class Pengguna extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\PenggunaFactory> */
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
     'nama',

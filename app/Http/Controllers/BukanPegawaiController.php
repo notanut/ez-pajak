@@ -10,6 +10,8 @@ use App\Models\Transaksi;
 use App\Http\Requests\StoreBukanPegawaiRequest;
 use App\Http\Requests\UpdateBukanPegawaiRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class BukanPegawaiController extends Controller
 {
@@ -44,48 +46,64 @@ class BukanPegawaiController extends Controller
             'tarif' => 'required|string',
             'pph21_terutang' => 'required|numeric|min:0',
 
-            // Untuk bulanan sama
-            'bruto_perbulan' => 'required_if:bulanan_sama,1|nullable|numeric|min:0',
-            'banyak_bulan_bekerja' => 'required_if:bulanan_sama,1|nullable|integer|min:0',
+            // ✅ Hanya jika bulanan dan sama
+            'bruto_perbulan' => [
+                'nullable', 'numeric', 'min:1',
+                Rule::requiredIf(fn() => $request->dibayar_bulanan == 1 && $request->bulanan_sama == 1),
+            ],
+            'banyak_bulan_bekerja' => [
+                'nullable', 'integer', 'min:1', 'max:12',
+                Rule::requiredIf(fn() => $request->dibayar_bulanan == 1 && $request->bulanan_sama == 1),
+            ],
             'pph21_perbulan' => 'nullable|numeric|min:0',
 
-            // Untuk bulanan beda
+            // ✅ Hanya jika bulanan dan tidak sama
             'bruto_jan' => 'nullable|numeric|min:0',
-            'pajak_jan' => 'nullable|numeric|min:0',
-            'pajak_feb' => 'nullable|numeric|min:0',
             'bruto_feb' => 'nullable|numeric|min:0',
-            'pajak_mar' => 'nullable|numeric|min:0',
             'bruto_mar' => 'nullable|numeric|min:0',
-            'pajak_apr' => 'nullable|numeric|min:0',
             'bruto_apr' => 'nullable|numeric|min:0',
-            'pajak_mei' => 'nullable|numeric|min:0',
             'bruto_mei' => 'nullable|numeric|min:0',
-            'pajak_jun' => 'nullable|numeric|min:0',
             'bruto_jun' => 'nullable|numeric|min:0',
-            'pajak_jul' => 'nullable|numeric|min:0',
             'bruto_jul' => 'nullable|numeric|min:0',
-            'pajak_agut' => 'nullable|numeric|min:0',
-            'bruto_agut' => 'nullable|numeric|min:0',
-            'pajak_sept' => 'nullable|numeric|min:0',
+            'bruto_agt' => 'nullable|numeric|min:0',
             'bruto_sept' => 'nullable|numeric|min:0',
-            'pajak_okt' => 'nullable|numeric|min:0',
             'bruto_okt' => 'nullable|numeric|min:0',
-            'pajak_nov' => 'nullable|numeric|min:0',
             'bruto_nov' => 'nullable|numeric|min:0',
             'bruto_des' => 'nullable|numeric|min:0',
+
+            'pajak_jan' => 'nullable|numeric|min:0',
+            'pajak_feb' => 'nullable|numeric|min:0',
+            'pajak_mar' => 'nullable|numeric|min:0',
+            'pajak_apr' => 'nullable|numeric|min:0',
+            'pajak_mei' => 'nullable|numeric|min:0',
+            'pajak_jun' => 'nullable|numeric|min:0',
+            'pajak_jul' => 'nullable|numeric|min:0',
+            'pajak_agt' => 'nullable|numeric|min:0',
+            'pajak_sept' => 'nullable|numeric|min:0',
+            'pajak_okt' => 'nullable|numeric|min:0',
+            'pajak_nov' => 'nullable|numeric|min:0',
             'pajak_des' => 'nullable|numeric|min:0',
 
-            // Tidak bulanan
-            'total_bruto' => 'required_if:dibayar_bulanan,0|numeric|min:0',
+            // ✅ Jika tidak dibayar bulanan
+            'total_bruto' => [
+                'nullable', 'numeric', 'min:1',
+                Rule::requiredIf(fn() => $request->dibayar_bulanan == 0),
+            ],
             'pihak_ketiga' => 'nullable|boolean',
-            'biaya_pihak_ketiga' => 'required_if:pihak_ketiga,1|numeric|min:0',
+            'biaya_pihak_ketiga' => [
+                'nullable', // Mengizinkan nilai null jika tidak diisi
+                'numeric',  // Memastikan tipe data adalah angka
+                // Gunakan Rule::when untuk menerapkan 'min:1' hanya jika pihak_ketiga adalah 1 DAN biaya_pihak_ketiga tidak null
+                Rule::when($request->pihak_ketiga == 1, ['required', 'min:1']),
+            ],
             'penghasilan_neto' => 'nullable|numeric|min:0',
         ]);
+
 
         if ($request->dibayar_bulanan && !$request->bulanan_sama) {
             $bulanFields = [
                 'bruto_jan', 'bruto_feb', 'bruto_mar', 'bruto_apr', 'bruto_mei',
-                'bruto_jun', 'bruto_jul', 'bruto_agut', 'bruto_sept',
+                'bruto_jun', 'bruto_jul', 'bruto_agu', 'bruto_sep',
                 'bruto_okt', 'bruto_nov', 'bruto_des'
             ];
 
@@ -117,8 +135,8 @@ class BukanPegawaiController extends Controller
             'bruto_mei' => $request->bruto_mei,
             'bruto_jun' => $request->bruto_jun,
             'bruto_jul' => $request->bruto_jul,
-            'bruto_agut' => $request->bruto_agut,
-            'bruto_sept' => $request->bruto_sept,
+            'bruto_agu' => $request->bruto_agu,
+            'bruto_sep' => $request->bruto_sep,
             'bruto_okt' => $request->bruto_okt,
             'bruto_nov' => $request->bruto_nov,
             'bruto_des' => $request->bruto_des,
@@ -136,8 +154,8 @@ class BukanPegawaiController extends Controller
             'pajak_mei' => $request->pajak_mei,
             'pajak_jun' => $request->pajak_jun,
             'pajak_jul' => $request->pajak_jul,
-            'pajak_agt' => $request->pajak_agt,
-            'pajak_sept' => $request->pajak_sept,
+            'pajak_agu' => $request->pajak_agu,
+            'pajak_sep' => $request->pajak_sep,
             'pajak_okt' => $request->pajak_okt,
             'pajak_nov' => $request->pajak_nov,
             'pajak_des' => $request->pajak_des,
@@ -152,7 +170,10 @@ class BukanPegawaiController extends Controller
             'tanggal_pembayaran' => now(),
         ]);
 
-        return response()->json(['success' => true]);
+        return response()->json([
+            'success' => true,
+            'user_id' => $user->id,
+        ]);
     }
 
 
