@@ -35,4 +35,5 @@ class NotifikasiBayar implements ShouldQueue
         //
         $this->pengguna->notify(new NotifikasiEmail($this->pesan));
     }
+
 }

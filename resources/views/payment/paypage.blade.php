@@ -84,7 +84,7 @@
                     <div class="method border border-2 py-4 px-5 paybox" id="Credit Card" style="display: none">
                         <div class="form-floating input-field">
                             <input class="form-control" id="floatingNumCard" placeholder="0">
-                            <label class="fs-4 p-0" for="floatingNumCard">Number Card</label>
+                            <label class="fs-4 p-0" for="floatingNumCard">Card Number</label>
                         </div>
                         <div class="d-flex flex-row align-items-center gap-3 mb-4">
                             <div class="form-floating input-field w-50">
@@ -112,7 +112,7 @@
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="form-floating input-field">
                                 <input class="form-control" id="floatingNumCard" placeholder="0">
-                                <label class="fs-3 p-0" for="floatingNumCard">Gopay</label>
+                                <label class="fs-3 p-0" for="floatingNumCard">Phone Number (Gopay)</label>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
@@ -125,7 +125,7 @@
                         <div class="d-flex flex-column justify-content-between h-100">
                             <div class="form-floating input-field">
                                 <input class="form-control" id="floatingNumCard" placeholder="0">
-                                <label class="fs-3 p-0" for="floatingNumCard">OVO</label>
+                                <label class="fs-3 p-0" for="floatingNumCard">Phone Number (OVO)</label>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
