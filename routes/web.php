@@ -7,6 +7,8 @@ use App\Http\Controllers\PegawaiTetapController;
 use App\Http\Controllers\BukanPegawaiController;
 use App\Http\Controllers\PegawaiTidakTetapController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/cek-user', function () {
@@ -49,10 +51,11 @@ Route::get('/payment/success', function () {
 // });
 
 
-Route::get('/home', function (){
-    return view('home.index');
-});
+// Route::get('/home', function (){
+//     return view('home.index');
+// });
 
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::get('/payment/paypage', function () {
     return view('payment.paypage');
@@ -74,11 +77,21 @@ Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 //     return view('registration.register');
 // });
 
-Route::get('/login', function (){
+// Route::get('/login', function (){
+//     return view('registration.login');
+// });
+
+// Route::get('/login', function () {
+//     return view('registration.login');
+// })->name('login');
+
+Route::get('/login', function () {
     return view('registration.login');
-});
+})->middleware('guest')->name('login');
 
 
 Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
+
+Route::post('/import-guest-pajak', [PajakController::class, 'importGuest'])->middleware('auth');

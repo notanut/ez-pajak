@@ -46,6 +46,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// fungsi simpan pajak - global untuk dashboard
+function simpanPajak(kategori, data) {
+  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+  if (isLoggedIn) {
+      fetch('/import-guest-pajak', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+          },
+          body: JSON.stringify({ kategori, data })
+      })
+      .then(res => res.json())
+      .then(response => {
+          if (response.success) {
+              console.log('Data pajak berhasil disimpan ke server.');
+          }
+      });
+  } else {
+      localStorage.setItem('ezpajak_guest', JSON.stringify({ kategori, data }));
+      console.log('Data pajak disimpan sementara di localStorage (guest).');
+  }
+}
 
 const startMonthInput = document.getElementById('startMonth');
 const endMonthInput = document.getElementById('endMonth');
@@ -147,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (sisaPKP > 0) pph21Setahun += sisaPKP * tarif[tarif.length - 1];
 
-    const pph21Fin = isDisetahunkan ? pph21Setahun * totalBulan / 12 : pph21Setahun 
+    const pph21Fin = isDisetahunkan ? pph21Setahun * totalBulan / 12 : pph21Setahun
 
     const pph21pkp = Math.max(0, pph21Fin);
     const pph21MasaIni = Math.max(0, pph21Fin - pphTerpotong);
@@ -172,6 +196,44 @@ document.addEventListener("DOMContentLoaded", function () {
     totalRupiah[0].textContent = formatRupiah(penghasilanBruto);
     totalRupiah[1].textContent = formatRupiah(totalPengurangan);
     totalRupiah[2].textContent = formatRupiah(pph21MasaIni);
+
+    // tambahan
+    const hasil = {
+    jenis_kelamin: gender,
+    tanggungan: tanggungan,
+    status_perkawinan: statusKawin,
+    masa_awal: bulanAwal + '-01',
+    masa_akhir: bulanAkhir + '-01',
+    disetahunkan: isDisetahunkan,
+
+    gaji: gaji,
+    tunjangan_pph: tunjPPh,
+    tunjangan_lain: tunjLain,
+    honor: honor,
+    premi: premi,
+    natura: natura,
+    tantiem: tantiem,
+
+    biaya_jabatan: biayaJabatanMax,
+    iuran_pensiun: iuranTHT,
+    zakat: zakat,
+
+    penghasilan_bruto: penghasilanBruto,
+    pengurangan: totalPengurangan,
+    penghasilan_neto: penghasilanNeto,
+    penghasilan_neto_masa_sebelumnya: netoMasaSebelum,
+    penghasilan_neto_pph21: netoUntukPPh,
+    ptkp: ptkp,
+    pkp: pkp,
+    tarif_progresif: res[4].textContent,
+    pph21_pkp: pph21pkp,
+    pph21_dipotong_masa_sebelum: pphTerpotong,
+    pph21_terutang: pph21MasaIni
+    };
+
+    console.log("Hasil dihitung: ", hasil)
+    simpanPajak('pegawai_tetap', hasil);
+
   }
 
   function formatRupiah(value) {
@@ -182,6 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener('change', hitung);
     input.addEventListener('input', hitung);
   });
+
+    // tambahan supaya hitung otomatis saat halaman pertama kali terbuka
+    hitung();
 });
 
 function calculateTaxDates() {

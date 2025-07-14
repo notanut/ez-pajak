@@ -71,3 +71,29 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000 * 60 * 60);
 });
+
+console.log("Home.js loaded");
+document.addEventListener('DOMContentLoaded', function () {
+  const guestData = localStorage.getItem('ezpajak_guest');
+  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+  if (isLoggedIn && guestData) {
+    console.log("Data ditemukan di localStograge : ", guestData);
+
+    const parsed = JSON.parse(guestData);
+    fetch('/import-guest-pajak', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify(parsed)
+    }).then(res => res.json()).then(res => {
+      if (res.success) {
+        localStorage.removeItem('ezpajak_guest');
+        console.log("Data guest berhasil dipindah ke database.");
+        this.location.reload(); // supaya dashboard isa reload data terbaru
+      }
+    });
+  }
+});

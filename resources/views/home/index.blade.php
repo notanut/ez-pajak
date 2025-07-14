@@ -58,7 +58,7 @@
                 </div>
 
             </div>
-            <h4>Rp 2.500.000,00</h4>
+            <h4>Rp {{ number_format($jumlahPajak ?? 0, 2, ',', '.') }} </h4>
             <p class="fst-italic card-text text-white">Ini total pajak yang perlu dibayar untuk periode ini. Pastikan data yang kamu input sudah sesuai yaa.</p>
             <div class="d-flex justify-content-between mt-2">
                 <a href="#" class="card-text text-white small text-decoration-none fw-bold">
