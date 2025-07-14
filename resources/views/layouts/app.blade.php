@@ -16,10 +16,10 @@
     {{-- Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    {{-- Script status login --}}
+    {{-- Script status login
     <script>
         window.isLoggedIn = @json(Auth::check());
-    </script>
+    </script> --}}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
