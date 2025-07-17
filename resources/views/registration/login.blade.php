@@ -17,6 +17,7 @@
                                     @csrf
                                     <!-- form content goes here -->
                                     <div class="d-flex flex-column mb-3">
+                                        <input type="hidden" name="redirect_to" value="{{ request()->query('redirect_to') }}">
                                         <label for="email" class="form-label fw-semibold text-primary m-0">Alamat
                                             Email</label>
                                         <input type="email" class="form-setting border-setting rounded-0 shadow-none ps-0"

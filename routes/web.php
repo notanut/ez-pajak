@@ -62,7 +62,8 @@ Route::get('/payment/paypage', function () {
     return view('payment.paypage');
 });
 
-Route::post('/payment/paypage/{id}',[PenggunaController::class,'index']);
+
+Route::middleware('auth')->post('/payment/paypage/{id}',[PenggunaController::class,'index']);
 Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
 
 Route::get('/kuesioner', function () {
