@@ -282,14 +282,140 @@ function calculateTaxDates() {
 
 calculateTaxDates();
 
-document.getElementById('pay-now').addEventListener('click', async function () {
+document.addEventListener('DOMContentLoaded', function () {
+    // Definisikan bulan untuk mempermudah
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const bulanMap = {
+        Januari: 'jan', Februari: 'feb', Maret: 'mar', April: 'apr',
+        Mei: 'mei', Juni: 'jun', Juli: 'jul', Agustus: 'agu',
+        September: 'sep', Oktober: 'okt', November: 'nov', Desember: 'des'
+    };
+
+    // =================================================================================
+    // FUNGSI UNTUK MENYIMPAN DAN MEMUAT DATA DARI LOCALSTORAGE
+    // =================================================================================
+
+    function saveTidakTetapDataToLocalStorage() {
+        console.log('User tidak login, menyimpan data pegawai tidak tetap ke localStorage...');
+
+        const calculatorData = {
+            // Informasi dasar
+            jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
+            tanggungan: document.getElementById('jmlTanggungan').value,
+            status_perkawinan: document.getElementById('floatingSelect').value,
+            dibayar_bulanan_value: document.querySelector('input[name="dibayar_bulanan"]:checked')?.value,
+            bulanan_sama_ga_value: document.querySelector('input[name="bulananSamaGa"]:checked')?.value,
+
+            // Data Bagian: Tidak Bulanan
+            brutoProyek: document.getElementById('brutoProyek').value,
+            lamaKerja: document.getElementById('lamaKerja').value,
+            avBruto_text: document.getElementById('avBruto').textContent,
+            metodeHitungTidakBulan_text: document.getElementById('metodeHitungTidakBulan').textContent,
+            pphRataHari_text: document.getElementById('pphRataHari').textContent,
+            
+            // Data Bagian: Bulanan & Penghasilan Sama
+            brutoBulanan: document.getElementById('brutoBulanan').value,
+            jmlBulan: document.getElementById('jmlBulan').value,
+            metodeHitungSama_text: document.getElementById('metodeHitungSama').textContent,
+            pphRataSama_text: document.getElementById('pphRataSama').textContent,
+
+            // Data Bagian: Bulanan & Penghasilan Beda
+            bruto_bulanan_beda: {},
+            metodeHitungBeda_text: document.getElementById('metodeHitungBeda').textContent,
+
+            // Grand Total
+            pph21_terutang_text: document.getElementById('rp-total').textContent,
+        };
+
+        months.forEach(month => {
+            const inputElement = document.getElementById(month);
+            if (inputElement) {
+                calculatorData.bruto_bulanan_beda[month] = inputElement.value;
+            }
+        });
+
+        localStorage.setItem('calculatorFormData_TidakTetap', JSON.stringify(calculatorData));
+    }
+
+    function loadAndRestoreTidakTetapData() {
+        const savedDataJSON = localStorage.getItem('calculatorFormData_TidakTetap');
+        if (!savedDataJSON) return;
+
+        console.log('Data kalkulator pegawai tidak tetap ditemukan, memuat ulang form...');
+        const data = JSON.parse(savedDataJSON);
+
+        if(data.jenis_kelamin) document.querySelector(`input[name="sex"][value="${data.jenis_kelamin}"]`).checked = true;
+        document.getElementById('jmlTanggungan').value = data.tanggungan;
+        document.getElementById('floatingSelect').value = data.status_perkawinan;
+        if(data.dibayar_bulanan_value) document.querySelector(`input[name="dibayar_bulanan"][value="${data.dibayar_bulanan_value}"]`).checked = true;
+        if(data.bulanan_sama_ga_value) document.querySelector(`input[name="bulananSamaGa"][value="${data.bulanan_sama_ga_value}"]`).checked = true;
+
+        const isBulanan = data.dibayar_bulanan_value === '0';
+        document.getElementById('bulanan').style.display = isBulanan ? 'block' : 'none';
+        document.getElementById('tidakBulanan').style.display = isBulanan ? 'none' : 'block';
+        document.getElementById('bulanan-sama-wrap').style.display = 'none';
+        document.getElementById('bulanan-beda-wrap').style.display = 'none';
+        document.getElementById('tidak-bulanan-wrap').style.display = 'none';
+
+        if (isBulanan) {
+            const isSama = data.bulanan_sama_ga_value === '0';
+            document.getElementById('tiapBulanSama').style.display = isSama ? 'block' : 'none';
+            document.getElementById('tiapBulanBeda').style.display = isSama ? 'none' : 'block';
+            document.getElementById('bulanan-sama-wrap').style.display = isSama ? 'block' : 'none';
+            document.getElementById('bulanan-beda-wrap').style.display = isSama ? 'none' : 'block';
+        } else {
+            document.getElementById('tidak-bulanan-wrap').style.display = 'block';
+        }
+
+        document.getElementById('brutoProyek').value = data.brutoProyek;
+        document.getElementById('lamaKerja').value = data.lamaKerja;
+        document.getElementById('avBruto').textContent = data.avBruto_text;
+        document.getElementById('metodeHitungTidakBulan').textContent = data.metodeHitungTidakBulan_text;
+        document.getElementById('pphRataHari').textContent = data.pphRataHari_text;
+
+        document.getElementById('brutoBulanan').value = data.brutoBulanan;
+        document.getElementById('jmlBulan').value = data.jmlBulan;
+        document.getElementById('metodeHitungSama').textContent = data.metodeHitungSama_text;
+        document.getElementById('pphRataSama').textContent = data.pphRataSama_text;
+
+        document.getElementById('metodeHitungBeda').textContent = data.metodeHitungBeda_text;
+        if (data.bruto_bulanan_beda) {
+            months.forEach(month => {
+                const inputElement = document.getElementById(month);
+                if (inputElement && data.bruto_bulanan_beda[month] !== undefined) {
+                    inputElement.value = data.bruto_bulanan_beda[month];
+                }
+            });
+        }
+        
+        document.getElementById('rp-total').textContent = data.pph21_terutang_text;
+        localStorage.removeItem('calculatorFormData_TidakTetap');
+        console.log('Data dari localStorage telah dimuat dan dihapus.');
+    }
+
+    // Jalankan fungsi pemulihan data saat halaman dimuat
+    loadAndRestoreTidakTetapData();
+
+
+    // =================================================================================
+    // EVENT LISTENER UNTUK TOMBOL (KODE ASLI ANDA YANG DIMODIFIKASI)
+    // =================================================================================
+
+    // Event Listener untuk Tombol "Bayar Sekarang"
+    document.getElementById('pay-now').addEventListener('click', async function () {
     const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
 
     if (!isLoggedIn) {
-        sessionStorage.setItem('redirect_after_login', window.location.pathname);
-        window.location.href = '/login';
-        return;
-    }
+      saveTidakTetapDataToLocalStorage()
+      // Ambil URL halaman kalkulator saat ini
+      const redirectUrl = window.location.pathname; // Hasilnya akan seperti "/halaman-kalkulator"
+
+      // Arahkan ke halaman login DENGAN menyertakan URL tujuan
+      // Ini akan menghasilkan URL seperti: /login?redirect_to=/halaman-kalkulator
+      window.location.href = '/login?redirect_to=' + redirectUrl;
+      
+      return; // Hentikan eksekusi skrip
+  }
 
     const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
 
@@ -306,8 +432,6 @@ document.getElementById('pay-now').addEventListener('click', async function () {
         Mei: 'mei', Juni: 'jun', Juli: 'jul', Agustus: 'agu',
         September: 'sep', Oktober: 'okt', November: 'nov', Desember: 'des'
     };
-
-    
 
     const data = {
         jenis_kelamin: gender,
@@ -412,10 +536,16 @@ document.getElementById('remind-later').addEventListener('click', async function
     const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
 
     if (!isLoggedIn) {
-        sessionStorage.setItem('redirect_after_login', window.location.pathname);
-        window.location.href = '/login';
-        return;
-    }
+      saveTidakTetapDataToLocalStorage()
+      // Ambil URL halaman kalkulator saat ini
+      const redirectUrl = window.location.pathname; // Hasilnya akan seperti "/halaman-kalkulator"
+
+      // Arahkan ke halaman login DENGAN menyertakan URL tujuan
+      // Ini akan menghasilkan URL seperti: /login?redirect_to=/halaman-kalkulator
+      window.location.href = '/login?redirect_to=' + redirectUrl;
+      
+      return; // Hentikan eksekusi skrip
+  }
 
     const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
 
@@ -533,4 +663,9 @@ document.getElementById('remind-later').addEventListener('click', async function
     .catch(err => {
         console.error('Network error:', err);
     });
+});
+
+
+    // Tambahkan event listener lain yang mungkin Anda miliki di sini
+    // (misalnya untuk kalkulasi otomatis saat input berubah)
 });

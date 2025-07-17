@@ -15,6 +15,7 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+        // dd($request->all());
 
         // --- UNTUK DEBUGGING ---
 
@@ -28,7 +29,14 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $redirect = $request->input('redirect'); // dari ?redirect=...
+
+            // Cek apakah ada parameter 'redirect_to' dari URL
+            if ($request->has('redirect_to')) {
+                // Jika ada, arahkan ke path tersebut
+                return redirect()->to($request->input('redirect_to'));
+            }
+
+            // Jika tidak ada, gunakan perilaku default (kembali ke 'home')
             return redirect()->intended('home');
         }
 

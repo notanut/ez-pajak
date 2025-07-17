@@ -36,6 +36,7 @@
                             <form class="form-register" action="{{route('pengguna.store')}}" method="POST">
                                 @csrf
                                 <!-- form content goes here -->
+                                 <input type="hidden" name="redirect_to" value="{{ request()->query('redirect_to') }}">
                                 <div class="d-flex flex-column mb-3">
                                     <label for="nama" class="form-label fw-semibold text-primary m-0">Nama Lengkap</label>
                                     <input type="text" class="form-setting border-setting  rounded-0 shadow-none ps-0" value="{{ old('nama') }}"

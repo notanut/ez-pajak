@@ -233,199 +233,319 @@ function calculateTaxDates() {
 
 calculateTaxDates();
 
-document.getElementById('pay-now').addEventListener('click', async function () {
-  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+// Letakkan di awal atau di dalam blok event listener DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+    // Fungsi baru untuk memuat data dari localStorage saat halaman dimuat
+    loadAndRestoreCalculatorData();
+
+    // Fungsi pembantu untuk memformat angka menjadi format Rupiah
+    const formatRupiah = (number) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+
+    // Fungsi baru untuk mengumpulkan dan menyimpan semua data form
+    function saveCalculatorDataToLocalStorage() {
+        const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+
+        const calculatorData = {
+            // Informasi Pegawai
+            jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
+            tanggungan: document.getElementById('floatingInput').value,
+            status_perkawinan: document.getElementById('floatingSelect').value,
+            masa_awal: document.getElementById('startMonth').value,
+            masa_akhir: document.getElementById('endMonth').value,
+            disetahunkan: document.querySelector('input[name="spdn"]:checked')?.value,
+
+            // Penghasilan
+            gaji: document.getElementById('floatingGaji').value,
+            tunjangan_pph: document.getElementById('floatingPPh').value,
+            tunjangan_lain: document.getElementById('floatingLain').value,
+            honor: document.getElementById('floatingHonor').value,
+            premi: document.getElementById('floatingPremi').value,
+            natura: document.getElementById('floatingNatura').value,
+            tantiem: document.getElementById('floatingTantiem').value,
+
+            // Pengurangan
+            iuran_pensiun: document.getElementById('floatingTHT').value,
+            zakat: document.getElementById('floatingZakar').value,
+            
+            // Input Hasil Kalkulasi
+            penghasilan_neto_masa_sebelumnya: document.getElementById('floatingMasaSebelum').value,
+            pph21_dipotong_masa_sebelum: document.getElementById('floatingTerpotong').value,
+
+            // Teks Hasil Kalkulasi (untuk ditampilkan kembali)
+            penghasilan_bruto_text: document.querySelectorAll('.rp-total')[0].textContent,
+            pengurangan_text: document.querySelectorAll('.rp-total')[1].textContent,
+            biaya_jabatan_text: document.getElementById('biayaJabatan').textContent,
+            penghasilan_neto_text: document.querySelectorAll('.res')[0].textContent,
+            penghasilan_neto_pph21_text: document.querySelectorAll('.res')[1].textContent,
+            ptkp_text: document.querySelectorAll('.res')[2].textContent,
+            pkp_text: document.querySelectorAll('.res')[3].textContent,
+            tarif_progresif_text: document.querySelectorAll('.res')[4].textContent,
+            pph21_pkp_text: document.querySelectorAll('.res')[5].textContent,
+            pph21_terutang_text: document.querySelectorAll('.rp-total')[2].textContent
+        };
+
+        // Simpan sebagai string JSON di localStorage
+        localStorage.setItem('calculatorFormData', JSON.stringify(calculatorData));
+        console.log('Data kalkulator disimpan ke localStorage.');
+    }
+
+    // Fungsi baru untuk memuat dan mengisi ulang form
+    function loadAndRestoreCalculatorData() {
+        const savedDataJSON = localStorage.getItem('calculatorFormData');
+
+        if (savedDataJSON) {
+            console.log('Data kalkulator ditemukan, memuat ulang form...');
+            const data = JSON.parse(savedDataJSON);
+
+            // Isi kembali field input
+            if(data.jenis_kelamin) document.querySelector(`input[name="sex"][value="${data.jenis_kelamin}"]`).checked = true;
+            document.getElementById('floatingInput').value = data.tanggungan;
+            document.getElementById('floatingSelect').value = data.status_perkawinan;
+            document.getElementById('startMonth').value = data.masa_awal;
+            document.getElementById('endMonth').value = data.masa_akhir;
+            if(data.disetahunkan) document.querySelector(`input[name="spdn"][value="${data.disetahunkan}"]`).checked = true;
+
+            document.getElementById('floatingGaji').value = data.gaji;
+            document.getElementById('floatingPPh').value = data.tunjangan_pph;
+            document.getElementById('floatingLain').value = data.tunjangan_lain;
+            document.getElementById('floatingHonor').value = data.honor;
+            document.getElementById('floatingPremi').value = data.premi;
+            document.getElementById('floatingNatura').value = data.natura;
+            document.getElementById('floatingTantiem').value = data.tantiem;
+            
+            document.getElementById('floatingTHT').value = data.iuran_pensiun;
+            document.getElementById('floatingZakar').value = data.zakat;
+
+            document.getElementById('floatingMasaSebelum').value = data.penghasilan_neto_masa_sebelumnya;
+            document.getElementById('floatingTerpotong').value = data.pph21_dipotong_masa_sebelum;
+
+            // Isi kembali field hasil kalkulasi
+            document.querySelectorAll('.rp-total')[0].textContent = data.penghasilan_bruto_text;
+            document.querySelectorAll('.rp-total')[1].textContent = data.pengurangan_text;
+            document.getElementById('biayaJabatan').textContent = data.biaya_jabatan_text;
+            document.querySelectorAll('.res')[0].textContent = data.penghasilan_neto_text;
+            document.querySelectorAll('.res')[1].textContent = data.penghasilan_neto_pph21_text;
+            document.querySelectorAll('.res')[2].textContent = data.ptkp_text;
+            document.querySelectorAll('.res')[3].textContent = data.pkp_text;
+            document.querySelectorAll('.res')[4].textContent = data.tarif_progresif_text;
+            document.querySelectorAll('.res')[5].textContent = data.pph21_pkp_text;
+            document.querySelectorAll('.rp-total')[2].textContent = data.pph21_terutang_text;
+
+            // Penting: Hapus data dari localStorage setelah digunakan
+            localStorage.removeItem('calculatorFormData');
+            console.log('Data dari localStorage telah dimuat dan dihapus.');
+            
+            // Penting: Panggil fungsi kalkulasi utama Anda di sini jika ada,
+            // atau picu event pada salah satu input untuk menjalankan ulang kalkulasi.
+            // Ini untuk memastikan semua field ter-update jika ada logika tersembunyi.
+            document.getElementById('floatingGaji').dispatchEvent(new Event('input', { bubbles: true }));
+        }
+    }
+
+
+    // --- MODIFIKASI EVENT LISTENER ---
+
+      document.getElementById('pay-now').addEventListener('click', async function () {
+    const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
 
     if (!isLoggedIn) {
-        // Simpan URL saat ini ke sessionStorage
-        sessionStorage.setItem('redirect_after_login', window.location.pathname);
-        // Redirect ke halaman login
-        window.location.href = '/login';
-        return;
+      saveCalculatorDataToLocalStorage()
+        // Ambil URL halaman kalkulator saat ini
+        const redirectUrl = window.location.pathname; // Hasilnya akan seperti "/halaman-kalkulator"
+
+        // Arahkan ke halaman login DENGAN menyertakan URL tujuan
+        // Ini akan menghasilkan URL seperti: /login?redirect_to=/halaman-kalkulator
+        window.location.href = '/login?redirect_to=' + redirectUrl;
+        
+        return; // Hentikan eksekusi skrip
     }
-    const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+      const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
 
-    const data = {
-        jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
-        tanggungan: document.getElementById('floatingInput').value,
-        status_perkawinan: document.getElementById('floatingSelect').value,
-        masa_awal: document.getElementById('startMonth').value + '-01',
-        masa_akhir: document.getElementById('endMonth').value + '-01',
-        disetahunkan: document.getElementById('spdn-tidak')?.checked ?? false,
+      const data = {
+          jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
+          tanggungan: document.getElementById('floatingInput').value,
+          status_perkawinan: document.getElementById('floatingSelect').value,
+          masa_awal: document.getElementById('startMonth').value + '-01',
+          masa_akhir: document.getElementById('endMonth').value + '-01',
+          disetahunkan: document.getElementById('spdn-tidak')?.checked ?? false,
 
-        gaji: parseRupiah(document.getElementById('floatingGaji').value),
-        tunjangan_pph: parseRupiah(document.getElementById('floatingPPh').value),
-        tunjangan_lain: parseRupiah(document.getElementById('floatingLain').value),
-        honor: parseRupiah(document.getElementById('floatingHonor').value),
-        premi: parseRupiah(document.getElementById('floatingPremi').value),
-        natura: parseRupiah(document.getElementById('floatingNatura').value),
-        tantiem: parseRupiah(document.getElementById('floatingTantiem').value),
+          gaji: parseRupiah(document.getElementById('floatingGaji').value),
+          tunjangan_pph: parseRupiah(document.getElementById('floatingPPh').value),
+          tunjangan_lain: parseRupiah(document.getElementById('floatingLain').value),
+          honor: parseRupiah(document.getElementById('floatingHonor').value),
+          premi: parseRupiah(document.getElementById('floatingPremi').value),
+          natura: parseRupiah(document.getElementById('floatingNatura').value),
+          tantiem: parseRupiah(document.getElementById('floatingTantiem').value),
 
-        biaya_jabatan: parseRupiah(document.getElementById('biayaJabatan').textContent),
-        iuran_pensiun: parseRupiah(document.getElementById('floatingTHT').value),
-        zakat: parseRupiah(document.getElementById('floatingZakar').value),
+          biaya_jabatan: parseRupiah(document.getElementById('biayaJabatan').textContent),
+          iuran_pensiun: parseRupiah(document.getElementById('floatingTHT').value),
+          zakat: parseRupiah(document.getElementById('floatingZakar').value),
 
-        penghasilan_bruto: parseRupiah(document.querySelectorAll('.rp-total')[0].textContent),
-        pengurangan: parseRupiah(document.querySelectorAll('.rp-total')[1].textContent),
-        penghasilan_neto: parseRupiah(document.querySelectorAll('.res')[0].textContent),
-        penghasilan_neto_masa_sebelumnya: parseRupiah(document.getElementById('floatingMasaSebelum').value),
-        penghasilan_neto_pph21: parseRupiah(document.querySelectorAll('.res')[1].textContent),
-        ptkp: parseRupiah(document.querySelectorAll('.res')[2].textContent),
-        pkp: parseRupiah(document.querySelectorAll('.res')[3].textContent),
-        tarif_progresif: document.querySelectorAll('.res')[4].textContent,
-        pph21_pkp: parseRupiah(document.querySelectorAll('.res')[5].textContent),
-        pph21_dipotong_masa_sebelum: parseRupiah(document.getElementById('floatingTerpotong').value),
-        pph21_terutang: parseRupiah(document.querySelectorAll('.rp-total')[2].textContent)
-    };
-
-    fetch('/pegawai-tetap/store', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-                  'Accept': 'application/json',
-                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          },
-          body: JSON.stringify(data)
-      })
-      .then(async response => {
-          if (!response.ok) {
-              if (response.status === 422) {
-                  return response.json().then(error => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                      // Bersihkan semua error dulu
-                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
-
-                      // Tampilkan error dari Laravel
-                      for (let field in error.errors) {
-                          const target = document.getElementById(`error-${field}`);
-                          if (target) {
-                              target.textContent = error.errors[field][0];
-                          }
-                      }
-                  });
-              } else {
-                  console.error('Unexpected error:', response.status);
-              }
-          } else {
-              return response.json().then(data => {
-                  // Cek jika server mengembalikan 'success: true' dan 'user_id'
-                  if (data.success && data.user_id) {
-                      console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
-                      
-                      // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
-                      console.log(data.user_id)
-                      window.location.href = '/payment/paypage/' + data.user_id;
-                  
-                  } else {
-                      // Jika sukses tapi tidak ada ID, tampilkan error
-                      alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
-                      // Aktifkan kembali tombol jika perlu
-                  }
-              });
-          }
-      })
-      .catch(err => {
-          console.error('Network error:', err);
-      });
-});
-
-document.getElementById('remind-later').addEventListener('click', async function () {
-  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
-
-    if (!isLoggedIn) {
-        // Simpan URL saat ini ke sessionStorage
-        sessionStorage.setItem('redirect_after_login', window.location.pathname);
-        // Redirect ke halaman login
-        window.location.href = '/login';
-        return;
-    }
-    const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
-
-    const data = {
-        jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
-        tanggungan: document.getElementById('floatingInput').value,
-        status_perkawinan: document.getElementById('floatingSelect').value,
-        masa_awal: document.getElementById('startMonth').value + '-01',
-        masa_akhir: document.getElementById('endMonth').value + '-01',
-        disetahunkan: document.getElementById('spdn-tidak')?.checked ?? false,
-
-        gaji: parseRupiah(document.getElementById('floatingGaji').value),
-        tunjangan_pph: parseRupiah(document.getElementById('floatingPPh').value),
-        tunjangan_lain: parseRupiah(document.getElementById('floatingLain').value),
-        honor: parseRupiah(document.getElementById('floatingHonor').value),
-        premi: parseRupiah(document.getElementById('floatingPremi').value),
-        natura: parseRupiah(document.getElementById('floatingNatura').value),
-        tantiem: parseRupiah(document.getElementById('floatingTantiem').value),
-
-        biaya_jabatan: parseRupiah(document.getElementById('biayaJabatan').textContent),
-        iuran_pensiun: parseRupiah(document.getElementById('floatingTHT').value),
-        zakat: parseRupiah(document.getElementById('floatingZakar').value),
-
-        penghasilan_bruto: parseRupiah(document.querySelectorAll('.rp-total')[0].textContent),
-        pengurangan: parseRupiah(document.querySelectorAll('.rp-total')[1].textContent),
-        penghasilan_neto: parseRupiah(document.querySelectorAll('.res')[0].textContent),
-        penghasilan_neto_masa_sebelumnya: parseRupiah(document.getElementById('floatingMasaSebelum').value),
-        penghasilan_neto_pph21: parseRupiah(document.querySelectorAll('.res')[1].textContent),
-        ptkp: parseRupiah(document.querySelectorAll('.res')[2].textContent),
-        pkp: parseRupiah(document.querySelectorAll('.res')[3].textContent),
-        tarif_progresif: document.querySelectorAll('.res')[4].textContent,
-        pph21_pkp: parseRupiah(document.querySelectorAll('.res')[5].textContent),
-        pph21_dipotong_masa_sebelum: parseRupiah(document.getElementById('floatingTerpotong').value),
-        pph21_terutang: parseRupiah(document.querySelectorAll('.rp-total')[2].textContent)
-    };
-
-    // const currentPath = window.location.pathname;
-    // window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+          penghasilan_bruto: parseRupiah(document.querySelectorAll('.rp-total')[0].textContent),
+          pengurangan: parseRupiah(document.querySelectorAll('.rp-total')[1].textContent),
+          penghasilan_neto: parseRupiah(document.querySelectorAll('.res')[0].textContent),
+          penghasilan_neto_masa_sebelumnya: parseRupiah(document.getElementById('floatingMasaSebelum').value),
+          penghasilan_neto_pph21: parseRupiah(document.querySelectorAll('.res')[1].textContent),
+          ptkp: parseRupiah(document.querySelectorAll('.res')[2].textContent),
+          pkp: parseRupiah(document.querySelectorAll('.res')[3].textContent),
+          tarif_progresif: document.querySelectorAll('.res')[4].textContent,
+          pph21_pkp: parseRupiah(document.querySelectorAll('.res')[5].textContent),
+          pph21_dipotong_masa_sebelum: parseRupiah(document.getElementById('floatingTerpotong').value),
+          pph21_terutang: parseRupiah(document.querySelectorAll('.rp-total')[2].textContent)
+      };
 
       fetch('/pegawai-tetap/store', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-                  'Accept': 'application/json',
-                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          },
-          body: JSON.stringify(data)
-      })
-      .then(response => {
-          if (!response.ok) {
-              if (response.status === 422) {
-                  return response.json().then(error => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                      // Bersihkan semua error dulu
-                      document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify(data)
+        })
+        .then(async response => {
+            if (!response.ok) {
+                if (response.status === 422) {
+                    return response.json().then(error => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // Bersihkan semua error dulu
+                        document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
 
-                      // Tampilkan error dari Laravel
-                      for (let field in error.errors) {
-                          const target = document.getElementById(`error-${field}`);
-                          if (target) {
-                              target.textContent = error.errors[field][0];
-                          }
-                      }
-                  });
-              } else {
-                  console.error('Unexpected error:', response.status);
-              }
+                        // Tampilkan error dari Laravel
+                        for (let field in error.errors) {
+                            const target = document.getElementById(`error-${field}`);
+                            if (target) {
+                                target.textContent = error.errors[field][0];
+                            }
+                        }
+                    });
+                } else {
+                    console.error('Unexpected error:', response.status);
+                }
             } else {
-              return response.json().then(data => {
-                  // Cek jika server mengembalikan 'success: true' dan 'user_id'
-                  if (data.success && data.user_id) {
-                      console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
-                      
-                      // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
-                      console.log(data.user_id)
-                      window.location.href = '/home';
-                  
-                  } else {
-                      // Jika sukses tapi tidak ada ID, tampilkan error
-                      alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
-                      // Aktifkan kembali tombol jika perlu
-                  }
-              });
-          }
-      })
-      .catch(err => {
-          console.error('Network error:', err);
-      });
+                return response.json().then(data => {
+                    // Cek jika server mengembalikan 'success: true' dan 'user_id'
+                    if (data.success && data.user_id) {
+                        console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
+                        
+                        // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
+                        console.log(data.user_id)
+                        window.location.href = '/payment/paypage/' + data.user_id;
+                    
+                    } else {
+                        // Jika sukses tapi tidak ada ID, tampilkan error
+                        alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
+                        // Aktifkan kembali tombol jika perlu
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            console.error('Network error:', err);
+        });
+  });
+
+  document.getElementById('remind-later').addEventListener('click', async function () {
+    const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+
+      if (!isLoggedIn) {
+        saveCalculatorDataToLocalStorage()
+          // Simpan URL saat ini ke sessionStorage
+          sessionStorage.setItem('redirect_after_login', window.location.pathname);
+          // Redirect ke halaman login
+          window.location.href = '/login';
+          return;
+      }
+      const parseRupiah = (str) => parseInt((str || '').replace(/[^\d]/g, '') || '0');
+
+      const data = {
+          jenis_kelamin: document.querySelector('input[name="sex"]:checked')?.value,
+          tanggungan: document.getElementById('floatingInput').value,
+          status_perkawinan: document.getElementById('floatingSelect').value,
+          masa_awal: document.getElementById('startMonth').value + '-01',
+          masa_akhir: document.getElementById('endMonth').value + '-01',
+          disetahunkan: document.getElementById('spdn-tidak')?.checked ?? false,
+
+          gaji: parseRupiah(document.getElementById('floatingGaji').value),
+          tunjangan_pph: parseRupiah(document.getElementById('floatingPPh').value),
+          tunjangan_lain: parseRupiah(document.getElementById('floatingLain').value),
+          honor: parseRupiah(document.getElementById('floatingHonor').value),
+          premi: parseRupiah(document.getElementById('floatingPremi').value),
+          natura: parseRupiah(document.getElementById('floatingNatura').value),
+          tantiem: parseRupiah(document.getElementById('floatingTantiem').value),
+
+          biaya_jabatan: parseRupiah(document.getElementById('biayaJabatan').textContent),
+          iuran_pensiun: parseRupiah(document.getElementById('floatingTHT').value),
+          zakat: parseRupiah(document.getElementById('floatingZakar').value),
+
+          penghasilan_bruto: parseRupiah(document.querySelectorAll('.rp-total')[0].textContent),
+          pengurangan: parseRupiah(document.querySelectorAll('.rp-total')[1].textContent),
+          penghasilan_neto: parseRupiah(document.querySelectorAll('.res')[0].textContent),
+          penghasilan_neto_masa_sebelumnya: parseRupiah(document.getElementById('floatingMasaSebelum').value),
+          penghasilan_neto_pph21: parseRupiah(document.querySelectorAll('.res')[1].textContent),
+          ptkp: parseRupiah(document.querySelectorAll('.res')[2].textContent),
+          pkp: parseRupiah(document.querySelectorAll('.res')[3].textContent),
+          tarif_progresif: document.querySelectorAll('.res')[4].textContent,
+          pph21_pkp: parseRupiah(document.querySelectorAll('.res')[5].textContent),
+          pph21_dipotong_masa_sebelum: parseRupiah(document.getElementById('floatingTerpotong').value),
+          pph21_terutang: parseRupiah(document.querySelectorAll('.rp-total')[2].textContent)
+      };
+
+      // const currentPath = window.location.pathname;
+      // window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+
+        fetch('/pegawai-tetap/store', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 422) {
+                    return response.json().then(error => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // Bersihkan semua error dulu
+                        document.querySelectorAll('[id^="error-"]').forEach(el => el.textContent = '');
+
+                        // Tampilkan error dari Laravel
+                        for (let field in error.errors) {
+                            const target = document.getElementById(`error-${field}`);
+                            if (target) {
+                                target.textContent = error.errors[field][0];
+                            }
+                        }
+                    });
+                } else {
+                    console.error('Unexpected error:', response.status);
+                }
+              } else {
+                return response.json().then(data => {
+                    // Cek jika server mengembalikan 'success: true' dan 'user_id'
+                    if (data.success && data.user_id) {
+                        console.log('Data berhasil disimpan! Mengarahkan ke pembayaran...');
+                        
+                        // Arahkan pengguna ke halaman pembayaran dengan ID yang diterima
+                        console.log(data.user_id)
+                        window.location.href = '/home';
+                    
+                    } else {
+                        // Jika sukses tapi tidak ada ID, tampilkan error
+                        alert('Terjadi kesalahan: Gagal mendapatkan ID perhitungan.');
+                        // Aktifkan kembali tombol jika perlu
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            console.error('Network error:', err);
+        });
+
+  });
 
 });
+
 

@@ -9,12 +9,7 @@
             @guest
                 <div class="d-flex">
                     <i class="bi bi-exclamation-circle text-danger"></i>
-                    <p class="fst-italic text-danger ms-2">Kamu harus login untuk menikmati fitur pembayaran dan notifikasi yang kami sediakan. Jika belum login, kamu hanya dapat melihat nominal yang harus  dibayar saja.</p>
-                </div>
-                <div class="navbar-nav gap-2 ms-auto d-flex flex-row align-items-center ">
-                    <a class="btn btn-primary rounded-0 fs-5 px-3" href="/login">Login</a>
-                    <p class="text-center m-0">atau</p>
-                    <a class="btn btn-outline-primary rounded-0 fs-5 px-3" href="/register">Register</a>
+                    <p class="fst-italic text-danger ms-2 mb-0">Kamu harus login untuk menikmati fitur pembayaran dan notifikasi yang kami sediakan. Jika belum login, kamu hanya dapat melihat nominal yang harus  dibayar saja.</p>
                 </div>
             @endguest
             <div class="card mt-5">
