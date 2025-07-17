@@ -21,7 +21,6 @@ button {
 .dashboard-cards {
     border-radius: 0 !important;
     display: flex;
-    flex-wrap: nowrap;
     gap: 0;
     overflow: hidden;
     background-color: #1D267D;
@@ -93,11 +92,6 @@ button {
   margin-right: -50vw;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.split-pengingat {
-    display: flex;
-    justify-content: space-between;
 }
 
 .button-pengingat {
@@ -183,12 +177,6 @@ button, .btn {
     color: #1d267d;
   }
 
-  .keterangan-waktu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   select.form-select {
     border: 1px solid #1d267d;
     border-radius: 0 !important;
@@ -198,6 +186,7 @@ button, .btn {
     justify-content: center;
     text-align: center;
     width: 148px;
+    padding-right: 30px;
   }
 
   .form-control[type="time"] {
