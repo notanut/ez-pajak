@@ -6,7 +6,7 @@
     <section class="d-block d-md-flex flex-column">
 
         <div class="d-flex flex-column p-3">
-            <h1><span class="fw-light">Halaman</span> Pembayaran</h1>
+            <h1 class="text-primary"><span class="fw-light">Halaman</span> Pembayaran</h1>
             <p>Tinggal selangkah lagi nih. Pengisian data dibawah ini yang sudah kami rangkum rapi sesuai regulasi masa kini. Kamu tinggal pilih metode pembayaran yang paling nyaman dan cocok buat kamu yaa!</p>
         </div>
 
@@ -37,7 +37,7 @@
                         </div>
                         <div class="column">
                             <h5 class="m-0">Jumlah</h5>
-                            <h5 class="m-0 mt-2">XXXXXXX</h5>
+                            <h5 class="m-0 mt-2">{{$transaksi->total}}</h5>
                         </div>
                     </div>
                     <div class="border border-2 border-start-0 border-end-0 px-5 py-4 mb-4 bg-white">

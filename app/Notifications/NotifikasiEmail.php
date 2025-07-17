@@ -10,15 +10,15 @@ use Illuminate\Notifications\Notification;
 class NotifikasiEmail extends Notification
 {
     use Queueable;
-    private $messages;
+    protected $pesan;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($messages)
+    public function __construct(array $pesan)
     {
         //
-        $this->messages = $messages;
+        $this->pesan = $pesan;
     }
 
     /**
@@ -38,8 +38,8 @@ class NotifikasiEmail extends Notification
     {
         return (new MailMessage)
                     ->line('Haiii')
-                    ->line($this->messages['hi'])
-                    ->line($this->messages['isi'])
+                    ->line($this->pesan['hi'])
+                    ->line($this->pesan['isi'])
                     // ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
@@ -55,4 +55,23 @@ class NotifikasiEmail extends Notification
             //
         ];
     }
+
+    // --INI CARA LAIN MISAL MAU PAKAI HTML CSS BUAT BIKIN BENTUK EMAILNYA--
+    // public function envelope(): Envelope
+    // {
+    //     return new Envelope(
+    //         subject: 'Pengingat Terjadwal Anda', // Subjek email
+    //     );
+    // }
+
+    // /**
+    //  * Get the message content definition.
+    //  */
+    // public function content(): Content
+    // {
+    //     // Menentukan view mana yang akan digunakan untuk konten email
+    //     return new Content(
+    //         markdown: 'emails.notifikasi',
+    //     );
+    // }
 }

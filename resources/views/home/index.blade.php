@@ -18,7 +18,7 @@
     </div>
 
     <!-- Card Section -->
-    <div class="dashboard-cards d-flex flex-nowrap overflow-hidden rounded mb-5">
+    <div class="d-flex flex-nowrap overflow-hidden rounded mb-5 flex-column flex-lg-row">
         <!-- Durasi Jatuh Tempo -->
         <div class="dashboard-card bg-card text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -27,7 +27,7 @@
                     <i class="bi bi-clock"></i>
                 </div>
             </div>
-            <h4>2 Bulan, 4 Hari</h4>
+            <h4 id="countdown">– Bulan, – Minggu, – Hari</h4>
             <p class="fst-italic card-text text-white">Ini adalah sisa waktu yang kamu punya sebelum deadline pembayaran pajak berikutnya.</p>
             <div class="site">
                 <a href="#" class="card-text text-white small text-decoration-none"><span class="fw-bold">Bayar</span> Sekarang &rsaquo;</a>
@@ -58,7 +58,7 @@
                 </div>
 
             </div>
-            <h4>Rp 2.500.000,00</h4>
+            <h4>Rp {{ number_format($jumlahPajak ?? 0, 2, ',', '.') }} </h4>
             <p class="fst-italic card-text text-white">Ini total pajak yang perlu dibayar untuk periode ini. Pastikan data yang kamu input sudah sesuai yaa.</p>
             <div class="d-flex justify-content-between mt-2">
                 <a href="#" class="card-text text-white small text-decoration-none fw-bold">
@@ -77,7 +77,7 @@
             <h4 class="text-primary">Kustom <span class="fw-normal">Pengingat</span></h4>
         <p class="fst-italic">Gak mau ketinggalan bayar pajak? Atur pengingat sesuai tanggal yang kamu mau. Bebas, fleksibel, dan kamu yang tentuin.</p>
 
-        <div class="split-pengingat">
+        <div class="d-flex flex-column flex-lg-row justify-content-between">
              <div class="keterangan-pengingat">
                 <h6 class="mt-4 fw-bold text-primary">Pengingat <span class="fw-normal">Kamu</span></h6>
                 <p class="fst-italic">Ini daftar tanggal penting yang udah kamu set. Kami akan bantu ingetin di tanggal itu yaa.</p>
@@ -126,42 +126,62 @@
             </div>
             <div class="col-md-6">
                 <div class="reminder-detail">
-                <h6 class="text-primary">Detail <span class="fw-normal">Pengingat</span></h6>
-                <p class="fst-italic text-muted">Jangan lupa tentuin mau diingetin seberapa jauh sebelum hari H ya!</p>
+                <form action="{{route('jadwal.notifikasi', $pengguna)}}" method="POST">
+                    @csrf
+                    <h6 class="text-primary">Detail <span class="fw-normal">Pengingat</span></h6>
+                    <p class="fst-italic text-muted">Jangan lupa tentuin mau diingetin seberapa jauh sebelum hari H ya!</p>
 
-                <div class="d-flex gap-2 mb-3">
-                {{-- <input type="number" class="form-control" value="3"> --}}
-                <select class="form-select">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <select class="form-select">
-                    <option>Minggu</option>
-                    <option>Hari</option>
-                </select>
-                <div class="keterangan-waktu"><p>sebelumnya, pukul</p></div>
-                <select class="form-select">
-                    <option>07:00</option>
-                    <option>10:00</option>
-                    <option>13:00</option>
-                    <option>16:00</option>
-                    <option>19:00</option>
-                </select>
-                </div>
+                    <div class="d-flex gap-2 mb-3 flex-column flex-md-row">
+                    {{-- <input type="number" class="form-control" value="3"> --}}
+                    <select class="form-select" name="jumlah" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    @error('jumlah')
+                        <div class="text-danger mt-1" style="font-size: 0.9rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <select class="form-select" name="satuan" required>
+                        <option value="Minggu">Minggu</option>
+                        <option value="Hari">Hari</option>
+                    </select>
+                    @error('satuan')
+                        <div class="text-danger mt-1" style="font-size: 0.9rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p>sebelumnya, pukul</p></div>
+                        <select class="form-select" name="waktu" required>
+                            <option value="07.00">07:00</option>
+                            <option value="10.00">10:00</option>
+                            <option value="13.00">13:00</option>
+                            <option value="16.00">16:00</option>
+                            <option value="19.00">19:00</option>
+                        </select>
+                    </div>
+                    @error('waktu')
+                        <div class="text-danger mt-1" style="font-size: 0.9rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <h6 class="text-primary">Email <span class="fw-normal">Pengingat</span></h6>
+                    <p class="fst-italic text-muted">Kami bakal kirim pengingat lewat email ini. Pastikan udah bener biar notifikasimu ga nyasar.</p>
 
-                <h6 class="text-primary">Email <span class="fw-normal">Pengingat</span></h6>
-                <p class="fst-italic text-muted">Kami bakal kirim pengingat lewat email ini. Pastikan udah bener biar notifikasimu ga nyasar.</p>
+                    <div class="input-group d-flex align-items-center gap-5">
+                        <input type="email" class="fw-bold bg-element-orange text-white" name="email" value="{{$pengguna->email}}" readonly>
+                        {{-- <button class="btn btn-outline-primary">
+                            Edit <i class="bi bi-pencil"></i>
+                        </button> --}}
+                        <button type="submit" class="btn btn-outline-primary">Jadwalkan Notifikasi</button>
+                    </div>
+                </form>
 
-                <div class="input-group d-flex align-items-center gap-5">
-                    <input type="email" class="fw-bold bg-element-orange text-white" value="user@gmail.com">
-                    <button class="btn btn-outline-primary">
-                        Edit <i class="bi bi-pencil"></i>
-                    </button>
-                </div>
             </div>
             </div>
         </div>
@@ -172,42 +192,8 @@
 @endsection
 
 @push('scripts')
-  <!-- FullCalendar CDN CSS & JS -->
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
-  <!-- Calendar Init Script -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const calendarEl = document.getElementById('calendar');
-    let selectedDate = null; // untuk simpan tanggal
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      selectable: true,
-      dateClick: function(info) {
-        selectedDate = info.dateStr;
-        // opsional: tampilkan highlight atau info tanggal
-        console.log("Tanggal dipilih:", selectedDate);
-      }
-    });
-
-    calendar.render();
-
-    // Saat tombol 'Tambah +' diklik
-    document.getElementById('btnTambah').addEventListener('click', function () {
-      if (selectedDate) {
-        alert('Tanggal yang akan disimpan: ' + selectedDate);
-
-        // TODO: bisa lanjut kirim ke server lewat form hidden / fetch / axios
-        // contoh:
-        // axios.post('/simpan-pengingat', { tanggal: selectedDate });
-
-      } else {
-        alert('Pilih tanggal terlebih dahulu dari kalender!');
-      }
-    });
-  });
-</script>
-
+    <!-- FullCalendar CDN CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    @vite('resources/js/pages/home.js')
 @endpush
