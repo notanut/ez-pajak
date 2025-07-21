@@ -27,7 +27,7 @@
                     <img class="w-icon" src="{{ asset('img/mdi_instagram.png') }}" alt="">
                     <img class="w-icon" src="{{ asset('img/mdi_linkedin.png') }}" alt="">
                 </div>
-                <div class="btn border border-2 border-primary rounded-0 p-0 d-flex flex-row gap-4 w-25 align-items-center p-2">
+                <button class="btn border border-2 border-primary rounded-0 p-0 d-flex flex-row gap-4 w-25 align-items-center p-2" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                     <p class="ms-2 m-0">Back to top</p>
                     <div class="justify-content-center">
                         <svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@
                         </svg>
                     </div>
 
-                </div>
+                </button>
             </div>
             {{-- footer 2 --}}
             <div class="col-6 col-md-3 d-flex flex-column p-3">

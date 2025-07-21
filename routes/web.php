@@ -61,7 +61,7 @@ Route::post('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'ind
 Route::get('/payment/paypage', function () {
     return view('payment.paypage');
 });
-
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::middleware('auth')->post('/payment/paypage/{id}',[PenggunaController::class,'index']);
 Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
