@@ -16,7 +16,10 @@
         <div class="row ps-3 pe-3">
             {{-- footer 1 --}}
             <div class="col-12 col-md-6 d-flex flex-column p-3 gap-3">
-                <h4>LOGO</h4>
+                <div class="d-flex flex-row">
+                    <img src="{{ asset('images/logo.png') }}"  width="40" height="40" class="d-inline-block align-middle">
+                    <span class="ms-2 align-middle fs-4 fw-semibold ezpajak-color fst-italic">EZPajak</span>
+                </div>
                 <p class="mb-0 w-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                 <div class="d-flex flex-row gap-4 align-items-center">
                     <img class="w-icon" src="{{ asset('img/ic_baseline-facebook.png') }}" alt="">

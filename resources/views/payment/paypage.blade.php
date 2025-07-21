@@ -37,30 +37,30 @@
                         </div>
                         <div class="column">
                             <h5 class="m-0">Jumlah</h5>
-                            <h5 class="m-0 mt-2">{{$transaksi->total}}</h5>
+                            <h5 class="m-0 mt-2">{{number_format($transaksi->total, 0, ',', '.')}}</h5>
                         </div>
                     </div>
                     <div class="border border-2 border-start-0 border-end-0 px-5 py-4 mb-4 bg-white">
                         <div class="d-flex flex-row justify-content-between">
                             <h6>Subtotal(Rp)</h6>
-                            <h6>Rp.{{$transaksi->total}}</h6>
+                            <h6>Rp.{{number_format($transaksi->total, 0, ',', '.')}}</h6>
                         </div>
                         <div class="d-flex flex-row justify-content-between">
                             <h6>Biaya admin</h6>
-                            <h6>Rp.{{$transaksi->total / 100}}</h6>
+                            <h6>Rp.{{number_format($transaksi->total / 100, 0, ',', '.')}}</h6>
                         </div>
                         <div class="d-flex flex-row justify-content-between">
                             <h4>Jumlah total (Rp)</h4>
-                            <h4>Rp.{{$transaksi->total + $transaksi->total/100}}</h4>
+                            <h4>Rp.{{number_format($transaksi->total + $transaksi->total / 100, 0, ',', '.')}}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="border border-2 mt-3 ps-3 py-3 bg-primary">
-                    <form class="m-0 d-flex flex-row align-items-center justify-content-between" action="">
-                        <label for="file-upload" class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</label>
-                        <input type="file" id="file-upload" name="file">
+                    <label class="m-0 p-0 d-flex flex-row align-items-center justify-content-between" style="cursor: pointer">
+                        <span for="file-upload" class="p-0 m-0 text-white fw-bold fs-3">Upload Dokumen</span>
+                        <input type="file" id="file-upload" name="file" class="d-none">
                         <img class="upload" src="{{asset('img/material-symbols_upload.png')}}" alt="">
-                    </form>
+                    </label>
                 </div>
             </div>
             <div class="col-12 col-md-6 d-flex flex-column">

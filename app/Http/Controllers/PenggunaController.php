@@ -49,16 +49,16 @@ class PenggunaController extends Controller
         $waktu = $request->input('waktu');
 
         // dd($jumlah);
-        $waktuKirim = now()->addSeconds($jumlah);
+        // $waktuKirim = now()->addSeconds($jumlah);
         // Waktu kirimnya kapan
-        // $waktuKirim = Carbon::now(config('app.timezone'));
+        $waktuKirim = Carbon::now(config('app.timezone'));
 
-        // if($satuan === 'Hari'){
-        //     $waktuKirim -> addDays($jumlah);
-        //     dd('Jalan Bangg4');
-        // }elseif ($satuan === 'Minggu'){
-        //     $waktuKirim -> addWeeks($jumlah);
-        // }
+        if($satuan === 'Hari'){
+            $waktuKirim -> addDays($jumlah);
+            dd('Jalan Bangg4');
+        }elseif ($satuan === 'Minggu'){
+            $waktuKirim -> addWeeks($jumlah);
+        }
 
         $pesan["hi"] = "Hey, {$pengguna->nama}";
         $pesan["isi"] = "Ini adalah pengingat terjadwal Anda!";
