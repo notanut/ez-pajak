@@ -16,11 +16,11 @@
         <div class="row ps-3 pe-3">
             {{-- footer 1 --}}
             <div class="col-12 col-md-6 d-flex flex-column p-3 gap-3">
-                <div class="d-flex flex-row">
-                    <img src="{{ asset('images/logo.png') }}"  width="40" height="40" class="d-inline-block align-middle">
-                    <span class="ms-2 align-middle fs-4 fw-semibold ezpajak-color fst-italic">EZPajak</span>
-                </div>
-                <p class="mb-0 w-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="{{asset('images/logo.png')}}" width="40" height="40" class="d-inline-block align-middle">
+                    <span class="ms-2 align-middle fs-4 fw-semibold ezpajak-color text-blue fst-italic" style="font-family: Raleway;">EZPajak</span>
+                </a>
+                <p class="mb-0 w-50">EZPajak menjadi platform pembayaran pajak unggulan melalui panduan ringan buat urus Pajak Kamu. Dibuat khusus dengan bahasa dan tampilan yang relate. Anti kaku, dan tetap profesional.</p>
                 <div class="d-flex flex-row gap-4 align-items-center">
                     <img class="w-icon" src="{{ asset('img/ic_baseline-facebook.png') }}" alt="">
                     <img class="w-x" src="{{ asset('img/devicon_twitter.png') }}" alt="">
@@ -46,13 +46,23 @@
             </div>
             {{-- footer 2 --}}
             <div class="col-6 col-md-3 d-flex flex-column p-3">
-                <h4>Kontak informasi</h4>
-                <ul class="ps-0">
-                    <li class="list-group-item">Landing Page</li>
-                    <li class="list-group-item">Kalkulator</li>
-                    <li class="list-group-item">Login</li>
-                    <li class="list-group-item">Register</li>
-                </ul>
+                <h4>Navigasi Cepat</h4>
+                @guest
+                    <ul class="ps-0">
+                        <li class="list-group-item"><a class="list-group-item" href="/">Home</a></li>
+                        <li class="list-group-item"><a class="list-group-item" href="/kuesioner">Kalkulator</a></li>
+                        <li class="list-group-item"><a class="list-group-item" href="/login">Login</a></li>
+                        <li class="list-group-item"><a class="list-group-item" href="/register">Register</a></li>
+                    </ul>
+                    @endguest
+                @auth
+                    <ul class="ps-0">
+                        <li class="list-group-item"><a class="list-group-item" href="/">Home</a></li>
+                        <li class="list-group-item"><a class="list-group-item" href="/kuesioner">Kalkulator</a></li>
+                        <li class="list-group-item"><a class="list-group-item" href="/home">Dashboard</a></li>
+                        <li class="list-group-item"><a class="list-group-item" href="/exit">Log Out</a></li>
+                    </ul>
+                @endauth
             </div>
             {{-- footer 3 --}}
             <div class="col-6 col-md-3 d-flex flex-column p-3">
