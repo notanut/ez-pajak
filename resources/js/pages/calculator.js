@@ -47,29 +47,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // fungsi simpan pajak - global untuk dashboard
-function simpanPajak(kategori, data) {
-  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
+// function simpanPajak(kategori, data) {
+//   const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
 
-  if (isLoggedIn) {
-      fetch('/import-guest-pajak', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-          },
-          body: JSON.stringify({ kategori, data })
-      })
-      .then(res => res.json())
-      .then(response => {
-          if (response.success) {
-              console.log('Data pajak berhasil disimpan ke server.');
-          }
-      });
-  } else {
-      localStorage.setItem('ezpajak_guest', JSON.stringify({ kategori, data }));
-      console.log('Data pajak disimpan sementara di localStorage (guest).');
-  }
-}
+//   if (isLoggedIn) {
+//       fetch('/import-guest-pajak', {
+//           method: 'POST',
+//           headers: {
+//               'Content-Type': 'application/json',
+//               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+//           },
+//           body: JSON.stringify({ kategori, data })
+//       })
+//       .then(res => res.json())
+//       .then(response => {
+//           if (response.success) {
+//               console.log('Data pajak berhasil disimpan ke server.');
+//           }
+//       });
+//   } else {
+//       localStorage.setItem('ezpajak_guest', JSON.stringify({ kategori, data }));
+//       console.log('Data pajak disimpan sementara di localStorage (guest).');
+//   }
+// }
 
 const startMonthInput = document.getElementById('startMonth');
 const endMonthInput = document.getElementById('endMonth');
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     console.log("Hasil dihitung: ", hasil)
-    simpanPajak('pegawai_tetap', hasil);
+    // simpanPajak('pegawai_tetap', hasil);
 
   }
 
