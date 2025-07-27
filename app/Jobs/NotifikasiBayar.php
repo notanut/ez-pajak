@@ -20,7 +20,7 @@ class NotifikasiBayar implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(Pengguna $pengguna, Pesan $pesan)
+    public function __construct(Pengguna $pengguna, array $pesan)
     {
         //
         $this->pengguna = $pengguna;
@@ -35,4 +35,5 @@ class NotifikasiBayar implements ShouldQueue
         //
         $this->pengguna->notify(new NotifikasiEmail($this->pesan));
     }
+
 }

@@ -7,6 +7,6 @@
     <div class="p-4" style="max-width: 450px;">
         <img src="{{ asset('assets/payment-success/pembayaran-sukses.png') }}" alt="Pembayaran Sukses" class="img-fluid">
     </div>
-    <button>Ke Dashboard Saya</button>
+    <button><a href="/home">Ke Dashboard Saya</a></button>
 </section>
 @endsection

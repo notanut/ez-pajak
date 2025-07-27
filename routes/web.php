@@ -56,12 +56,13 @@ Route::get('/payment/success', function () {
 //     return view('home.index');
 // });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/jadwalkan-notifikasi/{pengguna}', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::post('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'indexJadwal'])->name('jadwal.notifikasi');
 
 Route::get('/payment/paypage', function () {
     return view('payment.paypage');
 });
-
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::middleware('auth')->post('/payment/paypage/{id}',[PenggunaController::class,'index']);
 Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
@@ -89,8 +90,11 @@ Route::get('/download/{id}', [HistoryController::class, 'download'])->name('down
 
 
 
-
+// Daerah Buat Tes Notif
 Route::get('user-notify', [PenggunaController::class, 'index']);
+Route::get('/test-notifikasi-cepat', [PenggunaController::class, 'testNotifikasi']);
+
+
 
 // use Illuminate\Support\Facades\Mail;
 

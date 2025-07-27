@@ -126,43 +126,62 @@
             </div>
             <div class="col-md-6">
                 <div class="reminder-detail">
-                <h6 class="text-primary">Detail <span class="fw-normal">Pengingat</span></h6>
-                <p class="fst-italic text-muted">Jangan lupa tentuin mau diingetin seberapa jauh sebelum hari H ya!</p>
+                <form action="{{route('jadwal.notifikasi', $pengguna)}}" method="POST">
+                    @csrf
+                    <h6 class="text-primary">Detail <span class="fw-normal">Pengingat</span></h6>
+                    <p class="fst-italic text-muted">Jangan lupa tentuin mau diingetin seberapa jauh sebelum hari H ya!</p>
 
-                <div class="d-flex gap-2 mb-3 flex-column flex-md-row">
-                {{-- <input type="number" class="form-control" value="3"> --}}
-                <select class="form-select">
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <select class="form-select">
-                    <option>Minggu</option>
-                    <option>Hari</option>
-                </select>
-                <div class="d-flex justify-content-center align-items-center">
-                    <p>sebelumnya, pukul</p></div>
-                    <select class="form-select">
-                        <option>07:00</option>
-                        <option>10:00</option>
-                        <option>13:00</option>
-                        <option>16:00</option>
-                        <option>19:00</option>
+                    <div class="d-flex gap-2 mb-3 flex-column flex-md-row">
+                    {{-- <input type="number" class="form-control" value="3"> --}}
+                    <select class="form-select" name="jumlah" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
-                </div>
+                    @error('jumlah')
+                        <div class="text-danger mt-1" style="font-size: 0.9rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <select class="form-select" name="satuan" required>
+                        <option value="Minggu">Minggu</option>
+                        <option value="Hari">Hari</option>
+                    </select>
+                    @error('satuan')
+                        <div class="text-danger mt-1" style="font-size: 0.9rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p>sebelumnya, pukul</p></div>
+                        <select class="form-select" name="waktu" required>
+                            <option value="07.00">07:00</option>
+                            <option value="10.00">10:00</option>
+                            <option value="13.00">13:00</option>
+                            <option value="16.00">16:00</option>
+                            <option value="19.00">19:00</option>
+                        </select>
+                    </div>
+                    @error('waktu')
+                        <div class="text-danger mt-1" style="font-size: 0.9rem;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <h6 class="text-primary">Email <span class="fw-normal">Pengingat</span></h6>
+                    <p class="fst-italic text-muted">Kami bakal kirim pengingat lewat email ini. Pastikan udah bener biar notifikasimu ga nyasar.</p>
 
-                <h6 class="text-primary">Email <span class="fw-normal">Pengingat</span></h6>
-                <p class="fst-italic text-muted">Kami bakal kirim pengingat lewat email ini. Pastikan udah bener biar notifikasimu ga nyasar.</p>
+                    <div class="input-group d-flex align-items-center gap-5">
+                        <input type="email" class="fw-bold bg-element-orange text-white" name="email" value="{{$pengguna->email}}" readonly>
+                        {{-- <button class="btn btn-outline-primary">
+                            Edit <i class="bi bi-pencil"></i>
+                        </button> --}}
+                        <button type="submit" class="btn btn-outline-primary">Jadwalkan Notifikasi</button>
+                    </div>
+                </form>
 
-                <div class="input-group d-flex align-items-center gap-5">
-                    <input type="email" class="fw-bold bg-element-orange text-white" value="user@gmail.com">
-                    <button class="btn btn-outline-primary">
-                        Edit <i class="bi bi-pencil"></i>
-                    </button>
-                </div>
             </div>
             </div>
         </div>

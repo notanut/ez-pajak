@@ -10,7 +10,7 @@
                         EZPajak adalah website interaktif berbasis browser yang memandu warga Indonesia
                         menyiapkan dan mengekspor SPT Tahunan secara mudah dan aman.
                     </p>
-                    <a href="#" class="btn btn-lg rounded-0 px-4 py-3 d-inline-flex align-items-center w-200 h-40 text-white" style="background-color:#FE8F1D">
+                    <a href="#calculatorCards" class="btn btn-lg rounded-0 px-4 py-3 d-inline-flex align-items-center w-200 h-40 text-white" style="background-color:#FE8F1D">
                         Coba Sekarang
                         {{-- <i class="ms-2 bi bi-box-arrow-up-right"></i> --}}
                         <img src="images/icon_login.png" alt="Paper Plane" style="width: 25px; height: auto;" class="ms-2">
@@ -47,7 +47,7 @@
         </div>
     </section>
 
-    <section class="py-5" style="background-color: #EEF2F8;">
+    <section class="py-5" style="background-color: #EEF2F8;" id="calculatorCards">
         <div class="container py-0">
             <!-- Heading -->
             <div class="mb-0">

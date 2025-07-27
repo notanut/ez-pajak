@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,7 @@ class HomeController extends Controller
                     ->first();
 
         $jumlahPajak = $data?->pph21_terutang ?? 0;
-
-        return view('home.index', compact('jumlahPajak'));
+        $pengguna = Auth::user();
+        return view('home.index', compact('jumlahPajak','pengguna'));
         }
 }
