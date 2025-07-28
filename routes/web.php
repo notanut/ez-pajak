@@ -25,7 +25,13 @@ Route::get('/calculator/pegawai', function () {
 });
 
 Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])->name('pegawai-tetap.store')->middleware('auth');
-Route::get('/pegawai-tetap/store', [PegawaiTetapController::class, 'create'])->name('pegawai-tetap.create')->middleware('auth');
+// Route::get('/pegawai-tetap/store', [PegawaiTetapController::class, 'create'])->name('pegawai-tetap.create')->middleware('auth');
+
+Route::get('/pegawai-tetap/create', [PegawaiTetapController::class, 'create'])->name('pegawai-tetap.create')->middleware('auth');
+// Rute untuk mengedit Pegawai Tetap
+Route::get('/pegawai-tetap/{transaksi}/edit', [PegawaiTetapController::class, 'edit'])->name('pegawai-tetap.edit')->middleware('auth');
+// Rute untuk update Pegawai Tetap
+Route::put('/pegawai-tetap/{transaksi}', [PegawaiTetapController::class, 'update'])->name('pegawai-tetap.update')->middleware('auth');
 
 
 Route::get('/calculator/pegawaiTidakTetap', function () {
@@ -38,7 +44,16 @@ Route::get('/calculator/bukanPegawai', function () {
 });
 
 Route::middleware('auth')->post('/bukan-pegawai/store', [BukanPegawaiController::class, 'store'])->name('bukan-pegawai.store');
+// Rute untuk mengedit Bukan Pegawai
+Route::get('/bukan-pegawai/{transaksi}/edit', [BukanPegawaiController::class, 'edit'])->name('bukan-pegawai.edit')->middleware('auth');
+// Rute untuk update Bukan Pegawai (akan dibuat di langkah selanjutnya)
+Route::put('/bukan-pegawai/{transaksi}', [BukanPegawaiController::class, 'update'])->name('bukan-pegawai.update')->middleware('auth');
+
 Route::middleware('auth')->post('/pegawai-tidak-tetap/store', [PegawaiTidakTetapController::class, 'store'])->name('pegawai-tidak-tetap.store');
+// Rute untuk mengedit Pegawai Tidak Tetap
+Route::get('/pegawai-tidak-tetap/{transaksi}/edit', [PegawaiTidakTetapController::class, 'edit'])->name('pegawai-tidak-tetap.edit')->middleware('auth');
+// Rute untuk update Pegawai Tidak Tetap (akan dibuat di langkah selanjutnya)
+Route::put('/pegawai-tidak-tetap/{transaksi}', [PegawaiTidakTetapController::class, 'update'])->name('pegawai-tidak-tetap.update')->middleware('auth');
 
 
 Route::get('/payment/success', function () {
@@ -55,7 +70,9 @@ Route::get('/payment/success', function () {
 //     return view('home.index');
 // });
 
-Route::get('/jadwalkan-notifikasi/{pengguna}', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('/jadwalkan-notifikasi/{pengguna}', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Coba diganti menjadi
+    Route::get('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'showJadwalForm'])->name('jadwal.notifikasi.form')->middleware('auth'); // Contoh: Tambahkan metode baru di PenggunaController
 Route::post('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'indexJadwal'])->name('jadwal.notifikasi');
 
 Route::get('/payment/paypage', function () {
@@ -64,8 +81,8 @@ Route::get('/payment/paypage', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::middleware('auth')->post('/payment/paypage/{id}',[PenggunaController::class,'index']);
-Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
-
+// Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
+Route::get('/payment/paypage/{transaksi}', [PenggunaController::class, 'show'])->name('payment.show');
 Route::get('/kuesioner', function () {
     return view('kuesioner');
 });

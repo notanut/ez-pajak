@@ -95,22 +95,41 @@ class PenggunaController extends Controller
     }
     // ==================================================================
 
-    public function show($id)
+    // Method `show` akan menerima objek Transaksi langsung berkat Route Model Binding
+    public function show(Transaksi $transaksi)
     {
-        //
-        $penggunas = Pengguna::with('transaksis')->find($id);
-        $transaksi = $penggunas->transaksis->last();
-        // $penggunaa = Pengguna::with('transaksis.transaksiable')->find($id);
-
-        if($transaksi->status_pembayaran == true){
-            $status = 'Sudah dibayar';
-        }else{
-            $status = 'Belum dibayar';
+        // Otorisasi: Pastikan transaksi ini milik pengguna yang sedang login
+        if ($transaksi->pengguna_id !== Auth::id()) {
+            abort(403, 'Akses Ditolak');
         }
 
-        return view('payment.paypage',compact('penggunas','transaksi','status'));
+        $totalAsli = $transaksi->total;
+        $denda = 0;
+        $status = $transaksi->status_pembayaran ? 'Sudah Lunas' : 'Belum Lunas';
+
+        $biayaAdmin = $totalAsli / 100;
+        // --- LOGIKA PERHITUNGAN DENDA ---
+
+        // Tentukan tanggal jatuh tempo (31 Maret tahun berikutnya)
+        $tahunPajak = $transaksi->created_at->year;
+        $jatuhTempo = Carbon::create($tahunPajak + 1, 3, 31)->endOfDay();
+
+        // Cek apakah belum lunas DAN sudah lewat jatuh tempo
+        if (!$transaksi->status_pembayaran && Carbon::now()->greaterThan($jatuhTempo)) {
+            // Hitung denda, contoh: 2% dari total pajak
+            // Aturan denda resmi lebih kompleks, ini adalah contoh sederhana.
+            $denda = $totalAsli * 0.02;
+            $status = 'Terlambat';
+        }
+
+        $totalAkhir = $totalAsli + $denda + $biayaAdmin;
+
+        $pengguna = Auth::user();
+
+        return view('payment.paypage',compact('pengguna','transaksi','status', 'totalAsli', 'denda', 'biayaAdmin', 'totalAkhir'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      */
