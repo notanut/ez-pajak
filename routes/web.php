@@ -8,6 +8,7 @@ use App\Http\Controllers\BukanPegawaiController;
 use App\Http\Controllers\PegawaiTidakTetapController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HistoryController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -100,9 +101,11 @@ Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
 
-Route::get('/history', function (){
-    return view('history');
-});
+Route::get('/history', [HistoryController::class, 'index'])->name('history');
+
+Route::get('/download/{id}', [HistoryController::class, 'download'])->name('download');
+
+
 
 // Daerah Buat Tes Notif
 Route::get('user-notify', [PenggunaController::class, 'index']);
