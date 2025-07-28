@@ -45,7 +45,7 @@
             <h4>Bukti Pembayaran</h4>
             <p class="fst-italic card-text text-white">Menampilkan history perhitungan yang telah kamu lakukan. Klik untuk download dan simpan sebagai arsip pribadi.</p>
             <div class="site">
-                <a href="#" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
+                <a href="/history" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
             </div>
         </div>
 
