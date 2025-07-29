@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card shadow-sm border-0 m-0">
                         <div class="card-body text-center px-4 py-3">
-                            <img src="images/home_PegawaiTetap.png" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tetap">
+                            <img src="{{asset('images/home_PegawaiTetap.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tetap">
                             <h5 class="my-3 text-blue" style="font-size: 2vw;">
                                 <span class="fw-normal">Pegawai</span> Tetap
                             </h5>
@@ -26,7 +26,7 @@
                                 Pilih jika kamu bekerja dengan penghasilan rutin bulanan dan memiliki <strong>kontrak kerja jangka panjang</strong>.
                             </p>
                             <a href="/calculator/pegawai" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
-                                Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
+                                Hitung <img src="{{asset('images/home_Calculator.png')}}" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card shadow-sm border-0 m-0">
                         <div class="card-body text-center px-4 py-3">
-                            <img src="images/home_PegawaitidakTetap.png" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
+                            <img src="{{asset('images/home_PegawaitidakTetap.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
                             <h5 class="my-3 text-blue" style="font-size: 2vw;">
                                 <span class="fw-normal">Pegawai</span> tidak Tetap
                             </h5>
@@ -44,7 +44,7 @@
                                 Pilih jika kamu bekerja di perusahaan sebagai pegawai tapi <strong>tanpa kontrak tetap</strong>, dan hanya dibayar jika bekerja.
                             </p>
                             <a href="/calculator/pegawaiTidakTetap" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
-                                Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
+                                Hitung <img src="{{asset('images/home_Calculator.png')}}" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card shadow-sm border-0 m-0">
                         <div class="card-body text-center px-4 py-3">
-                            <img src="images/home_BukanPegawai.png" class="img-fluid mb-2" style="max-height: 120px;" alt="Bukan Pegawai">
+                            <img src="{{asset('images/home_BukanPegawai.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Bukan Pegawai">
                             <h5 class="my-3 text-blue" style="font-size: 2vw;">
                                 <span class="fw-normal">Bukan</span> Pegawai
                             </h5>
@@ -62,7 +62,7 @@
                                 Pilih jika kamu memberikan jasa pribadi seperti <strong>freelance</strong> atau konsultan, tidak terikat karyawan.
                             </p>
                             <a href="/calculator/bukanPegawai" class="btn btn-warning d-inline-flex align-items-center gap-2 px-3 py-2 text-white rounded-0" style="background-color: #FE8F1D">
-                                Hitung <img src="images/home_Calculator.png" alt="Calculator" style="width: 20px;">
+                                Hitung <img src="{{asset('images/home_Calculator.png')}}" alt="Calculator" style="width: 20px;">
                             </a>
                         </div>
                     </div>
