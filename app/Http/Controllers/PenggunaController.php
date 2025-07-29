@@ -129,7 +129,7 @@ class PenggunaController extends Controller
         return view('payment.paypage',compact('pengguna','transaksi','status', 'totalAsli', 'denda', 'biayaAdmin', 'totalAkhir'));
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -181,6 +181,7 @@ class PenggunaController extends Controller
     public function update(UpdatePenggunaRequest $request, Pengguna $pengguna)
     {
         //
+
     }
 
     /**

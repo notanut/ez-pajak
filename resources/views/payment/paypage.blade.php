@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ asset('css/paypage.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/paypage.css') }}"> -->
+ @vite('resources/css/paypage.css')
 @section('content')
 <main class="container py-4">
     <section class="d-block d-md-flex flex-column">
@@ -95,54 +96,69 @@
 
                     {{-- Credit Card --}}
                     <div class="method border border-2 py-4 px-5 paybox" id="Credit Card" style="display: none">
-                        <div class="form-floating input-field">
-                            <input class="form-control" id="floatingNumCard" placeholder="0">
-                            <label class="fs-4 p-0" for="floatingNumCard">Card Number</label>
-                        </div>
-                        <div class="d-flex flex-row align-items-center gap-3 mb-4">
-                            <div class="form-floating input-field w-50">
+                        <form action="{{route('transaksi.bayar')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}">
+                            <input type="hidden" name="metode_pembayaran" value="Credit Card">
+                            <div class="form-floating input-field">
                                 <input class="form-control" id="floatingNumCard" placeholder="0">
-                                <label class="fs-4 p-0" for="floatingNumCard">CVV</label>
+                                <label class="fs-4 p-0" for="floatingNumCard">Card Number</label>
                             </div>
-                            <div class="w-50">
-                                <label class="fs-5 p-0">Expiry date</label><br>
-                                <div class="input-grup">
-                                    <input class="expiry-date input-field" type="text" id="expiry-day" maxlength="2">
-                                    <span>/</span>
-                                    <input class="expiry-date input-field" type="text" id="expiry-month" maxlength="2">
-                                    <span>/</span>
-                                    <input class="expiry-date input-field" type="text" id="expiry-year" maxlength="4">
+                            <div class="d-flex flex-row align-items-center gap-3 mb-4">
+                                <div class="form-floating input-field w-50">
+                                    <input class="form-control" id="floatingNumCard" placeholder="0">
+                                    <label class="fs-4 p-0" for="floatingNumCard">CVV</label>
+                                </div>
+                                <div class="w-50">
+                                    <label class="fs-5 p-0">Expiry date</label><br>
+                                    <div class="input-grup">
+                                        <input class="expiry-date input-field" type="text" id="expiry-day" maxlength="2">
+                                        <span>/</span>
+                                        <input class="expiry-date input-field" type="text" id="expiry-month" maxlength="2">
+                                        <span>/</span>
+                                        <input class="expiry-date input-field" type="text" id="expiry-year" maxlength="4">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
-                        </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></button>
+                            </div>
+                        </form>
                     </div>
 
                     {{-- Gopay --}}
                     <div class="method border border-2 p-5 pt-3 paybox" id="Gopay" style="display:none">
                         <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="form-floating input-field">
-                                <input class="form-control" id="floatingNumCard" placeholder="0">
-                                <label class="fs-3 p-0" for="floatingNumCard">Phone Number (Gopay)</label>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
-                            </div>
+                            <form action="{{route('transaksi.bayar')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}">
+                                <input type="hidden" name="metode_pembayaran" value="GoPay">
+                                <div class="form-floating input-field">
+                                    <input class="form-control" id="floatingNumCard" placeholder="0">
+                                    <label class="fs-3 p-0" for="floatingNumCard">Phone Number (Gopay)</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
                     {{-- OVO --}}
                     <div class="method border border-2 p-5 pt-3 paybox" id="OVO" style="display:none">
                         <div class="d-flex flex-column justify-content-between h-100">
-                            <div class="form-floating input-field">
-                                <input class="form-control" id="floatingNumCard" placeholder="0">
-                                <label class="fs-3 p-0" for="floatingNumCard">Phone Number (OVO)</label>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <a href="/payment/success" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></a>
-                            </div>
+                            <form action="{{route('transaksi.bayar')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}">
+                                <input type="hidden" name="metode_pembayaran" value="OVO">
+                                <div class="form-floating input-field">
+                                    <input class="form-control" id="floatingNumCard" placeholder="0">
+                                    <label class="fs-3 p-0" for="floatingNumCard">Phone Number (OVO)</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-lg bg-orange"><h3 class="m-0">Bayar Sekarang</h3></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

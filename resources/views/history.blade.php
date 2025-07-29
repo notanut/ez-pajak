@@ -23,7 +23,7 @@
                     <tr>
                         <th scope="row">{{ $index + 1 }}</th> {{-- Nomor Urut --}}
                         <td>{{ $item->metode_pembayaran }}</td> {{-- Nama Dokumen --}}
-                        <td>{{ $item->total }}</td> {{-- Periode --}}
+                        <td>Rp.{{number_format($item->total, 0, ',', '.')}}</td> {{-- Periode --}}
                         <td>
                             {{-- Gambar ini akan menjadi pemicu modal --}}
                             <a href="#" class="btn btn-link p-0" {{-- Menggunakan btn-link untuk menghilangkan gaya tombol default, p-0 untuk padding 0 --}}
@@ -77,7 +77,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const eyeIcons = document.querySelectorAll('.btn-link');
-        
+
         eyeIcons.forEach(icon => {
             icon.addEventListener('click', function (e) {
                 const id = e.target.closest('a').getAttribute('data-id');
@@ -86,7 +86,7 @@
                 const total = e.target.closest('a').getAttribute('data-total');
                 const tanggal = e.target.closest('a').getAttribute('data-tanggal');
                 const waktu = e.target.closest('a').getAttribute('data-waktu');
-                
+
                 document.getElementById('transactionId').textContent = id;
                 document.getElementById('transactionNumber').textContent = nomorUrut;
                 document.getElementById('paymentMethod').textContent = metodePembayaran;
