@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Transaksi; // Import model Transaksi
 
 class BukanPegawai extends Model
 {
@@ -61,16 +62,26 @@ class BukanPegawai extends Model
 
         // tidak bulanan
         'penghasilan_neto',
+
+        // Kolom baru
+        'transaksi_id'
     ];
 
-    // public function transaksis()
-    // {
-    //     return $this->morphMany(Transaksi::class, 'transaksiable');
-    // }
 
+    /**
+     * Relasi ke model Pengguna (user).
+     */
     public function penggunas()
     {
         return $this->belongsTo(Pengguna::class);
     }
 
+    /**
+     * Relasi satu-ke-satu ke model Transaksi.
+     * Perhitungan BukanPegawai ini dimiliki oleh satu Transaksi.
+     */
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class);
+    }
 }

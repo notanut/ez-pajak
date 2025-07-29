@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Transaksi; // Import model Transaksi
 
 class pegawaiTidakTetap extends Model
 {
@@ -64,15 +65,25 @@ class pegawaiTidakTetap extends Model
 
         // tidak bulanan
         'pph21_perhari',
-    ];
 
-    // public function transaksis()
-    // {
-    //     return $this->morphMany(Transaksi::class, 'transaksiable');
-    // }
+        // Kolom baru (tambahan fungsionalitas untuk edit data di dashboard)
+        'transaksi_id'
+    ];
+    
+    /**
+     * Relasi ke model Pengguna (user).
+     */
     public function penggunas()
     {
         return $this->belongsTo(Pengguna::class);
     }
 
+    /**
+     * Relasi satu-ke-satu ke model Transaksi.
+     * Perhitungan PegawaiTidakTetap ini dimiliki oleh satu Transaksi.
+     */
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
+use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
@@ -55,6 +56,29 @@ class TransaksiController extends Controller
     public function update(UpdateTransaksiRequest $request, Transaksi $transaksi)
     {
         //
+    }
+
+    public function bayar(Request $request)
+    {
+        if (!auth()->check()) {
+            abort(403, 'User tidak login');
+        }
+
+        $request->validate([
+            'transaksi_id' => 'required|exists:transaksis,id',
+            'metode_pembayaran' => 'required|string',
+        ]);
+
+        $transaksi = Transaksi::findOrFail($request->transaksi_id);
+        if ($transaksi->pengguna_id !== auth()->id()) {
+            abort(403, 'Kamu tidak punya izin untuk transaksi ini');
+        }
+
+        $transaksi->status_pembayaran = '1';
+        $transaksi->metode_pembayaran = $request->metode_pembayaran;
+        $transaksi->save();
+
+        return redirect('/payment/success');
     }
 
     /**

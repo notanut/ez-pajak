@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateCountdown, 1000 * 60 * 60);
 });
 
-console.log("Home.js loaded");
+/**console.log("Home.js loaded");
 document.addEventListener('DOMContentLoaded', function () {
   const guestData = localStorage.getItem('ezpajak_guest');
   const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
@@ -96,4 +96,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-});
+});*/

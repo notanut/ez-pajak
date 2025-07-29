@@ -30,7 +30,15 @@
             <h4 id="countdown">– Bulan, – Minggu, – Hari</h4>
             <p class="fst-italic card-text text-white">Ini adalah sisa waktu yang kamu punya sebelum deadline pembayaran pajak berikutnya.</p>
             <div class="site">
-                <a href="#" class="card-text text-white small text-decoration-none"><span class="fw-bold">Bayar</span> Sekarang &rsaquo;</a>
+                {{-- Arahkan ke halaman pembayaran jika ada transaksi belum lunas --}}
+                @if($transaksiCountdown)
+                    <a href="{{ route('payment.show', ['transaksi' => $transaksiCountdown->id]) }}" class="card-text text-white small text-decoration-none">
+                        <span class="fw-bold">Bayar</span> Sekarang &rsaquo;
+                    </a>
+                @else
+                    {{-- Jika tidak ada tagihan, bisa tampilkan pesan atau sembunyikan link --}}
+                    <span class="card-text text-white small">Tidak ada tagihan</span>
+                @endif
             </div>
         </div>
 
@@ -45,7 +53,7 @@
             <h4>Bukti Pembayaran</h4>
             <p class="fst-italic card-text text-white">Menampilkan history perhitungan yang telah kamu lakukan. Klik untuk download dan simpan sebagai arsip pribadi.</p>
             <div class="site">
-                <a href="#" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
+                <a href="/history" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
             </div>
         </div>
 
@@ -56,16 +64,29 @@
                 <div class="icon-card">
                     <i class="bi bi-wallet2"></i>
                 </div>
-
             </div>
-            <h4>Rp {{ number_format($jumlahPajak ?? 0, 2, ',', '.') }} </h4>
+            {{-- Untuk menampilkan data 'total' dari tabel transaksi. Menggunakan variabel baru: $jumlahPembayaranPajak --}}
+            <h4>Rp {{ number_format($jumlahPembayaranPajak ?? 0, 2, ',', '.') }} </h4>
             <p class="fst-italic card-text text-white">Ini total pajak yang perlu dibayar untuk periode ini. Pastikan data yang kamu input sudah sesuai yaa.</p>
             <div class="d-flex justify-content-between mt-2">
-                <a href="#" class="card-text text-white small text-decoration-none fw-bold">
-                    Lihat
-                    <i class="right-icon bi bi-eye text-white"></i>
-                </a>
-                <a href="#" class="card-text text-white small">Edit <i class="right-icon bi bi-pencil text-white"></i></a>
+                {{-- Tombol Edit dinamis berdasarkan jenis pegawai terakhir --}}
+                @php
+                    $editRoute = '#'; // Default jika tidak ada jenis pegawai atau transaksi
+                    if (isset($jenisPegawaiTerakhir) && $jenisPegawaiTerakhir && isset($latestTransactionId) && $latestTransactionId) {
+                        switch ($jenisPegawaiTerakhir) { // <-- TYPO FIXED HERE
+                            case 'Pegawai Tetap':
+                                $editRoute = route('pegawai-tetap.edit', ['transaksi' => $latestTransactionId]);
+                                break;
+                            case 'Pegawai Tidak Tetap':
+                                $editRoute = route('pegawai-tidak-tetap.edit', ['transaksi' => $latestTransactionId]);
+                                break;
+                            case 'Bukan Pegawai':
+                                $editRoute = route('bukan-pegawai.edit', ['transaksi' => $latestTransactionId]);
+                                break;
+                        }
+                    }
+                @endphp
+                <a href="{{ $editRoute }}" class="card-text text-white small">Edit <i class="right-icon bi bi-pencil text-white"></i></a>
             </div>
         </div>
     </div>
