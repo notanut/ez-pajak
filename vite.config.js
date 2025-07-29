@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/css/homepage.css',
                 'resources/css/home.css',
+                'resources/css/foot.css',
+                'resources/css/paypage.css',
                 'resources/css/login_register.css',
                 'resources/js/pages/calculator.js',
                 'resources/js/pages/calculatorBukanPegawai.js',

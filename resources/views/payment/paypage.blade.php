@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" href="{{ asset('css/paypage.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/paypage.css') }}"> -->
+ @vite('resources/css/paypage.css')
 @section('content')
 <main class="container py-4">
     <section class="d-block d-md-flex flex-column">
