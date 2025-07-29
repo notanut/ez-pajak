@@ -147,7 +147,4 @@
     </div>
 </section>
 
-
-
-
 @endsection

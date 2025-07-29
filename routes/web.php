@@ -28,7 +28,7 @@ Route::post('/pegawai-tetap/store', [PegawaiTetapController::class, 'store'])->n
 Route::get('/pegawai-tetap/store', [PegawaiTetapController::class, 'create'])->name('pegawai-tetap.create')->middleware('auth');
 
 
-Route::get('/calculator/pegawaiTidakTetap', function () {
+Route::get('calculator/pegawaiTidakTetap', function () {
     return view('calculator.pegawaiTidakTetap');
 });
 
@@ -44,16 +44,6 @@ Route::middleware('auth')->post('/pegawai-tidak-tetap/store', [PegawaiTidakTetap
 Route::get('/payment/success', function () {
     return view('payment.success');
 });
-
-
-// Route::get('/dashboard', function (){
-//     return view('calculator.index');
-// });
-
-
-// Route::get('/home', function (){
-//     return view('home.index');
-// });
 
 Route::get('/jadwalkan-notifikasi/{pengguna}', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::post('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'indexJadwal'])->name('jadwal.notifikasi');

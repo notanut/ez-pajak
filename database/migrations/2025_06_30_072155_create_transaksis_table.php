@@ -18,13 +18,18 @@ return new class extends Migration
             $table->boolean('status_pembayaran')->default(false);
             $table->string('metode_pembayaran')->default('belum ada');
             $table->date('tanggal_pembayaran');
-            // $table->unsignedBigInteger('transaksiable_id');
-            // $table->string('transaksiable_type');
-            // Polymorphic relation
-            // $table->morphs('transaksiable'); // menghasilkan: transaksiable_id, transaksiable_type
-
             $table->timestamps();
-            // $table->index(['transaksiable_id', 'transaksiable_type']);
+        });
+        
+        Schema::create('bukan_pegawais', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('pengguna_id')->constrained('penggunas')->onDelete('cascade');
+            $table->boolean('dibayar_bulanan');
+            // ... dan kolom-kolom lainnya untuk berbagai skenario
+            $table->decimal('total_bruto', 15,2)->nullable();
+            $table->string('metode_penghitungan');
+            $table->decimal('pph21_terutang',15,2)->nullable();
+            $table->timestamps();
         });
 
     }

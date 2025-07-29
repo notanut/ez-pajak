@@ -11,17 +11,13 @@
 
     {{-- CSS --}}
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('css/homepage.css')}}"> -->
 
     {{-- Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    {{-- Script status login
-    <script>
-        window.isLoggedIn = @json(Auth::check());
-    </script> --}}
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
+     @vite(['resources/css/app.css', 'resources/css/homepage.css', 'resources/js/app.js'])
 </head>
 <body data-authenticated="{{ auth()->check() ? 'true' : 'false' }}">
     @auth
