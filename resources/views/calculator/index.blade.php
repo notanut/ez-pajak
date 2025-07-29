@@ -19,18 +19,20 @@
                             <p class="label">Apa jenis kelamin Anda?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="Pria"> Pria
+                                    {{-- Mengisi nilai radio button jika ada data pegawaiTetap --}}
+                                    <input type="radio" name="sex" value="Pria" {{ isset($pegawaiTetap) && $pegawaiTetap->jenis_kelamin == 'Pria' ? 'checked' : '' }}> Pria
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="Wanita"> Wanita
+                                    <input type="radio" name="sex" value="Wanita" {{ isset($pegawaiTetap) && $pegawaiTetap->jenis_kelamin == 'Wanita' ? 'checked' : '' }}> Wanita
                                     <label></label>
                                 </div>
                             </div>
                     </div>
                     <p id="error-jenis_kelamin" class="text-danger small mt-1 mb-0 fw-normal"></p>
                     <div class="form-floating input-field mb-0 mt-3">
-                         <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0" max="3">
+                         {{-- Mengisi nilai input jika ada data pegawaiTetap --}}
+                         <input type="number" class="form-control" id="floatingInput" placeholder="2" min="0" max="3" value="{{ $pegawaiTetap->tanggungan ?? '' }}">
                         <label for="floatingInput">Berapa total tanggungan Anda?</label>
                         <div class="tooltip-container">
                             <span class="tooltip-circle">?</span>
@@ -43,10 +45,11 @@
 
                     <div class="form-floating input-field mb-0 mt-3">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
-                            <option disabled selected>Pilih satu</option>
-                            <option value="Kawin">Kawin</option>
-                            <option value="Tidak Kawin">Tidak Kawin</option>
-                            <option value="Hidup Berpisah">Hidup Berpisah</option>
+                            <option disabled {{ !isset($pegawaiTetap) ? 'selected' : '' }}>Pilih satu</option>
+                            {{-- Mengisi nilai select jika ada data pegawaiTetap --}}
+                            <option value="Kawin" {{ isset($pegawaiTetap) && $pegawaiTetap->status_perkawinan == 'Kawin' ? 'selected' : '' }}>Kawin</option>
+                            <option value="Tidak Kawin" {{ isset($pegawaiTetap) && $pegawaiTetap->status_perkawinan == 'Tidak Kawin' ? 'selected' : '' }}>Tidak Kawin</option>
+                            <option value="Hidup Berpisah" {{ isset($pegawaiTetap) && $pegawaiTetap->status_perkawinan == 'Hidup Berpisah' ? 'selected' : '' }}>Hidup Berpisah</option>
                         </select>
                         <label for="floatingSelect">Apa status perkawinan Anda?</label>
                     </div>
@@ -57,7 +60,8 @@
                         <div class="form-date">
                             <div class="w-100">
                                 <div class="form-floating input-field w-100">
-                                    <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" name="masa_awal" required>
+                                    {{-- Mengisi nilai input month jika ada data pegawaiTetap --}}
+                                    <input type="month" id="startMonth" class="form-control" min="2025-01" max="2025-12" name="masa_awal" required value="{{ isset($pegawaiTetap) ? \Carbon\Carbon::parse($pegawaiTetap->masa_penghasilan_awal)->format('Y-m') : '' }}">
                                     <label for="startMonth" class="form-label fst-italic">Bulan Awal</label>
                                 </div>
                                 <p id="error-masa_awal" class="text-danger small mt-1 mb-0 fw-normal"></p>
@@ -65,7 +69,8 @@
 
                             <div class="w-100">
                                 <div class="form-floating input-field w-100">
-                                    <input name="masa_akhir" type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled>
+                                    {{-- Mengisi nilai input month jika ada data pegawaiTetap --}}
+                                    <input name="masa_akhir" type="month" id="endMonth" class="form-control" min="2025-01" max="2025-12" required disabled value="{{ isset($pegawaiTetap) ? \Carbon\Carbon::parse($pegawaiTetap->masa_penghasilan_akhir)->format('Y-m') : '' }}">
                                     <label for="endMonth" class="form-label fst-italic">Bulan Akhir</label>
                                 </div>
                                 <p id="error-masa_akhir" class="text-danger small mt-1 mb-0 fw-normal"></p>
@@ -73,15 +78,16 @@
                         </div>
                     </div>
 
-                    <div id="spdnForm" style="display: none;" class="form-floating form-check input-field btn-group" role="group">
-                        <p clainss="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
+                    <div id="spdnForm" style="display: {{ isset($pegawaiTetap) ? 'block' : 'none' }};" class="form-floating form-check input-field btn-group" role="group">
+                        <p class="label">Apakah Anda menjadi Subjek Pajak Dalam Negeri (SPDN) penuh selama tahun ini?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="spdn" value="0" id="spdn-ya"> Ya
+                                {{-- Mengisi nilai radio button jika ada data pegawaiTetap --}}
+                                <input type="radio" name="spdn" value="0" id="spdn-ya" {{ isset($pegawaiTetap) && $pegawaiTetap->disetahunkan == 0 ? 'checked' : '' }}> Ya
                                 <label></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="spdn" value="1" id="spdn-tidak"> Tidak
+                                <input type="radio" name="spdn" value="1" id="spdn-tidak" {{ isset($pegawaiTetap) && $pegawaiTetap->disetahunkan == 1 ? 'checked' : '' }}> Tidak
                                 <label></label>
                             </div>
                         </div>
@@ -100,13 +106,14 @@
                 <h5 class="blue card-title">Penghasilan</h5>
                 <div class="form-wrap">
                     <div class="form-floating input-field mb-0">
-                        <input class="form-control rp" id="floatingGaji" placeholder="0">
+                        {{-- Mengisi nilai input jika ada data pegawaiTetap --}}
+                        <input class="form-control rp" id="floatingGaji" placeholder="0" value="{{ $pegawaiTetap->gaji ?? '' }}">
                         <label for="floatingGaji">Gaji/Pensiun</label>
                     </div>
                     <p id="error-gaji" class="text-danger small mt-1 mb-0 fw-normal"></p>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingPPh" placeholder="0">
+                        <input class="form-control rp" id="floatingPPh" placeholder="0" value="{{ $pegawaiTetap->tunjangan_pph ?? '' }}">
                         <label for="floatingPPh">Tunjangan PPh</label>
                         <div class="tooltip-container">
                             <span class="tooltip-circle">?</span>
@@ -117,33 +124,34 @@
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingLain" placeholder="0">
+                        <input class="form-control rp" id="floatingLain" placeholder="0" value="{{ $pegawaiTetap->tunjangan_lain ?? '' }}">
                         <label for="floatingLain">Tunjangan Lainnya, Uang Lembur, dan sebagainya</label>
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingHonor" placeholder="0">
+                        <input class="form-control rp" id="floatingHonor" placeholder="0" value="{{ $pegawaiTetap->honor ?? '' }}">
                         <label for="floatingHonor">Honorarium dan Imbalan Lainnya Sejenisnya</label>
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingPremi" placeholder="0">
+                        <input class="form-control rp" id="floatingPremi" placeholder="0" value="{{ $pegawaiTetap->premi ?? '' }}">
                         <label for="floatingPremi">Premi Asuransi yang dibayar Pemberi Kerja</label>
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingNatura" placeholder="0">
+                        <input class="form-control rp" id="floatingNatura" placeholder="0" value="{{ $pegawaiTetap->natura ?? '' }}">
                         <label for="floatingNatura">Natura dan Kenikmatan Lainnya</label>
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTantiem" placeholder="0">
+                        <input class="form-control rp" id="floatingTantiem" placeholder="0" value="{{ $pegawaiTetap->tantiem ?? '' }}">
                         <label for="floatingTantiem">Tantiem, Bonus, Gratifikasi, Jasa Produksi dan THR</label>
                     </div>
 
                     <div class="total">
                         <p class="title-total">Total Penghasilan Bruto</p>
-                        <p class="rp-total">Rp 0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="rp-total">Rp {{ number_format($pegawaiTetap->penghasilan_bruto ?? 0, 2, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
@@ -153,7 +161,8 @@
                 <div class="form-wrap">
                     <div class="res-field">
                         <p class="label">Biaya Jabatan</p>
-                        <p id="biayaJabatan">Rp    0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p id="biayaJabatan">Rp {{ number_format($pegawaiTetap->biaya_jabatan ?? 0, 2, ',', '.') }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -163,18 +172,19 @@
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTHT" placeholder="0">
+                        <input class="form-control rp" id="floatingTHT" placeholder="0" value="{{ $pegawaiTetap->iuran_pensiun ?? '' }}">
                         <label for="floatingTHT">Iuran Pensiun atau Iuran THT/JHT</label>
                     </div>
 
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingZakar" placeholder="0">
+                        <input class="form-control rp" id="floatingZakar" placeholder="0" value="{{ $pegawaiTetap->zakat ?? '' }}">
                         <label for="floatingZakar">Zakat/Sumbangan Keagamaan yang Bersifat Wajib yang Dibayarkan Melalui Pemberi Kerja</label>
                     </div>
 
                     <div class="total">
                         <p class="title-total">Total Pengurangan</p>
-                        <p class="rp-total">Rp 0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="rp-total">Rp {{ number_format($pegawaiTetap->pengurangan ?? 0, 2, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
@@ -185,7 +195,8 @@
                 <div class="form-wrap">
                     <div class="res-field">
                         <p class="label">Penghasilan Neto</p>
-                        <p class="res">Rp    0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="res">Rp {{ number_format($pegawaiTetap->penghasilan_neto ?? 0, 2, ',', '.') }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -194,7 +205,7 @@
                         </div>
                     </div>
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingMasaSebelum" placeholder="0">
+                        <input class="form-control rp" id="floatingMasaSebelum" placeholder="0" value="{{ $pegawaiTetap->penghasilan_neto_masa_sebelumnya ?? '' }}">
                         <label for="floatingMasaSebelum">Penghasilan Neto Masa sebelumnya</label>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
@@ -205,7 +216,8 @@
                     </div>
                     <div class="res-field">
                         <p class="label">Penghasilan Neto untuk PPh 21 (Setahun/Disetahunkan)</p>
-                        <p class="res">Rp    0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="res">Rp {{ number_format($pegawaiTetap->penghasilan_neto_pph21 ?? 0, 2, ',', '.') }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -215,7 +227,8 @@
                     </div>
                     <div class="res-field">
                         <p class="label">Penghasilan Tidak Kena Pajak (PTKP)</p>
-                        <p class="res">Rp    0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="res">Rp {{ number_format($pegawaiTetap->ptkp ?? 0, 2, ',', '.') }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -225,7 +238,8 @@
                     </div>
                     <div class="res-field">
                         <p class="label" id="pkpsetahun">Penghasilan Kena Pajak Setahun/Disetahunkan</p>
-                        <p class="res">Rp    0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="res">Rp {{ number_format($pegawaiTetap->pkp ?? 0, 2, ',', '.') }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -235,7 +249,8 @@
                     </div>
                     <div class="res-field">
                         <p class="label">Tarif Pajak Progresif yang Dikenakan</p>
-                        <p class="res">5%</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="res">{{ $pegawaiTetap->tarif_progresif ?? '5%' }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -245,7 +260,8 @@
                     </div>
                     <div class="res-field">
                         <p class="label" id="pphPkpTitle">PPh Pasal 21 atas PKP Setahun/Disetahunkan</p>
-                        <p class="res">Rp    0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="res">Rp {{ number_format($pegawaiTetap->pph21_pkp ?? 0, 2, ',', '.') }}</p>
                         <div class="tooltip-container hasil">
                             <span class="tooltip-circle">?</span>
                             <div class="tooltip-content">
@@ -254,7 +270,7 @@
                         </div>
                     </div>
                     <div class="form-floating input-field">
-                        <input class="form-control rp" id="floatingTerpotong" placeholder="0">
+                        <input class="form-control rp" id="floatingTerpotong" placeholder="0" value="{{ $pegawaiTetap->pph21_dipotong_masa_sebelum ?? '' }}">
                         <label for="floatingTerpotong">PPh 21 yang telah Dipotong Masa Pajak Sebelumnya</label>
                         <div class="tooltip-container">
                             <span class="tooltip-circle">?</span>
@@ -265,7 +281,8 @@
                     </div>
                     <div class="total grand">
                         <p class="title-total">PPh 21 Terutang</p>
-                        <p class="rp-total">Rp  0</p>
+                        {{-- Ini akan diupdate oleh JS, tapi untuk initial load dari PHP --}}
+                        <p class="rp-total">Rp {{ number_format($pegawaiTetap->pph21_terutang ?? 0, 2, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
@@ -292,8 +309,14 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
-                    <button class="later" id="remind-later">Ingatkan Nanti</button>
+                    {{-- Mengubah tombol berdasarkan mode edit --}}
+                    @if(isset($transaksi))
+                        <button type="button" class="pay-now" id="save-edit">Simpan Perubahan</button>
+                        <button type="button" class="later" id="cancel-edit">Batalkan</button>
+                    @else
+                        <button type="button" class="pay-now" id="pay-now">Bayar Sekarang</button>
+                        <button type="button" class="later" id="remind-later">Ingatkan Nanti</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -301,5 +324,11 @@
 @endsection
 
 @push('scripts')
+    {{-- Mengirimkan data transaksi dan pegawaiTetap ke JavaScript --}}
+    <script>
+        // PENTING: Pastikan data yang dikirim ke JS adalah angka mentah, bukan string berformat
+        window.pegawaiTetapData = @json($pegawaiTetap ?? null);
+        window.transaksiData = @json($transaksi ?? null);
+    </script>
     @vite('resources/js/pages/calculator.js')
 @endpush

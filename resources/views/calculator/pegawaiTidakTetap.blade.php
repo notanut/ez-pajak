@@ -19,18 +19,20 @@
                             <p class="label">Apa jenis kelamin Anda?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="Pria"> Pria
+                                    {{-- Mengisi nilai radio button jika ada data pegawaiTidakTetap --}}
+                                    <input type="radio" name="sex" value="Pria" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->jenis_kelamin == 'Pria' ? 'checked' : '' }}> Pria
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="sex" value="Wanita"> Wanita
+                                    <input type="radio" name="sex" value="Wanita" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->jenis_kelamin == 'Wanita' ? 'checked' : '' }}> Wanita
                                     <label></label>
                                 </div>
                             </div>
                     </div>
                     <p id="error-jenis_kelamin" class="text-danger small mt-1 mb-0 fw-normal"></p>
                     <div class="form-floating input-field mb-0 mt-3">
-                        <input type="number" class="form-control" id="jmlTanggungan" placeholder="2" min="0" max="3">
+                        {{-- Mengisi nilai input jika ada data pegawaiTidakTetap --}}
+                        <input type="number" class="form-control" id="jmlTanggungan" placeholder="2" min="0" max="3" value="{{ $pegawaiTidakTetap->tanggungan ?? '' }}">
                         <label for="jmlTanggungan">Berapa total tanggungan Anda?</label>
                         <div class="tooltip-container">
                             <span class="tooltip-circle">?</span>
@@ -43,10 +45,11 @@
 
                     <div class="form-floating input-field mb-0 mt-3">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select marriage">
-                            <option disabled selected>Pilih satu</option>
-                            <option value="Kawin">Kawin</option>
-                            <option value="Tidak Kawin">Tidak Kawin</option>
-                            <option value="Hidup Berpisah">Hidup Berpisah</option>
+                            <option disabled {{ !isset($pegawaiTidakTetap) ? 'selected' : '' }}>Pilih satu</option>
+                            {{-- Mengisi nilai select jika ada data pegawaiTidakTetap --}}
+                            <option value="Kawin" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->status_perkawinan == 'Kawin' ? 'selected' : '' }}>Kawin</option>
+                            <option value="Tidak Kawin" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->status_perkawinan == 'Tidak Kawin' ? 'selected' : '' }}>Tidak Kawin</option>
+                            <option value="Hidup Berpisah" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->status_perkawinan == 'Hidup Berpisah' ? 'selected' : '' }}>Hidup Berpisah</option>
                         </select>
                         <label for="floatingSelect">Apa status perkawinan Anda?</label>
                     </div>
@@ -55,11 +58,12 @@
                         <p class="label">Apakah Anda dibayar bulanan atau tidak?</p>
                         <div class="radio-wrap">
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="0" id="dibayar-ya"> Ya
+                                {{-- Mengisi nilai radio button jika ada data pegawaiTidakTetap --}}
+                                <input type="radio" name="dibayar_bulanan" value="0" id="dibayar-ya" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 0 ? 'checked' : '' }}> Ya
                                 <label for="dibayar-ya"></label>
                             </div>
                             <div class="opt">
-                                <input type="radio" name="dibayar_bulanan" value="1" id="dibayar-tidak" checked> Tidak
+                                <input type="radio" name="dibayar_bulanan" value="1" id="dibayar-tidak" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 1 ? 'checked' : '' }}> Tidak
                                 <label for="dibayar-tidak"></label>
                             </div>
                         </div>
@@ -69,99 +73,100 @@
 
             <div class="card">
                 <h5 class="blue card-title">Penghasilan</h5>
-                <div class="form-wrap" id="tidakBulanan">
+                <div class="form-wrap" id="tidakBulanan" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 0 ? 'block' : 'none' }};">
                     <div class="form-floating input-field mb-0 mt-3">
-                        <input class="form-control rp" id="brutoProyek" placeholder="0">
+                        <input class="form-control rp" id="brutoProyek" placeholder="0" value="{{ $pegawaiTidakTetap->total_bruto ?? '' }}">
                         <label for="brutoProyek">Berapa penghasilan bruto Anda di proyek/pekerjaan ini?</label>
                     </div>
                     <p id="error-total_bruto" class="text-danger small mt-0 mb-3 fw-normal"></p>
 
                     <div class="form-floating input-field mb-0 mt-3">
-                        <input type="number" class="form-control" id="lamaKerja" placeholder="2" min="0">
+                        <input type="number" class="form-control" id="lamaKerja" placeholder="2" min="0" value="{{ $pegawaiTidakTetap->lama_hari_bekerja ?? '' }}">
                         <label for="lamaKerja">Berapa hari lamanya pekerjaan dilakukan?</label>
                     </div>
                     <p id="error-lama_hari_bekerja" class="text-danger small mt-0 mb-3 fw-normal"></p>
                     <div class="total">
                         <p class="title-total">Rata-rata Penghasilan Bruto Sehari</p>
-                        <p class="rp-total" id="avBruto">Rp 0</p>
+                        <p class="rp-total" id="avBruto">Rp {{ number_format($pegawaiTidakTetap->avg_bruto ?? 0, 2, ',', '.') }}</p>
                     </div>
                 </div>
-                <div class="form-wrap" id="bulanan" style="display: none;">
+                <div class="form-wrap" id="bulanan" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 1 ? 'block' : 'none' }};">
                     <div class="form-floating form-check input-field btn-group" role="group">
                             <p class="label">Apakah penghasilan setiap bulan Anda sama?</p>
                             <div class="radio-wrap">
                                 <div class="opt">
-                                    <input type="radio" name="bulananSamaGa" value="0" id="sama"> Ya
+                                    {{-- Mengisi nilai radio button jika ada data pegawaiTidakTetap --}}
+                                    <input type="radio" name="bulananSamaGa" value="0" id="sama" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->bulanan_sama == 0 ? 'checked' : '' }}> Ya
                                     <label></label>
                                 </div>
                                 <div class="opt">
-                                    <input type="radio" name="bulananSamaGa" value="1" id="tidakSama"> Tidak
+                                    <input type="radio" name="bulananSamaGa" value="1" id="tidakSama" {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->bulanan_sama == 1 ? 'checked' : '' }}> Tidak
                                     <label></label>
                                 </div>
                             </div>
                     </div>
-                    <div id="tiapBulanSama" style="display: none;">
+                    <div id="tiapBulanSama" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->bulanan_sama == 0 ? 'block' : 'none' }};">
                         <div class="form-floating input-field mb-0 mt-3">
-                            <input class="form-control rp" id="brutoBulanan" placeholder="0">
+                            <input class="form-control rp" id="brutoBulanan" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_perbulan ?? '' }}">
                             <label for="brutoBulanan">Berapa penghasilan bruto bulanan Anda?</label>
                         </div>
                         <p id="error-bruto_perbulan" class="text-danger small my-0 fw-normal"></p>
-    
+
                         <div class="form-floating input-field mb-0 mt-3">
-                            <input type="number" class="form-control" id="jmlBulan" placeholder="2" min="0">
+                            <input type="number" class="form-control" id="jmlBulan" placeholder="2" min="0" value="{{ $pegawaiTidakTetap->banyak_bulan_bekerja ?? '' }}">
                             <label for="jmlBulan">Berapa bulan Anda bekerja di tahun ini?</label>
                         </div>
                         <p id="error-banyak_bulan_bekerja" class="text-danger small my-0 fw-normal"></p>
                     </div>
-                    <div id="tiapBulanBeda" style="display: none;">
+                    <div id="tiapBulanBeda" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->bulanan_sama == 1 ? 'block' : 'none' }};">
                         <p class="label tiapBulan">Masukkan penghasilan bruto Anda di setiap bulan:</p>
                         <p id="error-bruto_jan" class="text-danger small my-0 fw-normal"></p>
                         <div class="form-floating input-field mon">
-                            <input class="form-control rp" id="Januari" placeholder="0">
+                            <input class="form-control rp" id="Januari" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_jan ?? '' }}">
                             <label for="Januari">Januari</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Februari" placeholder="0">
+                            <input class="form-control rp" id="Februari" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_feb ?? '' }}">
                             <label for="Februari">Februari</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Maret" placeholder="0">
+                            <input class="form-control rp" id="Maret" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_mar ?? '' }}">
                             <label for="Maret">Maret</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="April" placeholder="0">
+                            <input class="form-control rp" id="April" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_apr ?? '' }}">
                             <label for="April">April</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Mei" placeholder="0">
+                            <input class="form-control rp" id="Mei" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_mei ?? '' }}">
                             <label for="Mei">Mei</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Juni" placeholder="0">
+                            <input class="form-control rp" id="Juni" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_jun ?? '' }}">
                             <label for="Juni">Juni</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Juli" placeholder="0">
+                            <input class="form-control rp" id="Juli" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_jul ?? '' }}">
                             <label for="Juli">Juli</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Agustus" placeholder="0">
+                            <input class="form-control rp" id="Agustus" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_agu ?? '' }}">
                             <label for="Agustus">Agustus</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="September" placeholder="0">
+                            <input class="form-control rp" id="September" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_sep ?? '' }}">
                             <label for="September">September</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Oktober" placeholder="0">
+                            <input class="form-control rp" id="Oktober" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_okt ?? '' }}">
                             <label for="Oktober">Oktober</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="November" placeholder="0">
+                            <input class="form-control rp" id="November" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_nov ?? '' }}">
                             <label for="November">November</label>
                         </div>
                         <div class="form-floating input-field">
-                            <input class="form-control rp" id="Desember" placeholder="0">
+                            <input class="form-control rp" id="Desember" placeholder="0" value="{{ $pegawaiTidakTetap->bruto_des ?? '' }}">
                             <label for="Desember">Desember</label>
                         </div>
 
@@ -172,36 +177,47 @@
         <div class="right">
             <div class="card">
                 <h5 class="orange card-title">Penghitungan</h5>
-                <div class="form-wrap" id="bulanan-sama-wrap" style="display: none;">
+                <div class="form-wrap" id="bulanan-sama-wrap" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 1 && $pegawaiTidakTetap->bulanan_sama == 0 ? 'block' : 'none' }};">
                     <div class="res-field">
                         <p class="label">Metode Penghitungan</p>
-                        <p class="res" id="metodeHitungSama">-</p>
+                        <p class="res" id="metodeHitungSama">{{ $pegawaiTidakTetap->metode_penghitungan ?? '-' }}</p>
                     </div>
                     <div class="res-field">
                         <p class="label">PPh 21 per bulan</p>
-                        <p class="res" id="pphRataSama">Rp 0</p>
+                        <p class="res" id="pphRataSama">Rp {{ number_format($pegawaiTidakTetap->pph21_perbulan ?? 0, 2, ',', '.') }}</p>
                     </div>
                 </div>
-                <div class="form-wrap" id="bulanan-beda-wrap" style="display: none;">
+                <div class="form-wrap" id="bulanan-beda-wrap" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 1 && $pegawaiTidakTetap->bulanan_sama == 1 ? 'block' : 'none' }};">
                     <div class="res-field">
                         <p class="label">Metode Penghitungan</p>
-                        <p class="res" id="metodeHitungBeda">-</p>
+                        <p class="res" id="metodeHitungBeda">{{ $pegawaiTidakTetap->metode_penghitungan ?? '-' }}</p>
                     </div>
                     <p class="label tiapBulan">PPh 21 Anda di Bulan..</p>
+                    {{-- PPh 21 per bulan (jika ada) --}}
+                    @if(isset($pegawaiTidakTetap))
+                        @foreach(['jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'agu', 'sep', 'okt', 'nov', 'des'] as $month)
+                            @if($pegawaiTidakTetap->{"pajak_{$month}"} !== null)
+                                <div class="res-field">
+                                    <p class="label">{{ ucfirst($month) }}</p>
+                                    <p class="res">Rp {{ number_format($pegawaiTidakTetap->{"pajak_{$month}"}, 2, ',', '.') }}</p>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
-                <div class="form-wrap" id="tidak-bulanan-wrap">
+                <div class="form-wrap" id="tidak-bulanan-wrap" style="display: {{ isset($pegawaiTidakTetap) && $pegawaiTidakTetap->dibayar_bulanan == 0 ? 'block' : 'none' }};">
                     <div class="res-field">
                         <p class="label">Metode Penghitungan</p>
-                        <p class="res" id="metodeHitungTidakBulan">-</p>
+                        <p class="res" id="metodeHitungTidakBulan">{{ $pegawaiTidakTetap->metode_penghitungan ?? '-' }}</p>
                     </div>
                     <div class="res-field">
                         <p class="label">PPh 21 per hari</p>
-                        <p class="res" id="pphRataHari">Rp 0</p>
+                        <p class="res" id="pphRataHari">Rp {{ number_format($pegawaiTidakTetap->pph21_perhari ?? 0, 2, ',', '.') }}</p>
                     </div>
                 </div>
                 <div class="total grand mt-3">
                     <p class="title-total">PPh 21 Terutang</p>
-                    <p class="rp-total" id="rp-total">Rp  0</p>
+                    <p class="rp-total" id="rp-total">Rp {{ number_format($pegawaiTidakTetap->pph21_terutang ?? 0, 2, ',', '.') }}</p>
                 </div>
             </div>
 
@@ -227,8 +243,14 @@
                     </div>
                 </div>
                 <div class="btn-bayar-wrap">
-                    <button class="pay-now" id="pay-now">Bayar Sekarang</button>
-                    <button class="later" id="remind-later">Ingatkan Nanti</button>
+                    {{-- Mengubah tombol berdasarkan mode edit --}}
+                    @if(isset($transaksi))
+                        <button class="pay-now" id="save-edit">Simpan Perubahan</button>
+                        <button class="later" id="cancel-edit">Batalkan</button>
+                    @else
+                        <button class="pay-now" id="pay-now">Bayar Sekarang</button>
+                        <button class="later" id="remind-later">Ingatkan Nanti</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -236,5 +258,11 @@
 @endsection
 
 @push('scripts')
+    {{-- Mengirimkan data transaksi dan pegawaiTetap ke JavaScript --}}
+    <script>
+        // PENTING: Pastikan data yang dikirim ke JS adalah angka mentah, bukan string berformat
+        window.pegawaiTetapData = @json($pegawaiTetap ?? null);
+        window.transaksiData = @json($transaksi ?? null);
+    </script>
     @vite('resources/js/pages/calculatorPegawaiTidakTetap.js')
 @endpush
