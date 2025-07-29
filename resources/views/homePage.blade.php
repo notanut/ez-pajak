@@ -13,20 +13,20 @@
                     <a href="#calculatorCards" class="btn btn-lg rounded-0 px-4 py-3 d-inline-flex align-items-center w-200 h-40 text-white" style="background-color:#FE8F1D">
                         Coba Sekarang
                         {{-- <i class="ms-2 bi bi-box-arrow-up-right"></i> --}}
-                        <img src="images/icon_login.png" alt="Paper Plane" style="width: 25px; height: auto;" class="ms-2">
+                        <img src="{{asset('images/icon_login.png')}}" alt="Paper Plane" style="width: 25px; height: auto;" class="ms-2">
                     </a>
 
                 </div>
 
                 <div class="col-lg-6 col-md-12 text-center">
-                    <img src="images/ilustrasi_homePage1.png" alt="EZPajak Illustration" class="img-fluid">
+                    <img src="{{asset('images/ilustrasi_homePage1.png')}}" alt="EZPajak Illustration" class="img-fluid">
                 </div>
             </div>
 
             <div class="row mt-5 pt-4">
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                     <div class="d-flex align-items-start">
-                        <img src="images/icon_smartWay.png" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
+                        <img src="{{asset('images/icon_smartWay.png')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
                             <h4 class="fw-bold text-blue">Smart Way</h4>
                             <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang uruss.</p>
@@ -36,7 +36,7 @@
 
                 <div class="col-lg-6 col-md-12">
                     <div class="d-flex align-items-start">
-                        <img src="images/icon_autoFlow.png" alt="Auto Flow Icon" class="me-3" style="width: 30px; height: 30px;">
+                        <img src="{{asset('images/icon_autoFlow.png')}}" alt="Auto Flow Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
                             <h4 class="fw-bold text-blue">Auto Flow</h4>
                             <p class="mb-0 fst-italic" style="color: #142143">Kami menyediakan alur perhitungan dan pembayaran otomatis dari awal sampai selesai loh!</p>
@@ -123,7 +123,7 @@
             <!-- Kiri: Text -->
             <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="images/icon_centang.png" alt="Checklist" style="width: 24px; height: 24px;" class="me-2">
+                    <img src="{{asset('images/icon_centang.png')}}" alt="Checklist" style="width: 24px; height: 24px;" class="me-2">
                     <h5 class="mb-0 text-blue" style="font-size: 2vw;">
                         <span class="fw-normal">Easy Tax Solutions </span> for Everyone
                     </h5>
@@ -141,7 +141,7 @@
                 <h2 class="fw-bold text-blue text-end">
                     Kenapa <br> <span class="fw-normal">Pilih EzPajak?</span>
                 </h2>
-                <img src="images/IlustrasiHomePage2.png" alt="Kenapa Pilih EzPajak" class="img-fluid mt-3" style="max-height: 300px; object-fit: contain;">
+                <img src="{{asset('images/IlustrasiHomePage2.png')}}" alt="Kenapa Pilih EzPajak" class="img-fluid mt-3" style="max-height: 300px; object-fit: contain;">
             </div>
         </div>
     </div>
