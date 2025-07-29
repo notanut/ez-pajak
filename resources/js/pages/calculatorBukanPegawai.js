@@ -416,7 +416,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // DIKEMBALIKAN: Pengecekan status login
             const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
             if (isLoggedIn) {
-                handleSubmission(false, false);
+                // handleSubmission(false, false);
+                handleSubmission(false, true);
             } else {
                 saveBukanPegawaiDataToLocalStorage();
                 window.location.href = `/login?redirect_to=${window.location.pathname}`;

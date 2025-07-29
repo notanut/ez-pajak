@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (result.success) {
                 alert(isUpdate ? 'Data berhasil diperbarui!' : 'Data berhasil disimpan!');
-                if (isUpdate) {
+                if (isUpdate || isRemindLater) {
                     window.location.href = '/home';
                 } else {
                     window.location.href = `/payment/paypage/${result.transaksi_id}`;
@@ -402,7 +402,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
             if (isLoggedIn) {
                 // Logika 'ingatkan nanti' untuk user yang login
-                handleSubmission(false).then(() => window.location.href = '/home');
+                // handleSubmission(false).then(() => window.location.href = '/home');
+                handleSubmission(false, true);
             } else {
                 // Panggil fungsi yang BENAR
                 saveTidakTetapDataToLocalStorage();
