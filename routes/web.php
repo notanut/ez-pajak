@@ -75,7 +75,7 @@ Route::post('/transaksi/bayar', [TransaksiController::class, 'bayar'])->middlewa
 
 // Route::get('/jadwalkan-notifikasi/{pengguna}', [HomeController::class, 'index'])->name('home')->middleware('auth');
 // Coba diganti menjadi
-    Route::get('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'showJadwalForm'])->name('jadwal.notifikasi.form')->middleware('auth'); // Contoh: Tambahkan metode baru di PenggunaController
+// Route::get('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'showJadwalForm'])->name('jadwal.notifikasi.form')->middleware('auth'); // Contoh: Tambahkan metode baru di PenggunaController
 Route::post('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'indexJadwal'])->name('jadwal.notifikasi');
 
 Route::get('/payment/paypage', function () {
@@ -103,7 +103,7 @@ Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
 Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
 
-Route::get('/history', [HistoryController::class, 'index'])->name('history');
+Route::get('/history/{id}', [HistoryController::class, 'index'])->name('history');
 
 Route::get('/download/{id}', [HistoryController::class, 'download'])->name('download');
 

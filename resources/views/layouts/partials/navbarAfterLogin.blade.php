@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZPajak Navbar</title> <link rel="stylesheet" href="css\bootstrap.min.css">
+    <title>EZPajak Navbar</title> <link rel="stylesheet" href="{{asset('css\bootstrap.min.css')}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -38,6 +38,6 @@
     </div>
 </nav>
 
-    <script src="js\bootstrap.bundle.min.js"></script>
+    <script src="{{asset('js\bootstrap.bundle.min.js')}}"></script>
 </body>
 </html>

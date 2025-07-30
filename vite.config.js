@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/css/home.css',
                 'resources/css/foot.css',
                 'resources/css/paypage.css',
+                'resources/js/pages/home.js',
                 'resources/css/login_register.css',
                 'resources/js/pages/calculator.js',
                 'resources/js/pages/calculatorBukanPegawai.js',

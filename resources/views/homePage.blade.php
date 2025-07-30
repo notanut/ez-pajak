@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 text-center">
-                    <img src="{{asset('images/ilustrasi_homePage1.png')}}" alt="EZPajak Illustration" class="img-fluid">
+                    <img src="{{asset('images/Ilustrasi_homePage1.png')}}" alt="EZPajak Illustration" class="img-fluid">
                 </div>
             </div>
 
@@ -141,7 +141,7 @@
                 <h2 class="fw-bold text-blue text-end">
                     Kenapa <br> <span class="fw-normal">Pilih EzPajak?</span>
                 </h2>
-                <img src="{{asset('images/IlustrasiHomePage2.png')}}" alt="Kenapa Pilih EzPajak" class="img-fluid mt-3" style="max-height: 300px; object-fit: contain;">
+                <img src="{{asset('images/ilustrasiHomePage2.png')}}" alt="Kenapa Pilih EzPajak" class="img-fluid mt-3" style="max-height: 300px; object-fit: contain;">
             </div>
         </div>
     </div>
