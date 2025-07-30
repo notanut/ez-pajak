@@ -1,4 +1,4 @@
-button {
+.to-dashboard {
     padding: 0.5rem 0.75rem; 
     background-color: white;
     color: map-get($custom-colors, "primary"); 
@@ -7,8 +7,17 @@ button {
     transition: .3s all ease-in-out;
 }
 
-button:hover {
+.to-dashboard:hover {
     background-color: map-get($custom-colors, "primary"); 
     color: white;
     box-shadow: $box-shadow-sm;
+    .link-home {
+        color: white;
+    }
+}
+
+.link-home {
+    text-decoration: none;
+    color: map-get($custom-colors, "primary");
+    font-weight: 500;
 }
