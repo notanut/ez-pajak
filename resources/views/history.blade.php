@@ -77,7 +77,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const eyeIcons = document.querySelectorAll('.btn-link');
-        
+
         eyeIcons.forEach(icon => {
             icon.addEventListener('click', function (e) {
                 const id = e.target.closest('a').getAttribute('data-id');
@@ -86,7 +86,7 @@
                 const total = e.target.closest('a').getAttribute('data-total');
                 const tanggal = e.target.closest('a').getAttribute('data-tanggal');
                 const waktu = e.target.closest('a').getAttribute('data-waktu');
-                
+
                 document.getElementById('transactionId').textContent = id;
                 document.getElementById('transactionNumber').textContent = nomorUrut;
                 document.getElementById('paymentMethod').textContent = metodePembayaran;

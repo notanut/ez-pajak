@@ -9,7 +9,7 @@ use App\Http\Controllers\PegawaiTidakTetapController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistoryController;
-
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/cek-user', function () {
@@ -60,6 +60,8 @@ Route::put('/pegawai-tidak-tetap/{transaksi}', [PegawaiTidakTetapController::cla
 Route::get('/payment/success', function () {
     return view('payment.success');
 });
+
+Route::post('/transaksi/bayar', [TransaksiController::class, 'bayar'])->middleware('auth')->name('transaksi.bayar');
 
 
 // Route::get('/dashboard', function (){
