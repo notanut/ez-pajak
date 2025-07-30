@@ -36,7 +36,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card shadow-sm border-0 m-0">
                         <div class="card-body text-center px-4 py-3">
-                            <img src="{{asset('images/home_PegawaitidakTetap.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
+                            <img src="{{asset('images/home_PegawaiTidakTetap.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
                             <h5 class="my-3 text-blue" style="font-size: 2vw;">
                                 <span class="fw-normal">Pegawai</span> tidak Tetap
                             </h5>

@@ -55,10 +55,17 @@ class PenggunaController extends Controller
         // Waktu kirimnya kapan
         $waktuKirim = Carbon::now(config('app.timezone'));
 
+        $now = Carbon::now();
+        $tanggalTarget = Carbon::create($now->year, 3, 31);
+
+        if ($now->greaterThan($tanggalTarget)) {
+            $tanggalTarget = Carbon::create($now->year + 1, 3, 31);
+        }
+
         if($satuan === 'Hari'){
-            $waktuKirim -> addSeconds($jumlah);
+            $waktuKirim = $tanggalTarget->subDays($jumlah);
         }elseif ($satuan === 'Minggu'){
-            $waktuKirim -> addWeeks($jumlah);
+            $waktuKirim = $tanggalTarget->subWeeks($jumlah);
         }
 
         $pesan["hi"] = "Hey, {$pengguna->nama}";
