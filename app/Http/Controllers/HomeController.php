@@ -8,9 +8,6 @@ use App\Models\Transaksi;
 
 class HomeController extends Controller
 {
-    /** Fungsi untuk mengambil kolom 'total' dari tabel transaksi
-     * Menampilkan dashboard dengan jumlah pembayaran pajak terbaru.
-     */
     public function index()
     {
         // Mendapatkan ID pengguna yang sedang login
@@ -41,17 +38,6 @@ class HomeController extends Controller
 
         // Mendapatkan objek pengguna yang sedang login
         $pengguna = Auth::user();
-
-        // --- DEBUGGING BARU ---
-            /**dd([
-                'userId' => $userId,
-                'latestUnpaidTransaction' => $latestUnpaidTransaction,
-                'latestAnyTransaction' => $latestAnyTransaction,
-                'jenisPegawaiTerakhir' => $jenisPegawaiTerakhir,
-                'latestTransactionId' => $latestTransactionId,
-                'jumlahPembayaranPajak' => $jumlahPembayaranPajak
-            ]);*/
-            // --- AKHIR DEBUGGING ---
 
         // Kirim $jumlahPembayaranPajak, $jenisPegawaiTerakhir, $latestTransactionId, dan $pengguna ke view
         return view('home.index', compact(

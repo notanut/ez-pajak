@@ -24,7 +24,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span>Durasi Jatuh Tempo</span>
                 <div class= "icon-card">
-                    <i class="bi bi-clock"></i>
+                    <img src="{{asset('images/cardIcon-time.jpg')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
             </div>
             <h4 id="countdown">– Bulan, – Minggu, – Hari</h4>
@@ -47,7 +47,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span>Unduh PDF</span>
                 <div class="icon-card">
-                    <i class="bi bi-download"></i>
+                    <img src="{{asset('images/cardIcon-download.jpg')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
             </div>
             <h4>Bukti Pembayaran</h4>
@@ -62,7 +62,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <span>Jumlah Pembayaran Pajak</span>
                 <div class="icon-card">
-                    <i class="bi bi-wallet2"></i>
+                    <img src="{{asset('images/cardIcon-money.jpg')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
             </div>
             {{-- Untuk menampilkan data 'total' dari tabel transaksi. Menggunakan variabel baru: $jumlahPembayaranPajak --}}
@@ -106,10 +106,12 @@
             <!-- Action Buttons -->
             <div class="button-pengingat mt-4 d-flex gap-2">
                 <button class="btn btn-outline-primary">
-                    Bisukan <i class="bi bi-bell-slash"></i>
+                    Bisukan
+                    <img src="{{asset('images/dashboardIcon-mute.png')}}" alt="Mute Icon" class="me-3" style="width: 30px; height: 30px;">
                 </button>
                 <button class="btn btn-outline-danger">
-                    Hapus <i class="bi bi-trash"></i>
+                    Hapus
+                    <img src="{{asset('images/dashboardIcon-delete.png')}}" alt="Delete Icon" class="me-3" style="width: 30px; height: 30px;">
                 </button>
             </div>
         </div>
