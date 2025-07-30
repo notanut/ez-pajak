@@ -83,7 +83,7 @@
                         <div class="card-body text-center px-4 py-3">
                             <img src="{{asset('images/home_PegawaiTidakTetap.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
                             <h5 class="my-3 text-blue" style="font-size: 2vw;">
-                                <span class="fw-normal">Pegawai</span> tidak Tetap
+                                <span class="fw-normal">Pegawai</span> Tidak Tetap
                             </h5>
                             <p class="mb-3 fst-italic" style="color: #142143; font-size: 1vw;">
                                 Pilih jika kamu bekerja di perusahaan sebagai pegawai tapi <strong>tanpa kontrak tetap</strong>, dan hanya dibayar jika bekerja.
