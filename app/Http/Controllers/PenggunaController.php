@@ -12,6 +12,8 @@ use App\Notifications\NotifikasiEmail;
 use App\Jobs\NotifikasiBayar;
 use Carbon\carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\Models\NotificationLog;
 
 class PenggunaController extends Controller
 {
@@ -54,8 +56,7 @@ class PenggunaController extends Controller
         $waktuKirim = Carbon::now(config('app.timezone'));
 
         if($satuan === 'Hari'){
-            $waktuKirim -> addDays($jumlah);
-            dd('Jalan Bangg4');
+            $waktuKirim -> addSeconds($jumlah);
         }elseif ($satuan === 'Minggu'){
             $waktuKirim -> addWeeks($jumlah);
         }
@@ -65,7 +66,21 @@ class PenggunaController extends Controller
 
         NotifikasiBayar::dispatch($pengguna, $pesan)->delay($waktuKirim);
 
-        return back()->with('status', 'Notifikasi berhasil dijadwalkan untuk dikirim pada ' . $waktuKirim->format('d F Y H:i'));
+        NotificationLog::create([
+            'user_id' => $pengguna->id,
+            'notification_type' => 'NotifikasiBayar',
+            'email' => $request->input('email'),
+            'scheduled_at' => $waktuKirim,
+        ]);
+
+        Log::info('Notifikasi dijadwalkan', [
+            'user_id' => $pengguna->id,
+            'email' => $request->input('email'),
+            'waktu_kirim' => $waktuKirim->toDateTimeString(),
+        ]);
+
+        return redirect('/home');
+        // return back()->with('status', 'Notifikasi berhasil dijadwalkan untuk dikirim pada ' . $waktuKirim->format('d F Y H:i'));
     }
 
     public function testNotifikasi()

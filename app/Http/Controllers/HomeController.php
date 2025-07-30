@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\NotificationLog;
 use App\Models\Transaksi;
 
 class HomeController extends Controller
@@ -39,6 +40,7 @@ class HomeController extends Controller
         $latestTransactionId = $latestUnpaidTransaction?->id ?? $latestAnyTransaction?->id ?? null;
 
 
+
         // Mendapatkan objek pengguna yang sedang login
         $pengguna = Auth::user();
 
@@ -54,12 +56,15 @@ class HomeController extends Controller
             // --- AKHIR DEBUGGING ---
 
         // Kirim $jumlahPembayaranPajak, $jenisPegawaiTerakhir, $latestTransactionId, dan $pengguna ke view
+
+        $notif = NotificationLog::all();
         return view('home.index', compact(
             'jumlahPembayaranPajak',
             'pengguna',
             'jenisPegawaiTerakhir',
             'latestTransactionId',
-            'transaksiCountdown'
+            'transaksiCountdown',
+            'notif'
         ));
     }
 }

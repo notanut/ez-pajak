@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
-    public function index()
+    public function index($id)
     {
         // Ambil data pembayaran
-        $Transaksi = Transaksi::all(); // Anda bisa menambahkan kondisi untuk user tertentu
+        $Transaksi = Transaksi::where('pengguna_id', $id)->get(); // Anda bisa menambahkan kondisi untuk user tertentu
         // $perhitungan = Perhitungan::find($id);
         // Kirim data ke view
         return view('history',compact('Transaksi'));
