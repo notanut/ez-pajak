@@ -53,7 +53,8 @@
             <h4>Bukti Pembayaran</h4>
             <p class="fst-italic card-text text-white">Menampilkan history perhitungan yang telah kamu lakukan. Klik untuk download dan simpan sebagai arsip pribadi.</p>
             <div class="site">
-                <a href="/history" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
+                {{-- <a href="{{ route('history')}}" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a> --}}
+                <a href="/history/{{$pengguna->id}}" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
             </div>
         </div>
 
@@ -116,11 +117,11 @@
 
         <!-- Buttons -->
         <div class="d-flex flex-wrap gap-3 mt-3">
-            @foreach (['1 Januari', '1 February', '30 February', '29 Maret'] as $date)
+            @foreach ($notif as $date)
                 <div class="d-flex align-items-center px-4 py-2 rounded">
                     <div class="pengingat-buttons">
                     {{-- card tanggal --}}
-                        <strong> {{ $date}}</strong>
+                        <strong> {{ \Carbon\Carbon::parse($date->scheduled_at)->format('d F') }}</strong>
                     </div>
                     <div class="check-wrapper">
                         {{-- card select --}}

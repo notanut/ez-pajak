@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('tanggal_pembayaran');
             $table->timestamps();
         });
-        
+
         Schema::create('bukan_pegawais', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pengguna_id')->constrained('penggunas')->onDelete('cascade');
