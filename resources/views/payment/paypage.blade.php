@@ -43,15 +43,28 @@
                     <div class="border border-2 border-start-0 border-end-0 px-5 py-4 mb-4 bg-white">
                         <div class="d-flex flex-row justify-content-between">
                             <h6>Subtotal(Rp)</h6>
-                            <h6>Rp.{{number_format($transaksi->total, 0, ',', '.')}}</h6>
+                            {{-- Tampilkan total asli --}}
+                            <h6>Rp.{{ number_format($totalAsli, 0, ',', '.') }}</h6>
                         </div>
+
+                         {{-- Tampilkan baris denda HANYA jika ada denda --}}
+                        @if($denda > 0)
+                        <div class="d-flex flex-row justify-content-between text-danger">
+                            <h6>Denda Keterlambatan (Rp)</h6>
+                            <h6>Rp.{{ number_format($denda, 0, ',', '.') }}</h6>
+                        </div>
+                        @endif
+
                         <div class="d-flex flex-row justify-content-between">
                             <h6>Biaya admin</h6>
-                            <h6>Rp.{{number_format($transaksi->total / 100, 0, ',', '.')}}</h6>
+                            {{-- FIX: Gunakan variabel $biayaAdmin --}}
+                            <h6>Rp.{{ number_format($biayaAdmin, 0, ',', '.') }}</h6>
                         </div>
-                        <div class="d-flex flex-row justify-content-between">
+
+                        <div class="d-flex flex-row justify-content-between mt-3 border-top pt-3">
                             <h4>Jumlah total (Rp)</h4>
-                            <h4>Rp.{{number_format($transaksi->total + $transaksi->total / 100, 0, ',', '.')}}</h4>
+                            {{-- Tampilkan total akhir yang sudah termasuk denda --}}
+                            <h4>Rp.{{ number_format($totalAkhir, 0, ',', '.') }}</h4>
                         </div>
                     </div>
                 </div>

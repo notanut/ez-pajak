@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-4">
     <div class="d-flex flex-column">
-        <h1>Riwayat Perhitungan Kamu</h1>
+        <h1 class="text-primary">Riwayat Perhitungan <span class="fw-normal">Kamu </span></h1>
         <p>Hasil perhitungan yang telah kamu input tersimpan dalam list ini. Unduh untuk disimpan menjadi arsip pribadi.</p>
 
         <div class="table-responsive"> {{-- Untuk tabel yang responsif di layar kecil --}}
@@ -20,10 +20,10 @@
                 {{-- Bagian Isi Tabel --}}
                 <tbody>
                     @forelse ($Transaksi as $index => $item)
-                    <tr>
-                        <th scope="row">{{ $index + 1 }}</th> {{-- Nomor Urut --}}
-                        <td>{{ $item->metode_pembayaran }}</td> {{-- Nama Dokumen --}}
-                        <td>{{ $item->total }}</td> {{-- Periode --}}
+                    <tr style="color: #717171">
+                        <td scope="row" style="color: #717171">{{ $index + 1 }}</td> {{-- Nomor Urut --}}
+                        <td style="color: #717171">{{ $item->metode_pembayaran }}</td> {{-- Nama Dokumen --}}
+                        <td style="color: #717171">{{ $item->total }}</td> {{-- Periode --}}
                         <td>
                             {{-- Gambar ini akan menjadi pemicu modal --}}
                             <a href="#" class="btn btn-link p-0" {{-- Menggunakan btn-link untuk menghilangkan gaya tombol default, p-0 untuk padding 0 --}}
@@ -58,7 +58,7 @@
                 <h5 class="modal-title" id="transactionDetailModalLabel">Detail Transaksi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="color: 717171;">
                 {{-- Data detail transaksi akan ditampilkan di sini --}}
                 <p><strong>ID Transaksi:</strong> <span id="transactionId"></span></p>
                 <p><strong>Nomor Urut:</strong> <span id="transactionNumber"></span></p>

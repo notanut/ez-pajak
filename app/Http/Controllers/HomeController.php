@@ -4,26 +4,62 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Transaksi;
 
 class HomeController extends Controller
 {
-    //
+    /** Fungsi untuk mengambil kolom 'total' dari tabel transaksi
+     * Menampilkan dashboard dengan jumlah pembayaran pajak terbaru.
+     */
     public function index()
     {
-        // return view('home.index');
+        // Mendapatkan ID pengguna yang sedang login
         $userId = auth()->id();
 
-        $pajakTetap = \App\Models\PegawaiTetap::where('pengguna_id', $userId)->first();
-        $pajakTidakTetap = \App\Models\PegawaiTidakTetap::where('pengguna_id', $userId)->first();
-        $pajakBukan = \App\Models\BukanPegawai::where('pengguna_id', $userId)->first();
+        // Ambil transaksi terbaru yang belum dibayar untuk pengguna yang sedang login
+        $latestUnpaidTransaction = Transaksi::where('pengguna_id', $userId)
+                                           ->where('status_pembayaran', 0)
+                                           ->latest()
+                                           ->first();
 
-        $data = collect([$pajakTetap, $pajakTidakTetap, $pajakBukan])
-                    ->filter()
-                    ->sortByDesc('updated_at')
-                    ->first();
+        // Variabel baru untuk countdown card, berisi objek transaksi atau null
+        $transaksiCountdown = $latestUnpaidTransaction;
+        // Ambil total untuk card "Jumlah Pembayaran" (bisa dari transaksi yg sama)
+        $jumlahPembayaranPajak = $latestUnpaidTransaction?->total ?? 0;
 
-        $jumlahPajak = $data?->pph21_terutang ?? 0;
+        // Ambil transaksi terbaru APAPUN (baik sudah dibayar atau belum)
+        // Ini untuk memastikan tombol edit selalu mengarah ke perhitungan terakhir
+        $latestAnyTransaction = Transaksi::where('pengguna_id', $userId)
+                                        ->latest()
+                                        ->first();
+
+        // Tentukan jenis pegawai dan ID transaksi untuk tombol edit
+        // Prioritaskan transaksi yang belum dibayar, jika tidak ada, gunakan transaksi terbaru apapun
+        $jenisPegawaiTerakhir = $latestUnpaidTransaction?->jenis_pegawai ?? $latestAnyTransaction?->jenis_pegawai ?? null;
+        $latestTransactionId = $latestUnpaidTransaction?->id ?? $latestAnyTransaction?->id ?? null;
+
+
+        // Mendapatkan objek pengguna yang sedang login
         $pengguna = Auth::user();
-        return view('home.index', compact('jumlahPajak','pengguna'));
-        }
+
+        // --- DEBUGGING BARU ---
+            /**dd([
+                'userId' => $userId,
+                'latestUnpaidTransaction' => $latestUnpaidTransaction,
+                'latestAnyTransaction' => $latestAnyTransaction,
+                'jenisPegawaiTerakhir' => $jenisPegawaiTerakhir,
+                'latestTransactionId' => $latestTransactionId,
+                'jumlahPembayaranPajak' => $jumlahPembayaranPajak
+            ]);*/
+            // --- AKHIR DEBUGGING ---
+
+        // Kirim $jumlahPembayaranPajak, $jenisPegawaiTerakhir, $latestTransactionId, dan $pengguna ke view
+        return view('home.index', compact(
+            'jumlahPembayaranPajak',
+            'pengguna',
+            'jenisPegawaiTerakhir',
+            'latestTransactionId',
+            'transaksiCountdown'
+        ));
+    }
 }
