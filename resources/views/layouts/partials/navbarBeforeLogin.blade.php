@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EZPajak Navbar</title> <link rel="stylesheet" href="css\bootstrap.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/navbar.css'])
 </head>
 <body>
 
@@ -31,8 +31,8 @@
         </div>
 
         <div class="navbar-nav gap-2 ms-auto d-none d-lg-flex ">
-            <a class="btn btn-outline-primary rounded-0 fs-5 px-3 w-100" href="/login">Login</a>
-            <a class="btn btn-primary rounded-0 fs-5 px-3 w-100" href="/register">Register</a>
+            <a class="btn btn-outline-primary rounded-0 fs-5 px-3 w-100 border-1 fw-normal" href="/login">Login</a>
+            <a class="btn btn-primary rounded-0 fs-5 px-3 w-100 reg-btn border-1" href="/register">Register</a>
         </div>
 
     </div>
