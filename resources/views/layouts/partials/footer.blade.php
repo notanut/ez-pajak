@@ -27,8 +27,8 @@
                     <img class="w-icon" src="{{ asset('img/mdi_instagram.png') }}" alt="">
                     <img class="w-icon" src="{{ asset('img/mdi_linkedin.png') }}" alt="">
                 </div>
-                <button class="btn border border-2 border-primary rounded-0 p-0 d-flex flex-row gap-4 w-25 align-items-center p-2" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
-                    <p class="ms-2 m-0">Back to top</p>
+                <button class="btn border border-2 border-primary rounded-0 d-inline-flex flex-row gap-4 align-items-center p-2" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="width: fit-content;">
+                    <p class="ms-2 m-0 fs-6">Scroll ke atas</p>
                     <div class="justify-content-center">
                         <svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_543_43)">
@@ -46,7 +46,7 @@
             </div>
             {{-- footer 2 --}}
             <div class="col-6 col-md-3 d-flex flex-column p-3">
-                <h4>Navigasi Cepat</h4>
+                <h4 class="text-element-dark">Navigasi Cepat</h4>
                 @guest
                     <ul class="ps-0">
                         <li class="list-group-item"><a class="list-group-item" href="/">Home</a></li>
@@ -66,7 +66,7 @@
             </div>
             {{-- footer 3 --}}
             <div class="col-6 col-md-3 d-flex flex-column p-3">
-                <h4>Kontak kami</h4>
+                <h4 class="text-element-dark">Kontak kami</h4>
                 <ul class="ps-0">
                     <li class="list-group-item">
                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,9 +88,9 @@
             </div>
         </div>
         <hr class="m-0 mb-1 primary">
-        <div class="d-flex justify-content-center gap-2">
+        <div class="d-flex justify-content-center gap-2 py-3">
             <img src="{{ asset('img/ooui_logo-cc.png') }}" alt="">
-            <h6 class="fw-light mb-0 pt-1 pb-1">EzPajak UI, All rights reserved</h6>
+            <h6 class="fw-light mb-0 pt-1 pb-1">EzPajak UI, Hak cipta dilindungi undang-undang.</h6>
         </div>
     </div>
 </body>

@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 text-center">
-                    <img src="{{asset('images/ilustrasi_homePage1.png')}}" alt="EZPajak Illustration" class="img-fluid">
+                    <img src="{{asset('images/Ilustrasi_homePage1.png')}}" alt="EZPajak Illustration" class="img-fluid">
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                         <img src="{{asset('images/icon_smartWay.png')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
                             <h4 class="fw-bold text-blue">Smart Way</h4>
-                            <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang uruss.</p>
+                            <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang urus.</p>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                         <div class="card-body text-center px-4 py-3">
                             <img src="{{asset('images/home_PegawaiTidakTetap.png')}}" class="img-fluid mb-2" style="max-height: 120px;" alt="Pegawai Tidak Tetap">
                             <h5 class="my-3 text-blue" style="font-size: 2vw;">
-                                <span class="fw-normal">Pegawai</span> tidak Tetap
+                                <span class="fw-normal">Pegawai</span> Tidak Tetap
                             </h5>
                             <p class="mb-3 fst-italic" style="color: #142143; font-size: 1vw;">
                                 Pilih jika kamu bekerja di perusahaan sebagai pegawai tapi <strong>tanpa kontrak tetap</strong>, dan hanya dibayar jika bekerja.
@@ -141,7 +141,7 @@
                 <h2 class="fw-bold text-blue text-end">
                     Kenapa <br> <span class="fw-normal">Pilih EzPajak?</span>
                 </h2>
-                <img src="{{asset('images/IlustrasiHomePage2.png')}}" alt="Kenapa Pilih EzPajak" class="img-fluid mt-3" style="max-height: 300px; object-fit: contain;">
+                <img src="{{asset('images/ilustrasiHomePage2.png')}}" alt="Kenapa Pilih EzPajak" class="img-fluid mt-3" style="max-height: 300px; object-fit: contain;">
             </div>
         </div>
     </div>

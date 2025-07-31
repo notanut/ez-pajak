@@ -15,6 +15,7 @@
 
     {{-- Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
 
     <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
      @vite(['resources/css/app.css', 'resources/css/homepage.css', 'resources/js/app.js'])
