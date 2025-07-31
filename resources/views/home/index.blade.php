@@ -69,29 +69,32 @@
             {{-- Untuk menampilkan data 'total' dari tabel transaksi. Menggunakan variabel baru: $jumlahPembayaranPajak --}}
             <h4>Rp {{ number_format($jumlahPembayaranPajak ?? 0, 2, ',', '.') }} </h4>
             <p class="fst-italic card-text text-white">Ini total pajak yang perlu dibayar untuk periode ini. Pastikan data yang kamu input sudah sesuai yaa.</p>
-            <div class="d-flex justify-content-between mt-2">
-                {{-- Tombol Edit dinamis berdasarkan jenis pegawai terakhir --}}
-                @php
-                    $editRoute = '#'; // Default jika tidak ada jenis pegawai atau transaksi
-                    if (isset($jenisPegawaiTerakhir) && $jenisPegawaiTerakhir && isset($latestTransactionId) && $latestTransactionId) {
-                        switch ($jenisPegawaiTerakhir) { // <-- TYPO FIXED HERE
-                            case 'Pegawai Tetap':
-                                $editRoute = route('pegawai-tetap.edit', ['transaksi' => $latestTransactionId]);
-                                break;
-                            case 'Pegawai Tidak Tetap':
-                                $editRoute = route('pegawai-tidak-tetap.edit', ['transaksi' => $latestTransactionId]);
-                                break;
-                            case 'Bukan Pegawai':
-                                $editRoute = route('bukan-pegawai.edit', ['transaksi' => $latestTransactionId]);
-                                break;
+            {{-- Tampilkan tombol Edit HANYA jika ada transaksi yang belum dibayar --}}
+            @if($transaksiCountdown)
+                <div class="d-flex justify-content-between mt-2">
+                    {{-- Tombol Edit dinamis berdasarkan jenis pegawai terakhir --}}
+                    @php
+                        $editRoute = '#'; // Default jika tidak ada jenis pegawai atau transaksi
+                        if (isset($jenisPegawaiTerakhir) && $jenisPegawaiTerakhir && isset($latestTransactionId) && $latestTransactionId) {
+                            switch ($jenisPegawaiTerakhir) { // <-- TYPO FIXED HERE
+                                case 'Pegawai Tetap':
+                                    $editRoute = route('pegawai-tetap.edit', ['transaksi' => $latestTransactionId]);
+                                    break;
+                                case 'Pegawai Tidak Tetap':
+                                    $editRoute = route('pegawai-tidak-tetap.edit', ['transaksi' => $latestTransactionId]);
+                                    break;
+                                case 'Bukan Pegawai':
+                                    $editRoute = route('bukan-pegawai.edit', ['transaksi' => $latestTransactionId]);
+                                    break;
+                            }
                         }
-                    }
-                @endphp
-                <a href="{{ $editRoute }}" class="card-text text-white small">
-                    Edit
-                    <img src="{{asset('images/iconDashboard-edit.png')}}" alt="Smart Way Icon" class="me-3" style="width: 20px; height: 20px;">
-                </a>
-            </div>
+                    @endphp
+                    <a href="{{ $editRoute }}" class="card-text text-white small">
+                        Edit
+                        <img src="{{asset('images/iconDashboard-edit.png')}}" alt="Smart Way Icon" class="me-3" style="width: 20px; height: 20px;">
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 
