@@ -29,7 +29,7 @@
                         <img src="{{asset('images/icon_smartWay.png')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                         <div>
                             <h4 class="fw-bold text-blue">Smart Way</h4>
-                            <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang uruss.</p>
+                            <p class="mb-0 fst-italic" style="color: #142143">Kamu bisa atur pembayaran pajak tanpa ribet. Karena yang susah, biar kami yang urus.</p>
                         </div>
                     </div>
                 </div>

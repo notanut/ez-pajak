@@ -90,7 +90,7 @@
         <hr class="m-0 mb-1 primary">
         <div class="d-flex justify-content-center gap-2 py-3">
             <img src="{{ asset('img/ooui_logo-cc.png') }}" alt="">
-            <h6 class="fw-light mb-0 pt-1 pb-1">EzPajak UI, All rights reserved</h6>
+            <h6 class="fw-light mb-0 pt-1 pb-1">EzPajak UI, Hak cipta dilindungi undang-undang.</h6>
         </div>
     </div>
 </body>

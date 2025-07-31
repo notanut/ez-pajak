@@ -74,14 +74,14 @@ class PenggunaController extends Controller
         NotifikasiBayar::dispatch($pengguna, $pesan)->delay($waktuKirim);
 
         NotificationLog::create([
-            'user_id' => $pengguna->id,
+            'pengguna_id' => $pengguna->id,
             'notification_type' => 'NotifikasiBayar',
             'email' => $request->input('email'),
             'scheduled_at' => $waktuKirim,
         ]);
 
         Log::info('Notifikasi dijadwalkan', [
-            'user_id' => $pengguna->id,
+            'pengguna_id' => $pengguna->id,
             'email' => $request->input('email'),
             'waktu_kirim' => $waktuKirim->toDateTimeString(),
         ]);

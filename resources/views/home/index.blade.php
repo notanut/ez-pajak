@@ -9,7 +9,7 @@
      {{-- php -d variables_order=GPCS artisan serve --}}
     <div>
         <h2 class="text-primary">Dashboard <span class="fw-normal">Anda</span></h2>
-        <p class="fst-italic">Selamat datang di dashboard! Di sini kamu bisa pantau semua informasi penting soal pembaaran pajak dengan lebih mudah dan praktis.</p>
+        <p class="fst-italic">Selamat datang di dashboard! Di sini kamu bisa pantau semua informasi penting soal pembayaran pajak dengan lebih mudah dan praktis.</p>
     </div>
 
     <div class="d-flex">
@@ -22,7 +22,7 @@
         <!-- Durasi Jatuh Tempo -->
         <div class="dashboard-card bg-card text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <span>Durasi Jatuh Tempo</span>
+                <span class="detailCard-text">Durasi Jatuh Tempo</span>
                 <div class= "icon-card">
                     <img src="{{asset('images/cardIcon-time.jpg')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
@@ -33,7 +33,7 @@
                 {{-- Arahkan ke halaman pembayaran jika ada transaksi belum lunas --}}
                 @if($transaksiCountdown)
                     <a href="{{ route('payment.show', ['transaksi' => $transaksiCountdown->id]) }}" class="card-text text-white small text-decoration-none">
-                        <span class="fw-bold">Bayar</span> Sekarang &rsaquo;
+                        <span class="detailCard-text">Bayar</span> Sekarang &rsaquo;
                     </a>
                 @else
                     {{-- Jika tidak ada tagihan, bisa tampilkan pesan atau sembunyikan link --}}
@@ -45,23 +45,23 @@
         <!-- Unduh PDF -->
         <div class="dashboard-card bg-card2 text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <span>Unduh PDF</span>
+                <span class="detailCard-text">Unduh PDF</span>
                 <div class="icon-card">
-                    <img src="{{asset('images/cardIcon-download.jpg')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
+                    <img src="{{asset('images/cardIcon-download.png')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
             </div>
             <h4>Bukti Pembayaran</h4>
             <p class="fst-italic card-text text-white">Menampilkan history perhitungan yang telah kamu lakukan. Klik untuk download dan simpan sebagai arsip pribadi.</p>
             <div class="site">
                 {{-- <a href="{{ route('history')}}" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a> --}}
-                <a href="/history/{{$pengguna->id}}" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a>
+                <a href="/history/{{$pengguna->id}}" class="card-text text-white small text-decoration-none"><span class="detailCard-text">Download</span> Periode Akhir &rsaquo;</a>
             </div>
         </div>
 
         <!-- Jumlah Pembayaran Pajak -->
         <div class="dashboard-card bg-card3 text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <span>Jumlah Pembayaran Pajak</span>
+                <span class="detailCard-text">Jumlah Pembayaran Pajak</span>
                 <div class="icon-card">
                     <img src="{{asset('images/cardIcon-money.jpg')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
@@ -87,7 +87,10 @@
                         }
                     }
                 @endphp
-                <a href="{{ $editRoute }}" class="card-text text-white small">Edit <i class="right-icon bi bi-pencil text-white"></i></a>
+                <a href="{{ $editRoute }}" class="card-text text-white small">
+                    Edit
+                    <img src="{{asset('images/iconDashboard-edit.png')}}" alt="Smart Way Icon" class="me-3" style="width: 20px; height: 20px;">
+                </a>
             </div>
         </div>
     </div>
@@ -101,18 +104,29 @@
 
         <div class="d-flex flex-column flex-lg-row justify-content-between">
              <div class="keterangan-pengingat">
-                <h6 class="mt-4 fw-bold text-primary">Pengingat <span class="fw-normal">Kamu</span></h6>
+                <h6 class="mt-4 detailCard-text text-primary">Pengingat <span class="fw-normal">Kamu</span></h6>
                 <p class="fst-italic">Ini daftar tanggal penting yang udah kamu set. Kami akan bantu ingetin di tanggal itu yaa.</p>
             </div>
             <!-- Action Buttons -->
             <div class="button-pengingat mt-4 d-flex gap-2">
-                <button class="btn btn-outline-primary">
+                {{-- <button class="btn btn-outline-primary">
                     Bisukan
                     <img src="{{asset('images/dashboardIcon-mute.png')}}" alt="Mute Icon" class="me-3" style="width: 30px; height: 30px;">
                 </button>
                 <button class="btn btn-outline-danger">
                     Hapus
                     <img src="{{asset('images/dashboardIcon-delete.png')}}" alt="Delete Icon" class="me-3" style="width: 30px; height: 30px;">
+                </button> --}}
+                <button class="btn btn-outline-primary btn-hover-icon">
+                    Bisukan
+                    <img src="{{ asset('images/dashboardIcon-mute.png') }}" alt="Mute Icon" class="icon default-icon">
+                    <img src="{{ asset('images/dashboardIcon-mute-white.png') }}" alt="Mute Icon Hover" class="icon hover-icon">
+                </button>
+
+                <button class="btn btn-outline-danger btn-hover-icon">
+                    Hapus
+                    <img src="{{ asset('images/iconDashboard-trash.png') }}" alt="Delete Icon" class="icon default-icon">
+                    <img src="{{ asset('images/iconDashboard-trash-white.png') }}" alt="Delete Icon Hover" class="icon hover-icon">
                 </button>
             </div>
         </div>
@@ -143,9 +157,10 @@
             <div class="col-md-6">
                 {{-- Kalender bang --}}
                 <div id="calendar" style="max-width: 900px; margin: 40px auto;"></div>
-
-                <button id="btnTambah" class="btn btn-outline-success mt-2">
-                    Tambah <i class="bi bi-plus"></i>
+                <button id="btnTambah" class="btn btn-outline-success mt-2 btn-hover-icon">
+                    Tambah
+                    <img src="{{ asset('images/iconCard-add.png') }}" alt="Mute Icon" class="icon default-icon" style="width: 20px; height: 20px;">
+                    <img src="{{ asset('images/iconCard-add-white.png') }}" alt="Mute Icon Hover" class="icon hover-icon" style="width: 20px; height: 20px;">
                 </button>
             </div>
             <div class="col-md-6">
@@ -198,7 +213,7 @@
                     <p class="fst-italic text-muted">Kami bakal kirim pengingat lewat email ini. Pastikan udah bener biar notifikasimu ga nyasar.</p>
 
                     <div class="input-group d-flex align-items-center gap-5">
-                        <input type="email" class="fw-bold bg-element-orange text-white" name="email" value="{{$pengguna->email}}" readonly>
+                        <input type="email" class="detailCard-text bg-element-orange text-white" name="email" value="{{$pengguna->email}}" readonly>
                         {{-- <button class="btn btn-outline-primary">
                             Edit <i class="bi bi-pencil"></i>
                         </button> --}}

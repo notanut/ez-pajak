@@ -9,7 +9,7 @@ class NotificationLog extends Model
 {
     //
     protected $fillable = [
-        'user_id',
+        'pengguna_id',
         'notification_type',
         'email',
         'scheduled_at',
