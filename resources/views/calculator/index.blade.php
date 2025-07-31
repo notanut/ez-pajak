@@ -108,7 +108,7 @@
                     <div class="form-floating input-field mb-0">
                         {{-- Mengisi nilai input jika ada data pegawaiTetap --}}
                         <input class="form-control rp" id="floatingGaji" placeholder="0" value="{{ $pegawaiTetap->gaji ?? '' }}">
-                        <label for="floatingGaji">Gaji/Pensiun</label>
+                        <label for="floatingGaji">Gaji/Pensiun Setahun</label>
                     </div>
                     <p id="error-gaji" class="text-danger small mt-1 mb-0 fw-normal"></p>
 
