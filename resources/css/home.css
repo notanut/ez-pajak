@@ -227,3 +227,15 @@ button, .btn {
     }
   }
 }
+
+.bg-card {
+  background-color: #142143 !important;
+}
+
+.bg-card2 {
+  background-color: #151F6D !important;
+}
+
+.bg-card3 {
+  background-color: #0045BE !important;
+}

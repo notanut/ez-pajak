@@ -1,14 +1,14 @@
 .to-dashboard {
-    padding: 0.5rem 0.75rem; 
+    padding: 0.5rem 0.75rem;
     background-color: white;
-    color: map-get($custom-colors, "primary"); 
+    color: map-get($custom-colors, "primary");
     border: 1px solid map-get($custom-colors, "primary");
     cursor: pointer;
     transition: .3s all ease-in-out;
 }
 
 .to-dashboard:hover {
-    background-color: map-get($custom-colors, "primary"); 
+    background-color: map-get($custom-colors, "primary");
     color: white;
     box-shadow: $box-shadow-sm;
     .link-home {
