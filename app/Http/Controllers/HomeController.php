@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NotificationLog;
@@ -52,5 +53,19 @@ class HomeController extends Controller
             'transaksiCountdown',
             'notif'
         ));
+    }
+
+    public function deleteIndex(Request $request){
+
+        $ids = $request->input('ids');
+
+        if (!$ids || count($ids) === 0) {
+            return back()->with('error', 'Tidak ada item yang dipilih.');
+        }
+
+        NotificationLog::whereIn('id', $ids)->delete();
+
+        return back()->with('success', count($ids) . ' item berhasil dihapus.');
+
     }
 }

@@ -126,7 +126,7 @@
                     <img src="{{ asset('images/dashboardIcon-mute-white.png') }}" alt="Mute Icon Hover" class="icon hover-icon">
                 </button>
 
-                <button class="btn btn-outline-danger btn-hover-icon">
+                <button form="deleteReminder" type="submit" class="btn btn-outline-danger btn-hover-icon">
                     Hapus
                     <img src="{{ asset('images/iconDashboard-trash.png') }}" alt="Delete Icon" class="icon default-icon">
                     <img src="{{ asset('images/iconDashboard-trash-white.png') }}" alt="Delete Icon Hover" class="icon hover-icon">
@@ -135,20 +135,24 @@
         </div>
 
         <!-- Buttons -->
-        <div class="d-flex flex-wrap gap-3 mt-3">
-            @foreach ($notif as $date)
-                <div class="d-flex align-items-center px-4 py-2 rounded">
-                    <div class="pengingat-buttons">
-                    {{-- card tanggal --}}
-                        <strong> {{ \Carbon\Carbon::parse($date->scheduled_at)->format('d F') }}</strong>
+        <form id="deleteReminder" action="{{ route('hapusNotif') }}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <!-- Wrapper Tanggal dan Checkbox -->
+            <div class="d-flex flex-wrap gap-3 mt-3">
+                @foreach ($notif as $date)
+                    <div class="d-flex align-items-center px-4 py-2 rounded">
+                        <div class="pengingat-buttons">
+                            <strong> {{ \Carbon\Carbon::parse($date->scheduled_at)->format('d F') }}</strong>
+                        </div>
+                        <div class="check-wrapper">
+                            <input type="checkbox" name="ids[]" value="{{ $date->id }}">
+                        </div>
                     </div>
-                    <div class="check-wrapper">
-                        {{-- card select --}}
-                        <input type="checkbox">
-                    </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        </form>
         </div>
     </div>
 

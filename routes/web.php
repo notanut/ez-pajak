@@ -82,6 +82,8 @@ Route::get('/payment/paypage', function () {
     return view('payment.paypage');
 });
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::delete('/home/hapusNotif', [HomeController::class , 'deleteIndex'])->name('hapusNotif');
+
 
 Route::middleware('auth')->post('/payment/paypage/{id}',[PenggunaController::class,'index']);
 // Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
