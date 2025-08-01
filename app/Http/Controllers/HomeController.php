@@ -43,7 +43,7 @@ class HomeController extends Controller
 
         // Kirim $jumlahPembayaranPajak, $jenisPegawaiTerakhir, $latestTransactionId, dan $pengguna ke view
 
-        $notif = NotificationLog::all();
+        $notif = NotificationLog::where('pengguna_id',$userId)->get();
         return view('home.index', compact(
             'jumlahPembayaranPajak',
             'pengguna',

@@ -101,12 +101,12 @@
                             <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}">
                             <input type="hidden" name="metode_pembayaran" value="Credit Card">
                             <div class="form-floating input-field">
-                                <input class="form-control" id="floatingNumCard" placeholder="0">
+                                <input class="form-control" name="card_number" id="floatingNumCard" placeholder="0" required>
                                 <label class="fs-4 p-0" for="floatingNumCard">Card Number</label>
                             </div>
                             <div class="d-flex flex-row align-items-center gap-3 mb-4">
                                 <div class="form-floating input-field w-50">
-                                    <input class="form-control" id="floatingNumCard" placeholder="0">
+                                    <input class="form-control" id="floatingNumCard" placeholder="0" maxlength="3">
                                     <label class="fs-4 p-0" for="floatingNumCard">CVV</label>
                                 </div>
                                 <div class="w-50">
@@ -131,7 +131,7 @@
                         <div class="d-flex flex-column justify-content-between h-100">
                             <form action="{{route('transaksi.bayar')}}" method="POST">
                                 @csrf
-                                <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}">
+                                <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}" required>
                                 <input type="hidden" name="metode_pembayaran" value="GoPay">
                                 <div class="form-floating input-field">
                                     <input class="form-control" id="floatingNumCard" placeholder="0">
@@ -149,7 +149,7 @@
                         <div class="d-flex flex-column justify-content-between h-100">
                             <form action="{{route('transaksi.bayar')}}" method="POST">
                                 @csrf
-                                <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}">
+                                <input type="hidden" name="transaksi_id" value="{{ $transaksi->id }}" required>
                                 <input type="hidden" name="metode_pembayaran" value="OVO">
                                 <div class="form-floating input-field">
                                     <input class="form-control" id="floatingNumCard" placeholder="0">
