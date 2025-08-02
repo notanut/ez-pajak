@@ -70,7 +70,7 @@
             <h4>Rp {{ number_format($jumlahPembayaranPajak ?? 0, 2, ',', '.') }} </h4>
             <p class="fst-italic card-text text-white">Ini total pajak yang perlu dibayar untuk periode ini. Pastikan data yang kamu input sudah sesuai yaa.</p>
             {{-- Tampilkan tombol Edit HANYA jika ada transaksi yang belum dibayar --}}
-            @if($transaksiCountdown)
+            @if($showEditButton)
                 <div class="d-flex justify-content-between mt-2">
                     {{-- Tombol Edit dinamis berdasarkan jenis pegawai terakhir --}}
                     @php
