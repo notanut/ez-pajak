@@ -8,7 +8,7 @@
                     <h1 class="display-4 fw-bold mb-3 text-blue"><span class="fw-normal">Apa itu </span> EZPajak ?</h1>
                     <p class="lead mb-4">
                         EZPajak adalah website interaktif berbasis browser yang memandu warga Indonesia
-                        menghitung dan membayarkan PPh 21 secara mudah dan aman.
+                        menghitung dan membayarkan PPh 21 secara mudah dan aman.
                     </p>
                     <a href="#calculatorCards" class="btn btn-lg rounded-0 px-4 py-3 d-inline-flex align-items-center w-200 h-40 text-white" style="background-color:#FE8F1D">
                         Coba Sekarang
