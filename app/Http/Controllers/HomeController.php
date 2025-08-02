@@ -32,12 +32,16 @@ class HomeController extends Controller
                                         ->latest()
                                         ->first();
 
+        // Cek transaksi terakhir. Jika ada DAN statusnya belum lunas (0), tampilkan totalnya. Jika tidak, tampilkan 0.
+        $jumlahPembayaranPajak = ($latestAnyTransaction && $latestAnyTransaction->status_pembayaran == 0) ? $latestAnyTransaction->total : 0;
+
         // Tentukan jenis pegawai dan ID transaksi untuk tombol edit
         // Prioritaskan transaksi yang belum dibayar, jika tidak ada, gunakan transaksi terbaru apapun
         $jenisPegawaiTerakhir = $latestUnpaidTransaction?->jenis_pegawai ?? $latestAnyTransaction?->jenis_pegawai ?? null;
         $latestTransactionId = $latestUnpaidTransaction?->id ?? $latestAnyTransaction?->id ?? null;
 
-
+        // Tentukan apakah tombol edit harus muncul: HANYA jika transaksi terakhir ada DAN belum lunas.
+        $showEditButton = ($latestAnyTransaction && $latestAnyTransaction->status_pembayaran == 0);
 
         // Mendapatkan objek pengguna yang sedang login
         $pengguna = Auth::user();
@@ -51,7 +55,8 @@ class HomeController extends Controller
             'jenisPegawaiTerakhir',
             'latestTransactionId',
             'transaksiCountdown',
-            'notif'
+            'notif',
+            'showEditButton'
         ));
     }
 

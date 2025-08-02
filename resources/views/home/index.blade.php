@@ -45,7 +45,7 @@
         <!-- Unduh PDF -->
         <div class="dashboard-card bg-card2 text-white p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="detailCard-text">Unduh PDF</span>
+                <span class="detailCard-text">Lihat History</span>
                 <div class="icon-card">
                     <img src="{{asset('images/cardIcon-download.png')}}" alt="Smart Way Icon" class="me-3" style="width: 30px; height: 30px;">
                 </div>
@@ -54,7 +54,7 @@
             <p class="fst-italic card-text text-white">Menampilkan history perhitungan yang telah kamu lakukan. Klik untuk download dan simpan sebagai arsip pribadi.</p>
             <div class="site">
                 {{-- <a href="{{ route('history')}}" class="card-text text-white small text-decoration-none"><span class="fw-bold">Download</span> Periode Akhir &rsaquo;</a> --}}
-                <a href="/history/{{$pengguna->id}}" class="card-text text-white small text-decoration-none"><span class="detailCard-text">Download</span> Periode Akhir &rsaquo;</a>
+                <a href="/history/{{$pengguna->id}}" class="card-text text-white small text-decoration-none"><span class="detailCard-text">Lihat</span> History Transaksi &rsaquo;</a>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
             <h4>Rp {{ number_format($jumlahPembayaranPajak ?? 0, 2, ',', '.') }} </h4>
             <p class="fst-italic card-text text-white">Ini total pajak yang perlu dibayar untuk periode ini. Pastikan data yang kamu input sudah sesuai yaa.</p>
             {{-- Tampilkan tombol Edit HANYA jika ada transaksi yang belum dibayar --}}
-            @if($transaksiCountdown)
+            @if($showEditButton)
                 <div class="d-flex justify-content-between mt-2">
                     {{-- Tombol Edit dinamis berdasarkan jenis pegawai terakhir --}}
                     @php

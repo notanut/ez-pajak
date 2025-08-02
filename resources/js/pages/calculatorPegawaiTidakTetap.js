@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // ▼▼▼ BAGIAN 1: FUNGSI PEMBANTU (HELPERS) ▼▼▼
 
     function parseRupiah(str) {
-        // Fungsi ini sekarang hanya perlu menghapus karakter non-digit,
-        // karena format di halaman sudah distandarisasi menjadi "Rp 6.000.000"
-        if (!str || typeof str !== 'string') return 0;
-        return parseInt(str.replace(/\D/g, '') || 0);
+        if (!str) return 0;
+        // Hanya menghapus semua karakter yang bukan digit.
+        // Contoh: "Rp 9.000.000" akan menjadi 9000000.
+        return parseInt(String(str).replace(/\D/g, ''), 10) || 0;
     }
 
     function formatRupiah(value) {
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // DIKEMBALIKAN: Fungsi localStorage yang BENAR dari file asli
+
     function saveTidakTetapDataToLocalStorage() {
         console.log('User tidak login, menyimpan data pegawai tidak tetap ke localStorage...');
         const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -246,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('calculatorFormData_TidakTetap', JSON.stringify(calculatorData));
     }
 
-    // DIKEMBALIKAN: Fungsi localStorage yang BENAR dari file asli
     function loadAndRestoreTidakTetapData() {
         const savedDataJSON = localStorage.getItem('calculatorFormData_TidakTetap');
         if (!savedDataJSON) return;
@@ -280,8 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // ▼▼▼ BAGIAN 3: INISIALISASI HALAMAN DAN EVENT LISTENERS ▼▼▼
-
     function setupEventListeners() {
         document.querySelectorAll('.rp').forEach(input => {
             input.addEventListener('input', function () {
@@ -300,46 +297,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function initializePage() {
-        // 1. Siapkan semua event listener dan tanggal
-        setupEventListeners();
-        calculateTaxDates();
+        // Jika ini mode edit (ada data dari server)
+        if (window.pegawaiTidakTetapData) {
+            console.log("Mode Edit: Memformat nilai awal dari database...");
 
-        // 2. Tentukan apakah ini mode "edit" atau mode "tamu"
-        if (window.pegawaiTidakTetapData) { // Cek jika data dari server ada (mode edit)
-            console.log("Mode Edit terdeteksi, menerapkan data dari server.");
-
-            // Atur semua pilihan radio button sesuai data dari server
+            // Atur pilihan radio button sesuai data dari server (Bagian ini tetap sama)
             if (window.pegawaiTidakTetapData.jenis_kelamin) {
                 document.querySelector(`input[name="sex"][value="${window.pegawaiTidakTetapData.jenis_kelamin}"]`).checked = true;
             }
             if (window.pegawaiTidakTetapData.dibayar_bulanan !== null) {
-                document.querySelector(`input[name="dibayar_bulanan"][value="${window.pegawaiTidakTetapData.dibayar_bulanan ? '0' : '1'}"]`).checked = true;
+                const dibayarBulananValue = window.pegawaiTidakTetapData.dibayar_bulanan ? '0' : '1';
+                document.querySelector(`input[name="dibayar_bulanan"][value="${dibayarBulananValue}"]`).checked = true;
             }
             if (window.pegawaiTidakTetapData.bulanan_sama !== null) {
-                document.querySelector(`input[name="bulananSamaGa"][value="${window.pegawaiTidakTetapData.bulanan_sama ? '0' : '1'}"]`).checked = true;
+                const bulananSamaValue = window.pegawaiTidakTetapData.bulanan_sama ? '0' : '1';
+                document.querySelector(`input[name="bulananSamaGa"][value="${bulananSamaValue}"]`).checked = true;
             }
 
-            // FIX: Format nilai dari database (yang berupa angka mentah) HANYA di mode edit.
             document.querySelectorAll('.rp').forEach(input => {
                 if (input.value) {
-                    input.value = formatRupiah(input.value);
+                    const angkaDariDb = parseFloat(input.value);
+                    input.value = formatRupiah(angkaDariDb);
+                    console.log(input.value)
                 }
             });
 
         } else {
-            // Jika bukan mode edit, jalankan logika untuk pengguna tamu dari localStorage
             loadAndRestoreTidakTetapData();
         }
 
-        // 3. Panggil updateDisplay dan hitung SETELAH semua data dimuat
         updateDisplay();
         hitung();
+        setupEventListeners();
+        calculateTaxDates();
     }
 
     initializePage();
-
-
-    // ▼▼▼ BAGIAN 4: LOGIKA TOMBOL AKSI (STORE & UPDATE) ▼▼▼
 
     async function handleSubmission(isUpdate = false, isRemindLater = false) {
         const data = getFormData();

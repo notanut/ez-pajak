@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'penggunas',
+            'provider' => 'users',
         ],
     ],
 
@@ -59,16 +59,22 @@ return [
     |
     */
 
-    'providers' => [
-        'penggunas' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Pengguna::class),
-        ],
+    // 'providers' => [
+    //     'penggunas' => [
+    //         'driver' => 'eloquent',
+    //         'model' => env('AUTH_MODEL', App\Models\Pengguna::class),
+    //     ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+    //     // 'users' => [
+    //     //     'driver' => 'database',
+    //     //     'table' => 'users',
+    //     // ],
+    // ],
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
     ],
 
     /*
