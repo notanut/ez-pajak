@@ -8,10 +8,15 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
+// use App\Http\Controllers\Auth\VerifyEmailController; // <-- KOMENTARI ATAU HAPUS BARIS INI
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
+// <-- TAMBAHKAN DUA BARIS INI -->
+use App\Http\Middleware\StoreIntendedUrl;
+use App\Http\Controllers\Auth\CustomVerifyEmailController;
+
+// <-- TAMBAHKAN StoreIntendedUrl::class DI SINI -->
+Route::middleware(['guest', StoreIntendedUrl::class])->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -39,7 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
-    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
+    // <-- UBAH VerifyEmailController::class MENJADI CustomVerifyEmailController::class DI SINI -->
+    Route::get('verify-email/{id}/{hash}', CustomVerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 

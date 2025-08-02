@@ -37,6 +37,10 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        if ($request->filled('redirect_to')) {
+            session(['url.intended' => $request->input('redirect_to')]);
+        }
+
         return redirect()->route('verification.notice');
     }
 }
