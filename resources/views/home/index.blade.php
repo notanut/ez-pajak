@@ -120,11 +120,11 @@
                     Hapus
                     <img src="{{asset('images/dashboardIcon-delete.png')}}" alt="Delete Icon" class="me-3" style="width: 30px; height: 30px;">
                 </button> --}}
-                <button class="btn btn-outline-primary btn-hover-icon">
+                {{-- <button class="btn btn-outline-primary btn-hover-icon">
                     Bisukan
                     <img src="{{ asset('images/dashboardIcon-mute.png') }}" alt="Mute Icon" class="icon default-icon">
                     <img src="{{ asset('images/dashboardIcon-mute-white.png') }}" alt="Mute Icon Hover" class="icon hover-icon">
-                </button>
+                </button> --}}
 
                 <button form="deleteReminder" type="submit" class="btn btn-outline-danger btn-hover-icon">
                     Hapus
