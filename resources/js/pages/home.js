@@ -32,68 +32,38 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function() {
     function getNextTargetDate() {
         const now = new Date();
-        const year = now.getFullYear();
-        const targetThisYear = new Date(year, 2, 31);
-        return now <= targetThisYear ? targetThisYear : new Date(year + 1, 2, 31);
-    }
+        const currentYear = now.getFullYear();
+        const thisYearTarget = new Date(`${currentYear}-03-31`);
+
+        if (now > thisYearTarget) {
+            return new Date(`${currentYear + 1}-03-31`);
+        } else {
+            return thisYearTarget;
+        }
+}
 
     function updateCountdown() {
         const now = new Date();
         const target = getNextTargetDate();
-        let diff = target - now;
+        const diffMs = target - now;
 
-        if (diff <= 0) {
-            document.getElementById('countdown').innerText = '– Bulan, – Minggu, – Hari';
+        if (diffMs <= 0) {
+            document.getElementById('countdown').innerText = 'Waktu Habis';
             return;
         }
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-        const msInDay = 1000 * 60 * 60 * 24;
-        const msInWeek = msInDay * 7;
-        const avgDaysInMonth = 30.436875;
-        const msInMonth = msInDay * avgDaysInMonth;
+        const avgDaysInMonth = 30.44;
 
-        const months = Math.floor(diff / msInMonth);
-        diff -= months * msInMonth;
-
-        const weeks = Math.floor(diff / msInWeek);
-        diff -= weeks * msInWeek;
-
-        const days = Math.floor(diff / msInDay);
-
+        const months = Math.floor(diffDays / avgDaysInMonth);
+        const weeks = Math.floor((diffDays % avgDaysInMonth) / 7);
+        const days = Math.floor((diffDays % avgDaysInMonth) % 7);
         const parts = [];
-        if (months) parts.push(`${months} Bulan`);
-        if (weeks) parts.push(`${weeks} Minggu`);
-        if (days || parts.length === 0) parts.push(`${days} Hari`);
+        if (months > 0) parts.push(`${months} Bulan`);
+        if (weeks > 0) parts.push(`${weeks} Minggu`);
+        if (days > 0 || parts.length === 0) parts.push(`${days} Hari`);
 
         document.getElementById('countdown').innerText = parts.join(', ');
     }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000 * 60 * 60);
+    setInterval(updateCountdown, 1000);
 });
-
-/**console.log("Home.js loaded");
-document.addEventListener('DOMContentLoaded', function () {
-  const guestData = localStorage.getItem('ezpajak_guest');
-  const isLoggedIn = document.body.getAttribute('data-authenticated') === 'true';
-
-  if (isLoggedIn && guestData) {
-    console.log("Data ditemukan di localStograge : ", guestData);
-
-    const parsed = JSON.parse(guestData);
-    fetch('/import-guest-pajak', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-      },
-      body: JSON.stringify(parsed)
-    }).then(res => res.json()).then(res => {
-      if (res.success) {
-        localStorage.removeItem('ezpajak_guest');
-        console.log("Data guest berhasil dipindah ke database.");
-        this.location.reload(); // supaya dashboard isa reload data terbaru
-      }
-    });
-  }
-});*/

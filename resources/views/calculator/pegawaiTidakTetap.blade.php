@@ -261,7 +261,7 @@
     {{-- Mengirimkan data transaksi dan pegawaiTetap ke JavaScript --}}
     <script>
         // PENTING: Pastikan data yang dikirim ke JS adalah angka mentah, bukan string berformat
-        window.pegawaiTetapData = @json($pegawaiTetap ?? null);
+        window.pegawaiTidakTetapData = @json($pegawaiTidakTetap  ?? null);
         window.transaksiData = @json($transaksi ?? null);
     </script>
     @vite('resources/js/pages/calculatorPegawaiTidakTetap.js')
