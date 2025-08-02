@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PenggunaController;
-
 use App\Http\Controllers\PegawaiTetapController;
 use App\Http\Controllers\BukanPegawaiController;
 use App\Http\Controllers\PegawaiTidakTetapController;
@@ -81,7 +81,7 @@ Route::post('/jadwalkan-notifikasi/{pengguna}', [PenggunaController::class, 'ind
 Route::get('/payment/paypage', function () {
     return view('payment.paypage');
 });
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth', 'verified');
 
 Route::middleware('auth')->post('/payment/paypage/{id}',[PenggunaController::class,'index']);
 // Route::get('/payment/paypage/{id}',[PenggunaController::class,'show']);
@@ -90,18 +90,18 @@ Route::get('/kuesioner', function () {
     return view('kuesioner');
 });
 
-Route::post('/register', [PenggunaController::class, 'store'])->name('pengguna.store');
-Route::get('/register', [PenggunaController::class, 'create'])->name('pengguna.create');
-Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
+// Route::post('/register', [PenggunaController::class, 'store'])->name('pengguna.store');
+// Route::get('/register', [PenggunaController::class, 'create'])->name('pengguna.create');
+// Route::post('/proses-form', [PenggunaController::class, 'prosesForm']);
 
-Route::get('/login', function (){
-    return view('registration.login');
-})->middleware('guest')->name('login');
+// Route::get('/login', function (){
+//     return view('registration.login');
+// })->middleware('guest')->name('login');
 
 
-Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
+// Route::post('/login',[LoginController::class,'login'])->name('pengguna.login');
 
-Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
+// Route::get('/exit', [LoginController::class, 'exit'])->name('pengguna.logout');
 
 Route::get('/history/{id}', [HistoryController::class, 'index'])->name('history');
 
@@ -128,3 +128,5 @@ Route::get('/test-notifikasi-cepat', [PenggunaController::class, 'testNotifikasi
 //         return 'Gagal mengirim email. Error: ' . $e->getMessage();
 //     }
 // });
+
+require __DIR__.'/auth.php';

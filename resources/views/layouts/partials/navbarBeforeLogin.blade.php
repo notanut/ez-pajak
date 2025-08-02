@@ -25,14 +25,14 @@
             </div>
 
             <div class="navbar-nav gap-3 d-lg-none mt-3">
-                <a class="btn btn-outline-primary rounded-0 fs-5 w-100" href="/login">Login</a>
-                <a class="btn btn-primary rounded-0 fs-5 w-100" href="/register">Register</a>
+                <a class="btn btn-outline-primary rounded-0 fs-5 w-100" href="{{ route('login', ['redirect_to' => url()->full()]) }}">Login</a>
+                <a class="btn btn-primary rounded-0 fs-5 w-100" href="{{ route('register', ['redirect_to' => url()->full()]) }}">Register</a>
             </div>
         </div>
 
         <div class="navbar-nav gap-2 ms-auto d-none d-lg-flex ">
-            <a class="btn btn-outline-primary rounded-0 fs-5 px-3 w-100 border-1 fw-normal" href="/login">Login</a>
-            <a class="btn btn-primary rounded-0 fs-5 px-3 w-100 reg-btn border-1" href="/register">Register</a>
+            <a class="btn btn-outline-primary rounded-0 fs-5 px-3 w-100" href="{{ route('login', ['redirect_to' => url()->full()]) }}">Login</a>
+            <a class="btn btn-primary rounded-0 fs-5 px-3 w-100" href="{{ route('register', ['redirect_to' => url()->full()]) }}">Register</a>
         </div>
 
     </div>

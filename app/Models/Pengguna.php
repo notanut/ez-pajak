@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Transaksi;
 use App\Models\PegawaiTetap;
 use App\Models\PegawaiTidakTetap;
 use App\Models\BukanPegawai;
 
-class Pengguna extends Authenticatable
+class Pengguna extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\PenggunaFactory> */
     use HasFactory, Notifiable;

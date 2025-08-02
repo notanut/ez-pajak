@@ -27,15 +27,22 @@
                 <a class="nav-link active fs-5" href="/kuesioner">Kalkulator</a>
             </div>
 
-            <div class="navbar-nav gap-3 d-lg-none mt-3 border-1">
-                <a class="btn btn-primary rounded-0 fs-5 w-100" href="{{route('pengguna.logout')}}">Log Out</a>
+            <div class="navbar-nav gap-3 d-lg-none mt-3">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary rounded-0 fs-5 w-100">Log Out</button>
+                </form>
             </div>
         </div>
 
-        <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex border-1">
-            <a class="btn btn-primary rounded-0 fs-5" href="{{route('pengguna.logout')}}">Log Out</a>
-        </div>
     </div>
+    <div class="navbar-nav gap-3 ms-auto d-none d-lg-flex">
+       <!-- <span class="w-100 navbar-text me-3">Halo, {{ Auth::user()->name }}!</span> -->
+       <form class="w-100" method="POST" action="{{ route('logout') }}">
+           @csrf
+           <button type="submit" class="w-100 btn btn-primary rounded-0 fs-5">Log Out</button>
+       </form>
+   </div>
 </nav>
 
     <script src="{{asset('js\bootstrap.bundle.min.js')}}"></script>

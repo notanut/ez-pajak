@@ -21,16 +21,16 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('bukan_pegawais', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pengguna_id')->constrained('penggunas')->onDelete('cascade');
-            $table->boolean('dibayar_bulanan');
-            // ... dan kolom-kolom lainnya untuk berbagai skenario
-            $table->decimal('total_bruto', 15,2)->nullable();
-            $table->string('metode_penghitungan');
-            $table->decimal('pph21_terutang',15,2)->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('bukan_pegawais', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('pengguna_id')->constrained('penggunas')->onDelete('cascade');
+        //     $table->boolean('dibayar_bulanan');
+        //     // ... dan kolom-kolom lainnya untuk berbagai skenario
+        //     $table->decimal('total_bruto', 15,2)->nullable();
+        //     $table->string('metode_penghitungan');
+        //     $table->decimal('pph21_terutang',15,2)->nullable();
+        //     $table->timestamps();
+        // });
 
     }
 

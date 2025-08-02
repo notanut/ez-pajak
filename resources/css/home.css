@@ -227,3 +227,50 @@ button, .btn {
     }
   }
 }
+
+.bg-card {
+  background-color: #142143 !important;
+}
+
+.bg-card2 {
+  background-color: #151F6D !important;
+}
+
+.bg-card3 {
+  background-color: #0045BE !important;
+}
+
+.detailCard-text{
+    color: white !important;
+    font-weight: bold;
+}
+
+.btn-hover-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+/* Sembunyikan hover-icon secara default */
+.hover-icon {
+  display: none;
+}
+
+/* Saat hover: tampilkan hover-icon, sembunyikan default-icon */
+.btn-hover-icon:hover .default-icon {
+  display: none;
+}
+
+.btn-hover-icon:hover .hover-icon {
+  display: inline;
+}
+
+.btn-outline-primary {
+  border-width: 0.5px !important;
+}
