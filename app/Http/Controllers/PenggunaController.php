@@ -63,6 +63,13 @@ class PenggunaController extends Controller
 
         if($tanggalManual){
             //Ini kalau ada tanggal manual
+            if (Carbon::parse($tanggalManual)->isPast()) {
+                return response()->json([
+                    'message' => 'Tanggal tidak boleh di masa lalu.'
+                ], 422);
+            }
+
+            // Ini kalau ada tanggal manual
             $targetDate = Carbon::parse($tanggalManual)->setTimeFromTimeString($waktu);
             $waktuKirim = $targetDate;
         }else{
