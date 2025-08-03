@@ -17,7 +17,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Saat tombol 'Tambah +' diklik
     document.getElementById('btnTambah').addEventListener('click', function () {
       if (selectedDate) {
+        console.log(window.penggunaId)
         alert('Tanggal yang akan disimpan: ' + selectedDate);
+        fetch(`/jadwalkan-notifikasi/${window.penggunaId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // jika Laravel
+            },
+            body: JSON.stringify({
+                tanggal_manual: selectedDate,
+                email: document.getElementById('inputEmail').value,
+                waktu: document.getElementById('inputWaktu').value
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            window.location.href = '/home';
+            alert(data.message || 'Tanggal berhasil disimpan.');
+        })
+        .catch(err => {
+            alert('Gagal menyimpan tanggal.');
+        });
 
         // TODO: bisa lanjut kirim ke server lewat form hidden / fetch / axios
         // contoh:

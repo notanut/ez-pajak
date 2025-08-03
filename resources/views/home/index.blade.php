@@ -203,7 +203,7 @@
                     @enderror
                     <div class="d-flex justify-content-center align-items-center">
                         <p>sebelumnya, pukul</p></div>
-                        <select class="form-select" name="waktu" required>
+                        <select id="inputWaktu" class="form-select" name="waktu" required>
                             <option value="07.00">07:00</option>
                             <option value="10.00">10:00</option>
                             <option value="13.00">13:00</option>
@@ -220,7 +220,7 @@
                     <p class="fst-italic text-muted">Kami bakal kirim pengingat lewat email ini. Pastikan udah bener biar notifikasimu ga nyasar.</p>
 
                     <div class="input-group d-flex align-items-center gap-5">
-                        <input type="email" class="detailCard-text bg-element-orange text-white" name="email" value="{{$pengguna->email}}" readonly>
+                        <input id="inputEmail" type="email" class="detailCard-text bg-element-orange text-white" name="email" value="{{$pengguna->email}}" readonly>
                         {{-- <button class="btn btn-outline-primary">
                             Edit <i class="bi bi-pencil"></i>
                         </button> --}}
@@ -241,5 +241,8 @@
     <!-- FullCalendar CDN CSS & JS -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+        window.penggunaId = {{$pengguna->id}};
+    </script>
     @vite('resources/js/pages/home.js')
 @endpush

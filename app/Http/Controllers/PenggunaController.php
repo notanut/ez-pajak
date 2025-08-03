@@ -37,36 +37,49 @@ class PenggunaController extends Controller
     public function indexJadwal(Request $request, Pengguna $pengguna)
     {
         // dd('Jalan Bangg');
+        Log::info('Masuk indexJadwal', $request->all());
 
         $request->validate([
-            'jumlah' => 'required|integer|min:1',
-            'satuan' => 'required|string|in:Hari,Minggu',
+            'jumlah' => 'nullable|integer|min:1',
+            'satuan' => 'nullable|string|in:Hari,Minggu',
             'waktu' => 'required|date_format:H.i',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'tanggal_manual' => 'nullable|date'
         ]);
         // dd($request->all());
 
         $jumlah = (int)$request->input('jumlah');
         $satuan = $request->input('satuan');
         $waktu = $request->input('waktu');
+        $tanggalManual = $request->input('tanggal_manual');
 
         // dd($jumlah);
         // $waktuKirim = now()->addSeconds($jumlah);
         // Waktu kirimnya kapan
+
         $waktuKirim = Carbon::now(config('app.timezone'));
 
         $now = Carbon::now();
-        $tanggalTarget = Carbon::create($now->year, 3, 31);
 
-        if ($now->greaterThan($tanggalTarget)) {
-            $tanggalTarget = Carbon::create($now->year + 1, 3, 31);
+        if($tanggalManual){
+            //Ini kalau ada tanggal manual
+            $targetDate = Carbon::parse($tanggalManual)->setTimeFromTimeString($waktu);
+            $waktuKirim = $targetDate;
+        }else{
+            //Ini kalau gaada tanggal manual
+            $tanggalTarget = Carbon::create($now->year, 3, 31);
+
+            if ($now->greaterThan($tanggalTarget)) {
+                $tanggalTarget = Carbon::create($now->year + 1, 3, 31);
+            }
+
+            if($satuan === 'Hari'){
+                $waktuKirim = $tanggalTarget->subDays($jumlah);
+            }elseif ($satuan === 'Minggu'){
+                $waktuKirim = $tanggalTarget->subWeeks($jumlah);
+            }
         }
 
-        if($satuan === 'Hari'){
-            $waktuKirim = $tanggalTarget->subDays($jumlah);
-        }elseif ($satuan === 'Minggu'){
-            $waktuKirim = $tanggalTarget->subWeeks($jumlah);
-        }
 
         $pesan["hi"] = "Hey, {$pengguna->nama}";
         $pesan["isi"] = "Ini adalah pengingat terjadwal Anda!";
@@ -86,7 +99,14 @@ class PenggunaController extends Controller
             'waktu_kirim' => $waktuKirim->toDateTimeString(),
         ]);
 
-        return redirect('/home');
+        if(!$tanggalManual){
+            return redirect('/home');
+        }
+
+        return response()->json([
+            'message' => 'Notifikasi berhasil dijadwalkan',
+        ]);
+
         // return back()->with('status', 'Notifikasi berhasil dijadwalkan untuk dikirim pada ' . $waktuKirim->format('d F Y H:i'));
     }
 
